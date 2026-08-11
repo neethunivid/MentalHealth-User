@@ -1,0 +1,209 @@
+
+.header{
+    text-align: center;
+    background-color:lightblue;
+}
+
+.header-row{
+    text-align: left;
+    display: flex;
+    background-color: #c5e9ca,
+}
+.hr{
+    height: 8px;
+      background-color: white;
+      border: none;
+  }
+  
+  .bg-yellow{
+    background: #fff5d7;
+  }
+  
+  .txt-box-holder{
+    padding: 0px 15px 2px 10px;
+    background: #f1f1ed;
+  }
+  
+  .txt-box{
+    width: 100%;
+    height: 25px;
+    background: #f1f1ed;
+    border: 1px solid black;
+
+ 
+  }
+  
+  .bg-right{
+    background: #e9e3e3;
+    padding-left: 5px;
+  }
+  
+  .selt-box{
+      width: 100%;
+      height: 25px;
+      background: #f1f1ed;
+      border: 1px solid black;
+      text-align: center;
+      padding: 0px 0px 2px 0px;
+  }
+  
+  .txt-red{
+    background: #fff5d7;
+    color: red;
+    font-weight: bold;
+  }
+  
+  .upload-button{
+    text-align: center;
+    background: #0077dc;
+    border-radius: 15px;
+    padding: 2px;
+    width: 120px;
+    height: 40px;
+    border: 1px;
+    color: white;
+  }
+  
+  .txtarea-box {
+    background: #f1f1ed;
+    border: 1px solid black;
+    height: 150px;
+    width: 100%;
+  }
+  
+  .action-row{
+    text-align: right;
+      padding: 10px 20px 5px 0px;
+      background-color: #e4e2db;
+  }
+  
+  
+  .upload-button {
+    text-align: center;
+    background: #0077dc;
+    border-radius: 15px;
+    padding: 2px;
+    width: 120px;
+    height: 40px;
+    border: 1px;
+    color: white;
+  }
+
+  /* Media query for smaller screens (e.g., mobile phones) */
+@media (max-width: 767px) {
+    .upload-button {
+      width: 50px; /* Adjust the width for smaller screens */
+      height: 32px; /* Adjust the height for smaller screens */
+      font-size: 6px; /* Adjust the font size for smaller screens */
+    }
+  }
+  /* .top{
+    margin-top: 120px;
+  } */
+  /* .right{
+    margin-right: 170px;
+  
+  } */
+  .thank {
+    width: 80%;
+    text-align: center;
+    height: 80px;
+    background-color: #ffc04b78;
+  }
+  
+  
+  .body1 {
+    width: 80%;
+    text-align: left;
+    height: auto;
+    background-color: #f5f5f5;
+  }
+  .footer {
+    width: 80%;
+    text-align: right;
+    background-color: #f5f5f5;
+  }
+  .success-text{
+    font-size: 14px;
+    color: blue;
+  }
+
+  .text-bold {
+    font-weight: bold!important;
+  }
+
+.content-row{
+    text-align: left;
+    display: flex,
+}
+.span-star{
+    color: red;
+     padding-left: 2px;
+}
+.cover{
+  padding: 8px;
+  color: black;
+}
+.action-green{
+  background-color: green,;
+  display: flex
+}
+.text-center{
+   text-align: center;
+  }
+  .mg_top{
+    margin-top: 120px;
+  } 
+  
+  .top-right{
+    margin-right: 180px;
+    margin-top: 10px;
+  }
+
+
+  .grant{
+    padding-right: 15px;
+    padding-left: 10px;
+  }
+  .grant1{
+  padding-right: 46px;
+  padding-left: 10px;
+  }
+  .grant2{
+    padding-right: 20px;
+    padding-left: 10px;
+  }
+  .txt-center{
+    transform: translateY(60px);
+
+  }
+  .txt-centerrg{
+    transform: translateY(15px);
+  }
+
+.box-pad{
+  align-self: center;
+  padding-left: 210px;
+
+}
+.mn_width{
+  min-width: 20%;
+}
+.txt_lft{
+  padding-left: 10px;
+}
+
+.input-box {
+  height: 50px;
+}
+.tbmin_width{
+  min-width: 51.6%;
+}
+.fm3_width{
+  min-width: 75.15%;
+}
+
+.grant_font{
+    font: 'Yu Gothic',sans-serif;
+    font-weight: 400;
+}

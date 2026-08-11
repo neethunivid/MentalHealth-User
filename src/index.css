@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Meiryo&family=Hiragino+Kaku+Gothic+Pro&family=MS+P+Gothic&family=Osaka&display=swap');
+body { 
+  font-family: Lato, "Noto Sans JP", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-size: 62.5%;
+  line-height: 1.5;
+  font-weight: 100;
+  color: #3a3a3a;
+  background-color: #ffffff;
+}
+
+

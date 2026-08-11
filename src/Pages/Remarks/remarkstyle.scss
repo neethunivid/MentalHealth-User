@@ -1,0 +1,403 @@
+.sub-container {
+    margin-top: 1px;
+    // display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    padding:2px
+  }
+  .heading-container{
+   margin-top: 5px;
+    
+    color: #ffffff;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: left;
+    border: 1px solid #8eb364;
+    background-color: #8eb364;
+  }
+  .remark-main-container{
+    padding: 5px;
+  }
+  .remark-border{
+    border: 1px solid #e0e0e0;
+  }
+  .remark_container{
+padding :0px 5px 5px 5px
+  }
+  .left-side {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+   
+    gap:7px;
+    
+    .staricon{
+        font-size: 10px;
+        color: #003399 !important;
+    }
+    .titles {
+      color: #003399 !important;
+      font-weight: bold;
+      font-size: 13px; /* Adjust the size as needed */
+      margin-right: 10px;
+      font-family: $font;
+      line-height: 2px !important; /* Spacing between title and the next item */
+    }
+  
+    .date, .remark-no ,.membername{
+      color: black;
+      font-size: 12px; /* Slightly smaller than the title */
+     // margin-right: 5px;
+      line-height: 2px !important; 
+      font-family: $font;
+      font-weight: 400;/* Spacing between each item */
+    }
+  }
+  
+  .remark-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  
+  }
+  
+  .remark-count {
+    background-color:#cfe5a9;
+    color: black;
+   padding: 1px  6px;
+   margin-right: 5px;
+    border-radius: 5px;
+  }
+  .remark-count-text{
+    font-size: 10px !important;
+  }
+  .remark-icon-container {
+    background-color: #7697ff !important;
+    padding: 0 !important; /* Reduced padding */
+    width: 15px; /* Set width */
+    height: 15px; /* Set height */
+    display: flex; /* Center the icon */
+    align-items: center; /* Center the icon */
+    justify-content: center; /* Center the icon */
+  }
+  .remark-divider {
+    margin: 2px 0;
+  }
+
+  .remark-divider-reply {
+    margin: 2px 0;
+  }
+  .remark-icon{
+    font-size: 15px !important;
+    color: white;
+    
+  }
+  .pagination-container {
+    display: flex;
+    flex-direction: row;
+   margin-top: 5px;
+  }
+  
+  .pagination-button {
+    margin: 2px;
+    padding: 2px 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: none;
+ 
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+  .page-action {
+  
+    display: inline-block;
+    margin: 5px 3px 2px ;
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    border-radius: 0px !important;
+    font-weight: bold;
+    background-color: #7697ff !important;
+    border: 1px solid #7697ff !important;
+  }
+  .page-action-icon{
+    color:white;
+    
+  }
+  .page-buttons-container{
+    margin-left: 10px;
+  }
+  .page-info{
+    font-size: 14px !important;
+    align-self: center;
+  }
+  .info-text{
+    font-size: 10px !important;
+    align-self: center;
+    font-family: $font;
+  }
+  .info-text-red{
+    font-size: 10px !important;
+    align-self: center;
+    color: red;
+    font-family: $font;
+  }
+  .info-container{
+    flex-direction: row;
+    display:flex;
+    font-size: 10px !important;
+     }
+  .info{
+margin: 5px;
+  }
+  .heading{
+    font-size: 15px;
+    font-weight: 800 !important;
+  }
+  .bulleticon{
+    color: #003399;
+  }
+  .css-19midj6 {
+    padding:5px !important
+  }
+  .content {
+    position: relative;
+    min-height: 90px;
+    padding: 5px 5px;
+    border: 1px solid #cccccc;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+
+  .profile-card {
+    display: flex;
+    align-items: flex-start; /* Align items to the start */
+    padding: 10px;
+    
+    margin: auto;
+  }
+  
+ 
+  
+
+ 
+  .conatiner{
+    padding:5px
+  }
+ 
+  
+  .row-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 25px;
+  }
+  
+  .row-image img {
+    width: 32px; /* Adjust as needed */
+    height: 35px; /* Adjust as needed */
+  }
+  
+  .name {
+    margin-top: 10px;
+    font-size: 11px !important; /* Adjust as needed */
+    color: #333;
+    text-align: center; /* Center the name below the image */
+  }
+  
+  .row-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .remark-title {
+    margin: 0 0 0px 0; /* Reduce bottom margin to 5px */
+    font-size: 13px !important; /* Adjust as needed */
+    font-weight: 800 !important;
+  }
+  
+  .date {
+    margin: 0;
+    font-size: 12px !important; /* Adjust as needed */
+  }
+  
+  .remark-divider {
+    padding:2px /* Ensure no margin */
+  }
+  .remark-text{
+    padding-top:5px;
+    padding-bottom: 5px;
+    font-size:13px !important;
+  }
+  .followbtn{
+  font-size: 12px;
+  }
+  .submitbtn{
+    font-size: 12px !important;
+    margin-right: 10px;
+    }
+  .btn-container{
+    
+  
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    justify-content: center;
+    border: 1px solid #8eb364;
+    background-color: #8eb364;
+  }
+  .textbox-right{
+    justify-content: center;
+  }
+  .content-card {
+    display: flex;
+    //align-items: center;
+   // margin-bottom: 10px; /* Adjust margin as needed */
+  }
+  
+  .profile-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 30px;
+  }
+  
+  .profile-image img {
+    width: 32px; /* Adjust as needed */
+    height: 25px; /* Adjust as needed */
+  }
+  
+  .name {
+    margin-top: 10px;
+    font-size: 11px !important; /* Adjust as needed */
+    color: #333;
+    text-align: center; /* Center the name below the image */
+  }
+  
+  .profile-right {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .remark-title {
+    margin: 0 0 5px 0; /* Reduce bottom margin */
+    font-size: 13px !important; /* Adjust as needed */
+    font-weight: 800 !important;
+  }
+  
+  .date {
+    margin: 0;
+    font-size: 12px !important; /* Adjust as needed */
+  }
+  
+  .remark-divider {
+    margin: 0;
+  }
+  
+  .remark-text {
+    font-size: 12px !important;
+    margin-bottom: 10px; /* Adjust margin as needed */
+  }
+  
+  .btn-container {
+   // margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .heading-container {
+    margin: 0px 0; /* Adjust margin as needed */
+  }
+  
+  .textbox-right {
+    flex-grow: 1;
+  }
+  
+  .textbox-right .MuiTextField-root {
+    margin-top: 5px;
+    width: 80%; 
+    margin-bottom: 5px;/* Ensure full width */
+  }
+  
+  .member-label{
+   padding-right: 10px;
+    padding-top:5px;
+    padding-bottom: 5px;
+    font-size:13px !important;
+  }
+  .submitbtn-container{
+  margin: 10px 0; 
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+
+  }
+ 
+  .replycontainer{
+    padding: 10px;
+  }
+  .preview-container{
+    margin: 2px;
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+  }
+  .previewbtn-container {
+ display: flex;
+ align-items: center;
+ align-self: center;
+ font-size: 12px;
+  }
+.previewtext{
+  font-size: 12px !important;
+}
+  .previewsubmitbtn{
+   font-size: 12px !important;
+   margin-right: 5px;
+   padding-left: 15px;
+   padding-right: 15px;
+  }
+  .replybtn-container{
+    align-items: center;
+    justify-content: center;
+  }
+  .checkbox-container{
+    display: flex;
+    flex-direction: "row";
+  }
+  .previewpage-btn-container{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 80px;
+    margin-top:10px
+  }
+
+
+  .remark-successs-container {
+    border: 1px solid #ccc;
+    padding: 20px !important;
+  }
+  
+  .green-background {
+    background-color: #e4eecf;
+    padding: 10px !important;
+  
+  }
+  .message-text {
+    font-family: $font;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+    font-weight: 700;
+  }
+  .red-text {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5;
+    font-size: 15px;
+    margin-top: 25px !important
+  }

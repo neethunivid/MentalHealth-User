@@ -1,0 +1,63 @@
+.columnCard {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.image-container {
+    margin-bottom: 16px;
+    height: 150px; /* Fixed height for the image container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-wrapper {
+    height: 100%; /* Ensure the wrapper takes full height of the container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        height: 100%; /* Image takes full height of the container */
+        width: auto; /* Maintain aspect ratio */
+        object-fit: cover; /* Ensure the image covers the container */
+    }
+}
+
+.other-book-content {
+    padding: 0 16px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.price{
+    color:#cf2e2e
+}
+.title, .author, .price, .summary, .details, .button-container {
+    width: 100%;
+    word-break: break-word;
+}
+.book-list-container{
+border:solid #bababa thin
+}
+.description-toggle {
+    cursor: pointer;
+    color: #1976d2;
+}
+
+.read-less {
+    cursor: pointer;
+    color: primary;
+}
+
+.details {
+    padding-top: 16px;
+}
+
+.point {
+    padding: 0;
+}
+
+.button-container {
+    padding-top: 16px;
+    width: 100%;
+}
