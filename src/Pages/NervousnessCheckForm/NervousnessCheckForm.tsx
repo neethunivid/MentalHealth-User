@@ -124,6 +124,11 @@ const questions = [
 
 const bannerImages = [
   {
+    image: banner04,
+    alt: "お問合せ",
+    link: "/inquiry"
+  },
+  {
     image: banner01,
     alt: "ZOOMカウンセリング 予約受付中",
     link: "/online_consultation"
@@ -137,11 +142,6 @@ const bannerImages = [
     image: banner03,
     alt: "参考図書",
     link: "/morita_therapy_reference_books"
-  },
-  {
-    image: banner04,
-    alt: "お問合せ",
-    link: "/inquiry"
   }
 ];
 
