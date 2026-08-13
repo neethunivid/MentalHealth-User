@@ -897,6 +897,7 @@
   align-items: center;
   margin: 0 auto;
   position: relative;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
 }
 
 @media (max-width: 768px) {
@@ -913,10 +914,12 @@
   justify-content: center;
   position: relative;
   width: 100%;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
 }
 
 .menu-item {
   position: relative;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
 }
 
 .menu-item a {
@@ -924,7 +927,7 @@
   text-decoration: none;
   display: block;
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
   padding-left: 30px;
   padding-right: 30px;
 }

@@ -1,15 +1,23 @@
-import { Grid, Typography } from '@material-ui/core'
 import React, { useState } from 'react'
+import {
+  Grid,
+  Typography,
+  FormGroup,
+  Checkbox,
+  Button,
+  Box,
+  Paper
+} from '@mui/material'
 import Heading from '../../Components/Common/Heading'
 import Breadcrumb from '../../Components/Common/BreadCrumb'
 import { useForm } from 'react-hook-form'
-import FormGroup from '@mui/material/FormGroup'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
-import Button from '@mui/material/Button';
 import RequestDiagnosisResult from '../../Components/Common/RequestDiagnosisResult'
-import SquareIcon from '@mui/icons-material/Square';
 import SubHeader from '../../Components/Common/subHeader'
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import banner01 from '../../assets/banner01.jpg';
+import banner02 from '../../assets/banner02.jpg';
+import banner03 from '../../assets/banner03.jpg';
+import banner04 from '../../assets/banner04.jpg';
 
 const questions = [
   {
@@ -114,18 +122,40 @@ const questions = [
   }
 ];
 
+const bannerImages = [
+  {
+    image: banner01,
+    alt: "ZOOMカウンセリング 予約受付中",
+    link: "/online_consultation"
+  },
+  {
+    image: banner02,
+    alt: "自己チェックシート うつ、パニック、強迫、対人恐怖など",
+    link: "/check1"
+  },
+  {
+    image: banner03,
+    alt: "参考図書",
+    link: "/morita_therapy_reference_books"
+  },
+  {
+    image: banner04,
+    alt: "お問合せ",
+    link: "/inquiry"
+  }
+];
+
 /**
  * Component used to display test questions which allows users to select their problems regarding Nervousness and submit
  */
-
 const NervousnessCheckForm = () => {
   const [checkedCount, setCheckedCount] = useState(0);
-  const [openForm, setOpenForm] = useState(false)
-  const [characteristicsTrueCount, setCharacteristicsTrueCount] = useState(0)
-  const [preoccupationTrueCount, setPreoccupationTrueCount] = useState(0)
-  const [neuroticTrueCount, setNeuroticTrueCount] = useState(0)
-  const [conclusion, setConclusion] = useState<string>("")
-  const [testResult, setTestResult] = useState<string>("")
+  const [openForm, setOpenForm] = useState(false);
+  const [characteristicsTrueCount, setCharacteristicsTrueCount] = useState(0);
+  const [preoccupationTrueCount, setPreoccupationTrueCount] = useState(0);
+  const [neuroticTrueCount, setNeuroticTrueCount] = useState(0);
+  const [conclusion, setConclusion] = useState<string>("");
+  const [testResult, setTestResult] = useState<string>("");
   const [submitFlag, setSubmitFlag] = useState<boolean>(false);
 
   const handleSubmitFlagChange = (value: boolean) => {
@@ -140,7 +170,7 @@ const NervousnessCheckForm = () => {
     q5: false,
     q6: false,
     q7: false
-  })
+  });
 
   const [preoccupation, setPreoccupation] = useState({
     q8: false,
@@ -148,7 +178,7 @@ const NervousnessCheckForm = () => {
     q10: false,
     q11: false,
     q12: false
-  })
+  });
 
   const [neurotic, setNeurotic] = useState({
     q13: false,
@@ -164,15 +194,9 @@ const NervousnessCheckForm = () => {
     q23: false,
     q24: false,
     q25: false,
-  })
+  });
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    formState: { errors },
-  } = useForm();
+  const { handleSubmit } = useForm();
 
   const breadcrumbItems = [
     { title: 'HOME', href: '/home.html' },
@@ -180,10 +204,15 @@ const NervousnessCheckForm = () => {
     { title: '神経質性格度チェック' }
   ];
 
-  /**
-   * Method used to take the total count of selected items
-   * @param event 
-   */
+  const isQuestionChecked = (id: string) => {
+    if (["q1", "q2", "q3", "q4", "q5", "q6", "q7"].includes(id)) {
+      return characteristics[id as keyof typeof characteristics];
+    } else if (["q8", "q9", "q10", "q11", "q12"].includes(id)) {
+      return preoccupation[id as keyof typeof preoccupation];
+    } else {
+      return neurotic[id as keyof typeof neurotic];
+    }
+  };
 
   const handleCheckedCount = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, checked } = event.target;
@@ -207,120 +236,350 @@ const NervousnessCheckForm = () => {
     }
   };
 
-  /**
-   * Method used to submit the answers
-   * @param data 
-   */
-
-  const onSubmit = async (data: any) => {
+  const onSubmit = async () => {
     const characteristicsTrueCount = Object.values(characteristics).filter(item => item).length;
     const preoccupationTrueCount = Object.values(preoccupation).filter(item => item).length;
     const neuroticTrueCount = Object.values(neurotic).filter(item => item).length;
-    setCharacteristicsTrueCount(characteristicsTrueCount)
-    setPreoccupationTrueCount(preoccupationTrueCount)
-    setNeuroticTrueCount(neuroticTrueCount)
+    setCharacteristicsTrueCount(characteristicsTrueCount);
+    setPreoccupationTrueCount(preoccupationTrueCount);
+    setNeuroticTrueCount(neuroticTrueCount);
 
     let localConclusion = checkedCount <= 15
       ? `該当する項目は全部で ${checkedCount} 個（６割以下）で必ずしも森田神経質とは限りません。一度医師にご相談下さい。`
       : `該当する項目は全部で ${checkedCount} 個（６割以上）で典型的な森田神経質です。`;
 
-    const summary =`該当項目の内訳】<br/>■「症状の特徴」があてはまるのは ${characteristicsTrueCount} 個でした<br/>■「とらわれの症状」であてはまるのは ${preoccupationTrueCount} 個でした<br/>■「神経質症状の特徴」であてはまるのは ${neuroticTrueCount} 個でした`
+    const summary = `【該当項目の内訳】<br/>■「症状の特徴」があてはまるのは ${characteristicsTrueCount} 個でした<br/>■「とらわれの症状」であてはまるのは ${preoccupationTrueCount} 個でした<br/>■「神経質症状の特徴」であてはまるのは ${neuroticTrueCount} 個でした`;
     setConclusion(localConclusion);
-    const result = `${localConclusion} <br/> ${summary}`
-    console.log(result);
+    const result = `${localConclusion} <br/> ${summary}`;
     setTestResult(result);
-    setOpenForm(true)
-  }
-
-  /**
-   * Method used to clear the entire selection of items
-   */
+    setOpenForm(true);
+  };
 
   const handleRedoClick = () => {
     window.location.reload();
   };
 
   return (
-    <Grid>
-      <SubHeader/>
+    <Box
+      sx={{
+        width: '100%',
+        pb: 6,
+        fontFamily: '"MPLUSRounded1c", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important',
+        '& *': {
+          fontFamily: '"MPLUSRounded1c", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important',
+        },
+      }}
+    >
+      <SubHeader />
       <Heading title='神経質性格度チェック' />
-      <Breadcrumb items={breadcrumbItems} />
-      <Grid container className='container'>
-        {!submitFlag ? (
-          <>
-            <Grid item xs={12} alignItems='center' justifyContent='center'>
-              <form className="test" onSubmit={handleSubmit(onSubmit)}>
-                <Typography className='blueBackground-blackContent'>
-                  現在のあなたの状態について、以下のあてはまる項目にチェックをつけてください。
+
+      <Box sx={{ maxWidth: '1200px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
+        <Grid container spacing={3}>
+          {/* Left Main Content Column */}
+          <Grid item xs={12} md={8}>
+            {/* Breadcrumb Navigation */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: 0.8,
+                fontSize: '0.82rem',
+                color: '#666666',
+                mb: 2,
+              }}
+            >
+              <HomeRoundedIcon sx={{ fontSize: '1rem', color: '#666666' }} />
+              <a href="/home.html" style={{ color: '#666666', textDecoration: 'none' }}>
+                HOME
+              </a>
+              <span>/</span>
+              <a href="/check.html" style={{ color: '#666666', textDecoration: 'none' }}>
+                自己診断チェック
+              </a>
+              <span>/</span>
+              <span style={{ color: '#666666' }}>神経質性格度チェック</span>
+            </Box>
+
+            {!submitFlag ? (
+              <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+                {/* Instruction Line */}
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: '#555555',
+                    fontWeight: 600,
+                    fontSize: '0.95rem',
+                    mb: 2.5,
+                  }}
+                >
+                  問：現在のあなたの状態で以下に該当する項目にチェックしてください。
                 </Typography>
-                <FormGroup>
-                  {questions.map((question, index) => (
-                    <FormControlLabel
-                      key={question.id}
-                      control={
-                        <Checkbox
-                          onChange={handleCheckedCount}
-                          id={question.id}
-                        />
-                      }
-                      label={
-                        <Typography variant='h3'>
+
+                {/* Questions Checklist */}
+                <FormGroup sx={{ mb: 2 }}>
+                  {questions.map((question, index) => {
+                    const isColored = index % 2 === 0;
+                    return (
+                      <Box
+                        key={question.id}
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          backgroundColor: isColored ? '#e5effd' : 'transparent',
+                          borderTop: isColored ? '1px solid #7ea1d0' : '1px solid transparent',
+                          borderBottom: isColored ? '1px solid #7ea1d0' : '1px solid transparent',
+                          borderLeft: 'none',
+                          borderRight: 'none',
+                          borderRadius: 0,
+                          padding: '16px 20px',
+                          marginBottom: '12px',
+                        }}
+                        id={`nervousness-selftest-question-${question.id}`}
+                      >
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontSize: { xs: '0.88rem', sm: '0.93rem' },
+                            color: '#333333',
+                            lineHeight: 1.5,
+                            pr: 2,
+                            flexGrow: 1,
+                          }}
+                        >
                           {question.label}
                         </Typography>
-                      }
-                      className={index % 2 === 0 ? "whiteBackground-questions" : "blueBackground-questions"}
-                      id={`nervousness-selftest-question-${question.id}`}
-                    />
-                  ))}
+                        <Checkbox
+                          checked={isQuestionChecked(question.id)}
+                          onChange={handleCheckedCount}
+                          id={question.id}
+                          icon={
+                            <Box
+                              sx={{
+                                width: 18,
+                                height: 18,
+                                border: '1px solid #767676',
+                                borderRadius: '3px',
+                                backgroundColor: '#ffffff',
+                              }}
+                            />
+                          }
+                          checkedIcon={
+                            <Box
+                              sx={{
+                                width: 18,
+                                height: 18,
+                                border: '1px solid #0066cc',
+                                borderRadius: '3px',
+                                backgroundColor: '#0066cc',
+                                color: '#ffffff',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                fontSize: '13px',
+                                fontWeight: 'bold',
+                                lineHeight: 1,
+                              }}
+                            >
+                              ✓
+                            </Box>
+                          }
+                          sx={{
+                            padding: 0,
+                            '&:hover': { backgroundColor: 'transparent' },
+                          }}
+                        />
+                      </Box>
+                    );
+                  })}
                 </FormGroup>
-                <Typography variant='h2'>
-                  北西憲二著「実践森田療法」 付記2・3の質問表より
-                </Typography>
-                <Typography className='pinkBackground-blueContent'>
-                  該当する項目は {checkedCount} 個
-                </Typography>
-                <Grid item container alignItems='flex-start' justifyContent='flex-start' spacing={2}>
-                  <Grid item>
-                    <Button variant="contained" color="primary" type="submit" className="selftest-form-button" id="nervousness-selftest-form-diagnose-button">診断する</Button>
-                  </Grid>
-                  <Grid item>
-                    <Button variant="contained" color="primary" onClick={handleRedoClick} className="selftest-form-button" id="nervousness-selftest-form-redo-button">やり直し</Button>
-                  </Grid>
-                </Grid>
-              </form>
-            </Grid>
-            <Grid item xs={12} alignItems='center' justifyContent='center'>
-              {openForm &&
-                <Grid>
-                  <Typography variant='body1'>{conclusion}</Typography>
-                  <Typography variant='caption'>
-                    <br />【該当項目の内訳】<br />
-                    ■  症状の特徴」があてはまるのは {characteristicsTrueCount} 個でした<br />
-                    ■「とらわれの症状」であてはまるのは {preoccupationTrueCount} 個でした<br />
-                    ■「神経質症状の特徴」であてはまるのは {neuroticTrueCount} 個でした
-                  </Typography>
-                  <RequestDiagnosisResult type={1} result={testResult} onFlagChange={handleSubmitFlagChange} />
-                </Grid>
-              }
-            </Grid>
-          </>
-        ) : (
-          <Grid xs={10} md={11} className='success-page'>
-            <Typography>
-              ご利用ありがとうございました。内容を確認の上、後日、事務局より
-              <Typography>
-                メールにてご連絡致しますので、よろしくお願い致します。
-              </Typography>
-            </Typography>
-            <Typography>
-              <br />（注）<br />
-              通信キャリアにより、迷惑メール対策をされている場合、拒否される 可能性があります。送信後、3日以上経過しても通知メールが届かない場合、 「mentalzaidan@mental-health.org」のメールアドレスを受信するように設定し て下さい。
-            </Typography>
-          </Grid>
-        )}
-      </Grid>
-    </Grid>
-  )
-}
 
-export default NervousnessCheckForm
+                {/* Reference Note */}
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: '#666666',
+                    fontSize: '0.82rem',
+                    mt: 1,
+                    mb: 3,
+                  }}
+                >
+                  （北西憲二著「実践森田療法」 付記2・3の質問表より）
+                </Typography>
+
+                {/* Checked Counter Box */}
+                <Box
+                  sx={{
+                    backgroundColor: '#fff7df',
+                    color: '#333333',
+                    padding: '18px 24px',
+                    width: '100%',
+                    mb: 3,
+                    boxSizing: 'border-box',
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 'bold',
+                      fontSize: '1.15rem',
+                      color: '#333333',
+                    }}
+                  >
+                    該当する項目は {checkedCount} 個
+                  </Typography>
+                </Box>
+
+                {/* Buttons Row */}
+                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    id="nervousness-selftest-form-diagnose-button"
+                    sx={{
+                      backgroundColor: '#0066cc',
+                      px: 4,
+                      py: 1,
+                      fontSize: '0.95rem',
+                      fontWeight: 'bold',
+                      '&:hover': {
+                        backgroundColor: '#004c99',
+                      },
+                    }}
+                  >
+                    診断する
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={handleRedoClick}
+                    id="nervousness-selftest-form-redo-button"
+                    sx={{
+                      borderColor: '#0066cc',
+                      color: '#0066cc',
+                      px: 4,
+                      py: 1,
+                      fontSize: '0.95rem',
+                      fontWeight: 'bold',
+                      '&:hover': {
+                        borderColor: '#004c99',
+                        backgroundColor: '#f0f7ff',
+                      },
+                    }}
+                  >
+                    やり直し
+                  </Button>
+                </Box>
+
+                {/* Open Diagnosis Result Form */}
+                {openForm && (
+                  <Box
+                    sx={{
+                      mt: 3,
+                      p: { xs: 2.5, sm: 3.5 },
+                      backgroundColor: '#fff7df',
+                      boxSizing: 'border-box',
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 1, fontSize: '1.05rem' }}>
+                      {conclusion}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: '#444444', lineHeight: 1.8, mb: 3 }}>
+                      【該当項目の内訳】
+                      <br />
+                      ■「症状の特徴」があてはまるのは {characteristicsTrueCount} 個でした
+                      <br />
+                      ■「とらわれの症状」であてはまるのは {preoccupationTrueCount} 個でした
+                      <br />
+                      ■「神経質症状の特徴」であてはまるのは {neuroticTrueCount} 個でした
+                    </Typography>
+                    <RequestDiagnosisResult
+                      type={1}
+                      result={testResult}
+                      onFlagChange={handleSubmitFlagChange}
+                    />
+                  </Box>
+                )}
+              </Box>
+            ) : (
+              /* Success Submission View */
+              <Paper
+                elevation={0}
+                sx={{
+                  p: 4,
+                  backgroundColor: '#f0f7ff',
+                  border: '1px solid #b3d7ff',
+                }}
+              >
+                <Typography variant="h6" sx={{ color: '#0066cc', fontWeight: 'bold', mb: 2 }}>
+                  ご利用ありがとうございました。
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 2, color: '#333333' }}>
+                  内容を確認の上、後日、事務局よりメールにてご連絡致しますので、よろしくお願い致します。
+                </Typography>
+                <Typography variant="body2" sx={{ color: '#666666', lineHeight: 1.7 }}>
+                  （注）通信キャリアにより、迷惑メール対策をされている場合、拒否される可能性があります。送信後、3日以上経過しても通知メールが届かない場合、「mentalzaidan@mental-health.org」のメールアドレスを受信するように設定して下さい。
+                </Typography>
+              </Paper>
+            )}
+          </Grid>
+
+          {/* Right Sidebar Column (Notice Section) */}
+          <Grid item xs={12} md={4}>
+            <Box sx={{ width: '100%', mb: 4 }}>
+              {/* Notice Header Bar */}
+              <Box
+                sx={{
+                  backgroundColor: '#0066cc',
+                  color: '#ffffff',
+                  padding: '8px 14px',
+                  fontWeight: 'bold',
+                  fontSize: '0.95rem',
+                  textTransform: 'lowercase',
+                }}
+              >
+                notice
+              </Box>
+
+              {/* Banners List */}
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  mt: '12px',
+                }}
+              >
+                {bannerImages.map((banner, index) => (
+                  <Box
+                    key={index}
+                    component="a"
+                    href={banner.link}
+                    sx={{
+                      display: 'block',
+                      width: '100%',
+                    }}
+                  >
+                    <img
+                      src={banner.image}
+                      alt={banner.alt}
+                      style={{
+                        width: '100%',
+                        display: 'block',
+                        height: 'auto',
+                      }}
+                    />
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+    </Box>
+  );
+};
+
+export default NervousnessCheckForm;
+
+
