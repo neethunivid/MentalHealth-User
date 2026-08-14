@@ -13,7 +13,8 @@ import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import SearchIcon from '@mui/icons-material/Search';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import logo from '../../assets/headerlogo3.gif';
 import NavBar from './Navbar';
 import LogoutComponent from '../Logout/LogOut';
@@ -332,100 +333,40 @@ const Navigation = () => {
   return (
     <>
       {mobileOpen && (
-        <div
-          className="overlay-menu"
-          onClick={() => setMobileOpen(false)}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            marginBottom: 60,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            zIndex: 1200,
-            overflow: 'hidden',
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'white',
-              overflowY: 'auto',
-              marginBottom: 60,
-            }}
-          >
-            <List>
-              {currentLinks.map((menuItem, index) => (
+        <div className="custom-mobile-overlay" onClick={() => setMobileOpen(false)}>
+          <div className="custom-mobile-drawer" onClick={(e) => e.stopPropagation()}>
+            <ul className="mobile-menu-list">
+              {citizenlink.filter(item => !item.rendermob).map((menuItem, index) => (
                 <React.Fragment key={index}>
-                  <ListItem button onClick={() => handleMenuToggle(index)}>
-                    <ListItemText primary={menuItem.subItems.length > 0 ? `>  ${menuItem.title}` : menuItem.title} onClick={()=>handleNavigationClick(menuItem.link)}/>
-                    {menuItem.subItems.length > 0 && (
-                      <Box
-                        sx={{
-                          width: 24,
-                          height: 24,
-                          border: '1px solid grey',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-
-                          marginLeft: 'auto',
-                          backgroundColor: 'white',
-                        }}
-                      >
-                        {openMenuIndex === index ? (
-                          <CloseIcon />
-                        ) : (
-                          <KeyboardArrowDownIcon />
-                        )}
-                      </Box>
-                    )}
-                  </ListItem>
-                  <Collapse in={openMenuIndex === index} timeout="auto" unmountOnExit>
-                    <List component="div" disablePadding>
+                  <li className="mobile-menu-item" onClick={() => handleMenuToggle(index)}>
+                    <span className="mobile-menu-title">{menuItem.title}</span>
+                    <span className="mobile-menu-icon">
+                      {openMenuIndex === index ? (
+                        <RemoveIcon sx={{ fontSize: 18, color: '#777' }} />
+                      ) : (
+                        <AddIcon sx={{ fontSize: 18, color: '#777' }} />
+                      )}
+                    </span>
+                  </li>
+                  {menuItem.subItems && menuItem.subItems.length > 0 && openMenuIndex === index && (
+                    <ul className="mobile-submenu-list">
                       {menuItem.subItems.map((subItem, subIndex) => (
-                        <React.Fragment key={subIndex}>
-                          <ListItem button sx={{ pl: 4 }}>
-                            <ListItemText primary={subItem.title}  onClick={()=>handleNavigationClick(subItem.link)}/>
-                          </ListItem>
-                          {subIndex !== menuItem.subItems.length - 1 && (
-                            <Grid className="submenu-divider-mob"></Grid>
-                          )}
-                        </React.Fragment>
+                        <li key={subIndex} className="mobile-submenu-item">
+                          <a href={subItem.link} onClick={() => setMobileOpen(false)}>
+                            {subItem.title}
+                          </a>
+                        </li>
                       ))}
-                    </List>
-                  </Collapse>
-
-                  <Grid className="submenu-divider-mob"></Grid>
-
+                    </ul>
+                  )}
                 </React.Fragment>
               ))}
-            </List>
-            <Grid className='mail-maincontainer '>
-              <div className="magazinecontainer" onClick={() => navigate('/mailmagazine')}>
-                <div className="arrow-circle">
-                  <ArrowForwardIcon style={{ color: '#0061b7', fontSize: 15, padding: 1 }} />
-                </div>
-                <span>メルマガ購読</span>
-              </div>
-            </Grid>
-            <Grid
-              container 
-              justifyContent="center" 
-            >
-              <Grid item>
-              {isLogoutComponent && (
-       <LogoutComponent />
-      )}
-              </Grid>
-            </Grid>
-
+            </ul>
+          </div>
+          <div className="custom-mobile-backdrop" onClick={() => setMobileOpen(false)}>
+            <button className="mobile-drawer-close-btn" onClick={() => setMobileOpen(false)} aria-label="Close menu">
+              <CloseIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+            </button>
           </div>
         </div>
       )}
