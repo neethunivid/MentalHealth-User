@@ -1064,3 +1064,193 @@
 .MuiBottomNavigationAction-label {
   font-size: 9px !important;
 }
+
+/* Clean Modern Single-Row Navbar Styles */
+.site-header-wrapper {
+  width: 100%;
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+}
+
+.site-header-inner {
+  width: 100%;
+  max-width: 1350px !important;
+  margin: 0 auto !important;
+  padding: 12px 30px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+
+  @media (max-width: 991px) {
+    padding: 10px 20px !important;
+  }
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+
+  .header-logo-img {
+    height: 50px !important;
+    max-height: 55px !important;
+    object-fit: contain !important;
+  }
+}
+
+.mobile-hamburger-btn {
+  display: none !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 6px !important;
+  outline: none !important;
+
+  @media (max-width: 991px) {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+.custom-navbar {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+
+  @media (max-width: 991px) {
+    display: none !important;
+  }
+
+  .custom-nav-list {
+    display: flex !important;
+    align-items: center !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 30px !important;
+
+    @media (max-width: 1150px) {
+      gap: 16px !important;
+    }
+  }
+
+  .custom-nav-item {
+    position: relative !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    &:hover .custom-sub-menu {
+      display: block !important;
+    }
+
+    .custom-nav-link {
+      text-decoration: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 4px 6px !important;
+      color: #333333 !important;
+      background: transparent !important;
+      background-color: transparent !important;
+      transition: color 0.2s ease !important;
+
+      &:hover {
+        color: #0061b7 !important;
+        background: transparent !important;
+        background-color: transparent !important;
+      }
+    }
+
+    .custom-nav-title {
+      font-size: 13.5px !important;
+      font-weight: 500 !important;
+      color: #444444 !important;
+      white-space: nowrap !important;
+      font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+    }
+
+    .custom-nav-caret {
+      font-size: 16px !important;
+      color: #777777 !important;
+      margin-top: 2px !important;
+    }
+
+    .custom-sub-menu {
+      position: absolute !important;
+      top: calc(100% + 4px) !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 210px !important;
+      min-width: 190px !important;
+      max-width: 230px !important;
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      border: none !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+      border-radius: 4px !important;
+      padding: 12px 6px !important;
+      display: none;
+      z-index: 9999 !important;
+      list-style: none !important;
+
+      &.active {
+        display: block !important;
+      }
+
+      .custom-sub-item {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+
+        a {
+          color: #4a4a4a !important;
+          font-size: 13px !important;
+          font-weight: 400 !important;
+          text-decoration: none !important;
+          display: block !important;
+          padding: 8px 10px !important;
+          text-align: center !important;
+          white-space: normal !important;
+          word-break: normal !important;
+          line-height: 1.38 !important;
+          background: transparent !important;
+          background-color: transparent !important;
+          box-shadow: none !important;
+          border: none !important;
+          font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+          transition: color 0.2s ease !important;
+
+          &:hover {
+            background: transparent !important;
+            background-color: transparent !important;
+            color: #0061b7 !important;
+            text-decoration: none !important;
+          }
+        }
+      }
+
+      .custom-sub-divider {
+        display: none !important;
+      }
+    }
+  }
+}

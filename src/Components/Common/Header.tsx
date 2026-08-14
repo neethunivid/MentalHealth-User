@@ -28,82 +28,77 @@ const citizenlink = [
     rendermob: false
   },
   {
+    title: 'Anxiety, worries, and symptoms',
+    link: 'shoujou.html',
+    rendermob: false,
+    subItems: [
+      { title: 'social anxiety disorder', link: 'shoujou.html#shakoufuan' },
+      { title: 'Panic disorder', link: 'shoujou.html#panic' },
+      { title: 'Generalized anxiety disorder', link: 'shoujou.html#zenpanfuan' },
+      { title: 'Obsessive-compulsive disorder', link: 'shoujou.html#kyouhaku' },
+      { title: 'somatic symptom disorder', link: 'shoujou.html#shintai' },
+      { title: 'Illness anxiety disorder', link: 'shoujou.html#byokifuan' },
+      { title: 'Dissociative disorder', link: 'shoujou.html#kairi' },
+      { title: 'Depression and Bipolar Disorder', link: 'shoujou.html#utsu' },
+      { title: 'others', link: 'shoujou.html#sonota' },
+      { title: 'Q&A about neurosis (anxiety disorders)', link: 'fuan_qa.html' },
+    ],
+  },
+  {
+    title: 'Consultation service',
+    link: 'soudan.html',
+    rendermob: false,
+    subItems: [
+      { title: 'Telephone & Interview Consultation', link: 'consult.html#soudan-denwa' },
+      { title: 'Free Counseling', link: 'consult.html#soudan-counseling' },
+      { title: 'Morita Therapy Medical Institutions', link: 'medicalcousel.html' },
+    ],
+  },
+  {
+    title: 'Morita Therapy',
+    link: 'morita.html',
+    rendermob: false,
+    subItems: [
+      { title: 'About Morita Therapy', link: 'morita.html' },
+      { title: 'Treatment Methods', link: 'chiryouhou.html' },
+      { title: 'Symptom-specific Treatment Methods', link: 'shoujoubetsu.html' },
+      { title: 'How to approach Medication', link: 'yakubutsu-r.html' },
+    ],
+  },
+  {
+    title: 'Support activities',
+    link: 'support.html',
+    rendermob: false,
+    subItems: [
+      { title: 'Mental Health Seminars', link: 'seminar.html' },
+      { title: 'Library', link: 'library.html' },
+      { title: 'Reference Books', link: 'book.html' },
+      { title: 'Videos & Movies', link: 'video.html' },
+      { title: 'Experience Forum', link: 'forum.html' },
+      { title: 'Symptom Advice Collection', link: 'advice.html' },
+      { title: 'Overcoming Experiences', link: 'taiken.html' },
+      { title: 'Mental News', link: 'news.html' },
+      { title: 'Morita Therapy DVD', link: 'dvd.html' },
+      { title: 'Related Links', link: 'link.html' },
+    ],
+  },
+  {
+    title: 'Self-assessment check',
+    link: 'check.html',
+    rendermob: false,
+    subItems: [
+      { title: 'Neurotic Personality Check', link: 'check1.html' },
+      { title: 'Social Anxiety Check', link: 'check2.html' },
+      { title: 'Panic Disorder Check', link: 'check3.html' },
+      { title: 'Obsessive-Compulsive Disorder Check', link: 'check4.html' },
+      { title: 'Depression Check', link: 'check5.html' },
+    ],
+  },
+  {
     title: '市民の皆さま',
     link: 'shoujou.html',
     subItems: [],
     rendermob: true
-  },
-  {
-    title: '不安・悩み・症状',
-    link: 'shoujou.html',
-    rendermob: false,
-    subItems: [
-      { title: '社交不安症（対人恐怖）', link: 'shoujou.html#shakoufuan' },
-      { title: 'パニック症', link: 'shoujou.html#panic' },
-      { title: '全般性不安症', link: 'shoujou.html#zenpanfuan' },
-      { title: '強迫症', link: 'shoujou.html#kyouhaku' },
-      { title: '身体表現症', link: 'shoujou.html#shintai' },
-      { title: '病気不安症（心気障害）', link: 'shoujou.html#byokifuan' },
-      { title: '解離性障害', link: 'shoujou.html#kairi' },
-      { title: '離人症', link: 'shoujou.html#rijin' },
-      { title: 'うつ病・躁うつ病', link: 'shoujou.html#utsu' },
-      { title: '他の気分障害（気分変調症、非定型うつ病、その他）', link: 'shoujou.html#kibun' },
-      { title: 'その他（発達障害、トラウマなど）', link: 'shoujou.html#sonota' },
-      { title: '薬物療法と精神療法', link: 'ryouhou.html' },
-      { title: '神経症（不安障害）のQ&A', link: 'fuan_qa.html' },
-    ],
-  },
-  {
-    title: '自己診断チェック',
-    link: 'check.html',
-    rendermob: false,
-    subItems: [
-      { title: '神経質性格度チェック', link: 'check1.html' },
-      { title: '対人恐怖症チェック', link: 'check2.html' },
-      { title: 'パニック症チェック', link: 'check3.html' },
-      { title: '強迫症チェック', link: 'check4.html' },
-      { title: 'うつ病チェック', link: 'check5.html' },
-      { title: 'その他チェック', link: 'check6.html' },
-    ],
-  },
-  {
-    title: '相談窓口',
-    link: 'soudan.html',
-    rendermob: false,
-    subItems: [
-      { title: '電話・面接相談（対面・Online）', link: 'consult.html#soudan-denwa' },
-      { title: '無料カウンセリング（対面・Online）', link: 'consult.html#soudan-counseling' },
-      { title: '森田療法医療機関とカウンセリング', link: 'medicalcousel.html' },
-    ],
-  },
-  {
-    title: '森田療法と治療法',
-    link: 'morita.html',
-    rendermob: false,
-    subItems: [
-      { title: '森田療法とは', link: 'morita.html' },
-      { title: '森田療法の治療法', link: 'chiryouhou.html' },
-      { title: '森田療法の症状別治療法', link: 'shoujoubetsu.html' },
-      { title: '薬物療法への接し方', link: 'yakubutsu-r.html' },
-
-    ],
-  },
-  {
-    title: 'サポート活動',
-    link: 'support.html',
-    rendermob: false,
-    subItems: [
-      { title: '心の健康セミナー（配信・イベント）', link: 'seminar.html' },
-      { title: '図書室（閲覧・貸出・ビデオ視聴）', link: 'library.html' },
-      { title: '参考図書', link: 'book.html' },
-      { title: 'ビデオ・動画', link: 'video.html' },
-      { title: '体験フォーラム（会員制掲示板）', link: 'forum.html' },
-      { title: '症状別アドバイス集', link: 'advice.html' },
-      { title: '克服体験談', link: 'taiken.html' },
-      { title: 'メンタルニュース（小冊子）', link: 'news.html' },
-      { title: '森田療法DVD', link: 'dvd.html' },
-      { title: '森田療法関連リンク', link: 'link.html' },
-    ],
   },
   {
     title: '研究者の皆さま',
@@ -111,14 +106,12 @@ const citizenlink = [
     subItems: [],
     rendermob: true
   },
-
   {
     title: ' 財団紹介',
     link: 'zaidan-top.html',
     subItems: [],
     rendermob: true
   },
-
 ];
 
 const inquirylink = [
@@ -286,7 +279,7 @@ const researcherslink = [
 const Navigation = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
-  const [currentLinks, setCurrentLinks] = useState(inquirylink);
+  const [currentLinks, setCurrentLinks] = useState(citizenlink);
   const [selectedPage, setSelectedPage] = useState("");
   const navigate = useNavigate()
   const location = useLocation();
@@ -338,62 +331,6 @@ const Navigation = () => {
 
   return (
     <>
-      <Grid className="appBar">
-        <Grid container className="contentWrapper">
-          <Typography className="header-top-description">
-            神経症（不安障害）と森田療法
-          </Typography>
-          <ul className="navItems">
-            {pages.map((page, index) => (
-              <li
-                key={index}
-                onClick={() => handlePageClick(page)}
-                className={selectedPage === page ? 'selectedItem' : ''}
-              >
-                <a>{page}</a>
-              </li>
-            ))}
-            <li>
-              <Grid>
-                <a href="https://www.facebook.com/mental.zaidan/">
-                  <FacebookRoundedIcon className="whiteColor" />
-                </a>
-              </Grid>
-            </li>
-            <li>
-              <Grid>
-                <a href="https://www.instagram.com/mental_zaidan/">
-                <InstagramIcon className="whiteColor" />
-                </a>
-              </Grid>
-            </li>
-            <li>
-              <Grid>
-                <a href="https://www.youtube.com/@mentalnobu">
-                <YouTubeIcon className="whiteColor" />
-                </a>
-              </Grid>
-            </li>
-            <li>
-              <Grid>
-                <a href='search.html'>
-                <SearchIcon className="whiteColor" fontSize="large" style={{ fontWeight: 'bold' }} />
-                </a>
-              </Grid>
-            </li>
-            <li className="additionalContainer">
-              <div className="innerContainer" onClick={() => navigate('/mailmagazine')}>
-                <ArrowForwardIcon style={{ color: 'white', fontSize: 15, padding: 1 }} />
-                <span>メルマガ購読</span>
-              </div>
-            </li>
-          </ul>
-          {isLogoutComponent && (
-       <LogoutComponent className='logout'/>
-      )}
-        </Grid>
-      </Grid>
-
       {mobileOpen && (
         <div
           className="overlay-menu"
@@ -493,31 +430,17 @@ const Navigation = () => {
         </div>
       )}
 
-      <Grid container justifyContent="center" className="site-header-logo">
-        <img src={logo} alt="Logo" />
-      </Grid>
-
-      <NavBar menuItems={currentLinks} />
-      <Grid container className="bottom-navigation" alignItems="center" justifyContent="center" sx={{
-        position: 'fixed',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1200,
-        backgroundColor: 'white',
-        maxWidth: '100vw',
-        overflowX: 'auto',
-        borderTop: '1px solid #ccc', // Add a border at the top for separation
-      }}>
-        <BottomNavigation showLabels className='bottomnavigationstyle'>
-          <BottomNavigationAction className="blueColor" label="Menu" icon={<MenuIcon />} onClick={() => setMobileOpen(!mobileOpen)} sx={{ minWidth: 'auto' }} />
-          <BottomNavigationAction className="blueColor" label="お問合せ" icon={<EmailIcon />} component={NavLink} to="/message" sx={{ minWidth: 'auto' }} />
-          <BottomNavigationAction className="blueColor" label="FB" icon={<FacebookRoundedIcon />} component={NavLink} to="/facebook" sx={{ minWidth: 'auto' }} />
-          <BottomNavigationAction className="blueColor" label="Insta" icon={<InstagramIcon />} component={NavLink} to="/instagram" sx={{ minWidth: 'auto' }} />
-          <BottomNavigationAction className="blueColor" label="動画" icon={<YouTubeIcon />} component={NavLink} to="/youtube" sx={{ minWidth: 'auto' }} />
-          <BottomNavigationAction className="blueColor" label="検索" icon={<SearchIcon />} component={NavLink} to="/search" sx={{ minWidth: 'auto' }} />
-        </BottomNavigation>
-      </Grid>
+      <header className="site-header-wrapper">
+        <div className="site-header-inner">
+          <div className="header-logo-container">
+            <a href="/"><img src={logo} alt="Mental Health & Morita Therapy" className="header-logo-img" /></a>
+          </div>
+          <NavBar menuItems={currentLinks} />
+          <button className="mobile-hamburger-btn" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle Navigation">
+            <MenuIcon style={{ fontSize: 26, color: '#333' }} />
+          </button>
+        </div>
+      </header>
     </>
   );
 };

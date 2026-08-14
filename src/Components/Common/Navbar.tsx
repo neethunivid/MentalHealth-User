@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-/**
- * display the main nav bar items 
- * @param param0 
- * @returns 
- */
-const NavBar = ({ menuItems }:any) => {
-  const [activeIndex, setActiveIndex] = useState(null);
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-  const handleMouseEnter = (index:any) => {
+/**
+ * Clean Single-Row Navbar
+ */
+const NavBar = ({ menuItems }: any) => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const handleMouseEnter = (index: any) => {
     setActiveIndex(index);
   };
 
@@ -16,50 +15,42 @@ const NavBar = ({ menuItems }:any) => {
     setActiveIndex(null);
   };
 
-  const filteredMenuItems = menuItems.filter((item :any)=> !item.rendermob);
+  const filteredMenuItems = menuItems.filter((item: any) => !item.rendermob);
 
   return (
-    <nav id="global-nav" className="global-nav">
-      <ul id="menu-shimin-pc" className="menu vk-menu-acc global-nav-list nav">
-        {filteredMenuItems.map((menuItem:any, index:any) => (
+    <nav className="custom-navbar">
+      <ul className="custom-nav-list">
+        {filteredMenuItems.map((menuItem: any, index: any) => (
           <li
             key={index}
-            className={`menu-item ${menuItem.subItems.length > 0 ? 'menu-item-has-children' : ''}`}
+            className={`custom-nav-item ${menuItem.subItems && menuItem.subItems.length > 0 ? 'has-children' : ''}`}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
           >
-            <a href={menuItem.link}>
-              <strong className="global-nav-name">{menuItem.title}</strong>
+            <a href={menuItem.link} className="custom-nav-link">
+              <span className="custom-nav-title">{menuItem.title}</span>
+              <KeyboardArrowDownIcon className="custom-nav-caret" />
             </a>
-            {menuItem.subItems.length > 0 && (
-              <>
-                <div className="arrow-icon-container">
-                  <ArrowDropUpIcon className="arrow-icon" />
-                </div>
-                <ul className={`sub-menu ${activeIndex === index ? 'active' : ''}`}>
-                  {menuItem.subItems.map((subItem:any, subIndex:any) => (
-                    <React.Fragment key={subIndex}>
-                      <li className="menu-item">
-                        <a href={subItem.link}>{subItem.title}</a>
-                      </li>
-                      {subIndex < menuItem.subItems.length - 1 && (
-                        <div className="submenu-divider"></div>
-                      )}
-                    </React.Fragment>
-                  ))}
-                </ul>
-              </>
+            {menuItem.subItems && menuItem.subItems.length > 0 && (
+              <ul className={`custom-sub-menu ${activeIndex === index ? 'active' : ''}`}>
+                {menuItem.subItems.map((subItem: any, subIndex: any) => (
+                  <React.Fragment key={subIndex}>
+                    <li className="custom-sub-item">
+                      <a href={subItem.link}>{subItem.title}</a>
+                    </li>
+                    {subIndex < menuItem.subItems.length - 1 && (
+                      <div className="custom-sub-divider"></div>
+                    )}
+                  </React.Fragment>
+                ))}
+              </ul>
             )}
           </li>
         ))}
       </ul>
-      <div className="menu-line">
-        {filteredMenuItems.map((menuItem:any, index:any) => (
-          <div key={index} className={`menu-line-segment ${activeIndex === index ? 'active' : ''}`} />
-        ))}
-      </div>
     </nav>
   );
 };
 
 export default NavBar;
+
