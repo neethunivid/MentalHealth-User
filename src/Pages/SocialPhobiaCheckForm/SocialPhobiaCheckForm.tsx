@@ -12,6 +12,7 @@ import Heading from '../../Components/Common/Heading'
 import { useForm } from 'react-hook-form'
 import RequestDiagnosisResult from '../../Components/Common/RequestDiagnosisResult'
 import SubHeader from '../../Components/Common/subHeader'
+import CheckedCounterBox from '../../Components/Common/CheckedCounterBox';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Notice from '../../Components/Common/Notice';
 
@@ -174,13 +175,14 @@ const SocialPhobiaCheckForm = () => {
 
   const { handleSubmit } = useForm();
 
-  const handleCheckedCount = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = event.target;
-    setCheckedCount(prevCount => prevCount + (checked ? 1 : -1));
-    setCheckedQuestions(prev => ({
-      ...prev,
-      [id]: checked
-    }));
+  const handleToggleQuestion = (id: string) => {
+    setCheckedQuestions(prev => {
+      const nextChecked = !prev[id];
+      const updated = { ...prev, [id]: nextChecked };
+      const newCount = Object.values(updated).filter(Boolean).length;
+      setCheckedCount(newCount);
+      return updated;
+    });
   };
 
   const onSubmit = async () => {
@@ -262,6 +264,7 @@ const SocialPhobiaCheckForm = () => {
                     return (
                       <Box
                         key={question.id}
+                        onClick={() => handleToggleQuestion(question.id)}
                         sx={{
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -274,6 +277,7 @@ const SocialPhobiaCheckForm = () => {
                           borderRadius: 0,
                           padding: '16px 20px',
                           marginBottom: '12px',
+                          cursor: 'pointer',
                         }}
                         id={`socialphobia-selftest-question-${question.id}`}
                       >
@@ -290,8 +294,8 @@ const SocialPhobiaCheckForm = () => {
                           {question.label}
                         </Typography>
                         <Checkbox
-                          checked={checkedQuestions[question.id] || false}
-                          onChange={handleCheckedCount}
+                          checked={!!checkedQuestions[question.id]}
+                          onChange={() => {}}
                           id={question.id}
                           icon={
                             <Box
@@ -326,7 +330,7 @@ const SocialPhobiaCheckForm = () => {
                           }
                           sx={{
                             padding: 0,
-                            '&:hover': { backgroundColor: 'transparent' },
+                            pointerEvents: 'none',
                           }}
                         />
                       </Box>
@@ -347,28 +351,8 @@ const SocialPhobiaCheckForm = () => {
                   「神経症を治す」中村 敬 著 保健同人社より
                 </Typography>
 
-                {/* Checked Counter Box */}
-                <Box
-                  sx={{
-                    backgroundColor: '#fff7df',
-                    color: '#333333',
-                    padding: '18px 24px',
-                    width: '100%',
-                    mb: 3,
-                    boxSizing: 'border-box',
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 'bold',
-                      fontSize: '1.15rem',
-                      color: '#333333',
-                    }}
-                  >
-                    該当する項目は {checkedCount} 個
-                  </Typography>
-                </Box>
+                {/* Separate Counter Box Component */}
+                <CheckedCounterBox count={checkedCount} />
 
                 {/* Buttons Row */}
                 <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>

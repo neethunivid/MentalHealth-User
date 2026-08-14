@@ -13,6 +13,7 @@ import Breadcrumb from '../../Components/Common/BreadCrumb'
 import { useForm } from 'react-hook-form'
 import RequestDiagnosisResult from '../../Components/Common/RequestDiagnosisResult'
 import SubHeader from '../../Components/Common/subHeader'
+import CheckedCounterBox from '../../Components/Common/CheckedCounterBox';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Notice from '../../Components/Common/Notice';
 
@@ -190,26 +191,32 @@ const NervousnessCheckForm = () => {
     }
   };
 
-  const handleCheckedCount = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = event.target;
-    setCheckedCount(prevCount => prevCount + (checked ? 1 : -1));
+  const handleToggleQuestion = (id: string) => {
+    let nextVal = false;
+    let nextChar = { ...characteristics };
+    let nextPre = { ...preoccupation };
+    let nextNeu = { ...neurotic };
 
     if (["q1", "q2", "q3", "q4", "q5", "q6", "q7"].includes(id)) {
-      setCharacteristics(prevState => ({
-        ...prevState,
-        [id]: checked
-      }));
+      nextVal = !characteristics[id as keyof typeof characteristics];
+      nextChar[id as keyof typeof characteristics] = nextVal;
+      setCharacteristics(nextChar);
     } else if (["q8", "q9", "q10", "q11", "q12"].includes(id)) {
-      setPreoccupation(prevState => ({
-        ...prevState,
-        [id]: checked
-      }));
+      nextVal = !preoccupation[id as keyof typeof preoccupation];
+      nextPre[id as keyof typeof preoccupation] = nextVal;
+      setPreoccupation(nextPre);
     } else {
-      setNeurotic(prevState => ({
-        ...prevState,
-        [id]: checked
-      }));
+      nextVal = !neurotic[id as keyof typeof neurotic];
+      nextNeu[id as keyof typeof neurotic] = nextVal;
+      setNeurotic(nextNeu);
     }
+
+    const totalCount =
+      Object.values(nextChar).filter(Boolean).length +
+      Object.values(nextPre).filter(Boolean).length +
+      Object.values(nextNeu).filter(Boolean).length;
+
+    setCheckedCount(totalCount);
   };
 
   const onSubmit = async () => {
@@ -299,6 +306,7 @@ const NervousnessCheckForm = () => {
                     return (
                       <Box
                         key={question.id}
+                        onClick={() => handleToggleQuestion(question.id)}
                         sx={{
                           display: 'flex',
                           justifyContent: 'space-between',
@@ -311,6 +319,7 @@ const NervousnessCheckForm = () => {
                           borderRadius: 0,
                           padding: '16px 20px',
                           marginBottom: '12px',
+                          cursor: 'pointer',
                         }}
                         id={`nervousness-selftest-question-${question.id}`}
                       >
@@ -328,7 +337,7 @@ const NervousnessCheckForm = () => {
                         </Typography>
                         <Checkbox
                           checked={isQuestionChecked(question.id)}
-                          onChange={handleCheckedCount}
+                          onChange={() => {}}
                           id={question.id}
                           icon={
                             <Box
@@ -363,7 +372,7 @@ const NervousnessCheckForm = () => {
                           }
                           sx={{
                             padding: 0,
-                            '&:hover': { backgroundColor: 'transparent' },
+                            pointerEvents: 'none',
                           }}
                         />
                       </Box>
@@ -384,28 +393,8 @@ const NervousnessCheckForm = () => {
                   （北西憲二著「実践森田療法」 付記2・3の質問表より）
                 </Typography>
 
-                {/* Checked Counter Box */}
-                <Box
-                  sx={{
-                    backgroundColor: '#fff7df',
-                    color: '#333333',
-                    padding: '18px 24px',
-                    width: '100%',
-                    mb: 3,
-                    boxSizing: 'border-box',
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontWeight: 'bold',
-                      fontSize: '1.15rem',
-                      color: '#333333',
-                    }}
-                  >
-                    該当する項目は {checkedCount} 個
-                  </Typography>
-                </Box>
+                {/* Separate Counter Box Component */}
+                <CheckedCounterBox count={checkedCount} />
 
                 {/* Buttons Row */}
                 <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
