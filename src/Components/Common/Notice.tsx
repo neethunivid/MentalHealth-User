@@ -36,10 +36,12 @@ const Notice: React.FC<{ sx?: object }> = ({ sx }) => {
         sx={{
           backgroundColor: '#0066cc',
           color: '#ffffff',
-          padding: '8px 14px',
+          padding: '10px 18px',
           fontWeight: 'bold',
-          fontSize: '0.95rem',
+          fontSize: '1.15rem',
           textTransform: 'lowercase',
+          letterSpacing: '0.5px',
+          borderRadius: '2px',
         }}
       >
         notice
@@ -50,8 +52,8 @@ const Notice: React.FC<{ sx?: object }> = ({ sx }) => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: '12px',
-          mt: '12px',
+          gap: '16px',
+          mt: '16px',
         }}
       >
         {bannerImages.map((banner, index) => (
@@ -62,6 +64,13 @@ const Notice: React.FC<{ sx?: object }> = ({ sx }) => {
             sx={{
               display: 'block',
               width: '100%',
+              borderRadius: '4px',
+              overflow: 'hidden',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'translateY(-2px)',
+              },
             }}
           >
             <img
