@@ -20,6 +20,7 @@ import Layout from "./Components/Layout";
 import InquiryForm from "./Pages/InquiryForm/InquiryForm";
 import Login from "./Pages/Login/Login";
 import MagazineSubscription from "./Pages/MagazineSubscription/MagazineSubscription";
+import MagazineDelete from "./Pages/MagazineSubscription/MagazineDelete";
 import MembershipForm from "./Pages/MembershipForm/MembershipForm";
 import SocialPhobiaCheckForm from "./Pages/SocialPhobiaCheckForm/SocialPhobiaCheckForm";
 import NervousnessCheckForm from "./Pages/NervousnessCheckForm/NervousnessCheckForm";
@@ -67,6 +68,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/inquiry" element={<InquiryForm />} />
                 <Route path="/forumlogin" element={<Login />} />
                 <Route path="/mailmagazine" element={<MagazineSubscription />} />
+                <Route path="/mailmagazine_delete" element={<MagazineDelete />} />
                 <Route path="/forumkaisoku" element={<MembershipForm />} />
                 <Route path="/check1" element={<NervousnessCheckForm />} />
                 <Route path="/check2" element={<SocialPhobiaCheckForm />} />

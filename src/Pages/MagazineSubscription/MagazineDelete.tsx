@@ -16,57 +16,60 @@ import Notice from '../../Components/Common/Notice';
 import apiClient from '../../API/API-client';
 
 /**
- * Component is used for subscribing to the mail magazine
+ * Component used for deleting/unsubscribing from the mail magazine
  */
-const MagazineSubscription: React.FC = () => {
+const MagazineDelete: React.FC = () => {
   const navigate = useNavigate();
 
   const {
-    control: subscribeControl,
-    handleSubmit: handleSubscribeSubmit,
-    reset: resetSubscribe,
+    control,
+    handleSubmit,
+    reset,
   } = useForm({
     defaultValues: {
-      name: '',
-      pc_email_address: '',
-      mobile_email_address: '',
+      pc_email: '',
+      mobile_email: '',
     },
   });
 
   const breadcrumbItems = [
     { title: 'HOME', href: '/' },
-    { title: 'メルマガ購読' },
+    { title: 'メルマガ購読フォーム' },
   ];
 
   /**
-   * Method used to subscribe mail magazine
+   * Method used to unsubscribe mail magazine
    */
-  const subscribeMagazine = async (data: any) => {
-    if (data) {
-      try {
-        const DataRequest = {
-          email: data.pc_email_address,
-          emailMob: data.mobile_email_address,
-          name: data.name,
-        };
+  const unsubscribeMagazine = async (data: any) => {
+    if (!data.pc_email && !data.mobile_email) {
+      alert('PC用または携帯用のメールアドレスを入力してください。');
+      return;
+    }
 
-        const details = await apiClient.post('api/magadd/checkEmail', DataRequest);
-        if (details.data.data !== null) {
-          alert('アクティブなサブスクリプションがあります');
-        } else {
-          const apiData = await apiClient.post('api/magadd/add', DataRequest);
-          if (apiData) {
-            alert('メールニュースレターを購読しました。');
-            resetSubscribe();
-          }
+    try {
+      const DataRequest = {
+        email: data.pc_email || '',
+        emailMob: data.mobile_email || '',
+      };
+
+      const details = await apiClient.post('api/magadd/getMagid', DataRequest);
+
+      if (!details?.data?.data || details?.data?.data === 0) {
+        alert('サブスクリプションが見つかりません');
+      } else {
+        const apiData = await apiClient.delete(
+          'api/magadd/delete/' + details.data.data
+        );
+        if (apiData) {
+          alert('メールマガジンを退会しました。');
+          reset();
         }
-      } catch (error) {
-        // console.error("Subscription Failed : ", error)
       }
+    } catch (error) {
+      console.error('Unsubscription Failed: ', error);
+      alert('エラーが発生しました。もう一度お試しください。');
     }
   };
-
-
 
   return (
     <Box
@@ -82,7 +85,7 @@ const MagazineSubscription: React.FC = () => {
       }}
     >
       <SubHeader />
-      <Heading title="メルマガ購読" />
+      <Heading title="登録メールアドレスの変更・削除（解約）" />
 
       <Box
         sx={{
@@ -100,7 +103,7 @@ const MagazineSubscription: React.FC = () => {
               <Breadcrumb items={breadcrumbItems} />
             </Box>
 
-            {/* Instruction Banner Notes */}
+            {/* Instruction Notes */}
             <Box sx={{ mb: 4 }}>
               <Typography
                 variant="body1"
@@ -109,20 +112,13 @@ const MagazineSubscription: React.FC = () => {
                   mb: 1.5,
                   color: '#222222',
                   fontSize: '1.05rem',
-                }}
-              >
-                ★メールマガジンの購読を希望される方はメールアドレスを登録して下さい。
-              </Typography>
-              <Typography
-                variant="body1"
-                sx={{
-                  color: '#d32f2f',
-                  mb: 1.5,
                   lineHeight: 1.7,
-                  fontSize: '1.05rem',
                 }}
               >
-                ★パソコン（PC用）又は携帯のいずれかで購読できます。どちらも購読したい方は、2つとも登録して下さい。
+                ★登録メールアドレスを変更したい方、又はメールマガジンの購読を中止したい方は、
+                <span style={{ color: '#d32f2f' }}>
+                  現在登録されているメールアドレスを削除してください。
+                </span>
               </Typography>
               <Typography
                 variant="body1"
@@ -147,69 +143,15 @@ const MagazineSubscription: React.FC = () => {
                 fontSize: '1.25rem',
               }}
             >
-              ■ メールアドレスの新規登録
+              ■ 登録メールアドレスの削除
             </Typography>
 
-            {/* Subscription Form */}
+            {/* Unsubscription Form */}
             <form
-              id="subscription-form"
-              onSubmit={handleSubscribeSubmit(subscribeMagazine)}
+              id="unsubscription-form"
+              onSubmit={handleSubmit(unsubscribeMagazine)}
             >
-              {/* Field 1: Name */}
-              <Box sx={{ mb: 3.5 }}>
-                <Typography
-                  variant="body1"
-                  sx={{
-                    fontWeight: 'bold',
-                    color: '#222222',
-                    mb: 0.5,
-                    fontSize: '1.15rem',
-                  }}
-                >
-                  1. お名前 <span style={{ color: '#d32f2f' }}>*</span>
-                </Typography>
-                <Typography
-                  variant="body2"
-                  display="block"
-                  sx={{ color: '#666666', mb: 0.3, fontSize: '0.92rem' }}
-                >
-                  (ニックネームも可能です)
-                </Typography>
-                <Typography
-                  variant="body2"
-                  display="block"
-                  sx={{ color: '#777777', mb: 1.2, fontSize: '0.92rem' }}
-                >
-                  3-15文字 (半角英数字)
-                </Typography>
-                <Controller
-                  name="name"
-                  control={subscribeControl}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      fullWidth
-                      required
-                      variant="outlined"
-                      id="subscription-form-name"
-                      sx={{
-                        backgroundColor: '#ffffff',
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: '8px',
-                          minHeight: '50px',
-                          fontSize: '1.05rem',
-                        },
-                        '& .MuiOutlinedInput-input': {
-                          padding: '12px 16px',
-                        },
-                      }}
-                    />
-                  )}
-                />
-              </Box>
-
-              {/* Field 2: PC Email */}
+              {/* Field 1: PC Email */}
               <Box sx={{ mb: 3.5 }}>
                 <Typography
                   variant="body1"
@@ -220,20 +162,18 @@ const MagazineSubscription: React.FC = () => {
                     fontSize: '1.15rem',
                   }}
                 >
-                  2. メールアドレス（PC用） <span style={{ color: '#d32f2f' }}>*</span>
+                  メールアドレス（PC用）
                 </Typography>
                 <Controller
-                  name="pc_email_address"
-                  control={subscribeControl}
-                  rules={{ required: true }}
+                  name="pc_email"
+                  control={control}
                   render={({ field }) => (
                     <TextField
                       {...field}
                       type="email"
                       fullWidth
-                      required
                       variant="outlined"
-                      id="subscription-form-pc-email"
+                      id="unsubscription-form-pc-email"
                       sx={{
                         backgroundColor: '#ffffff',
                         '& .MuiOutlinedInput-root': {
@@ -250,7 +190,7 @@ const MagazineSubscription: React.FC = () => {
                 />
               </Box>
 
-              {/* Field 3: Mobile Email */}
+              {/* Field 2: Mobile Email */}
               <Box sx={{ mb: 4 }}>
                 <Typography
                   variant="body1"
@@ -261,20 +201,18 @@ const MagazineSubscription: React.FC = () => {
                     fontSize: '1.15rem',
                   }}
                 >
-                  3. メールアドレス（携帯用） <span style={{ color: '#d32f2f' }}>*</span>
+                  メールアドレス（携帯用）
                 </Typography>
                 <Controller
-                  name="mobile_email_address"
-                  control={subscribeControl}
-                  rules={{ required: true }}
+                  name="mobile_email"
+                  control={control}
                   render={({ field }) => (
                     <TextField
                       {...field}
                       type="email"
                       fullWidth
-                      required
                       variant="outlined"
-                      id="subscription-form-mobile-email"
+                      id="unsubscription-form-mobile-email"
                       sx={{
                         backgroundColor: '#ffffff',
                         '& .MuiOutlinedInput-root': {
@@ -301,15 +239,15 @@ const MagazineSubscription: React.FC = () => {
                   textAlign: 'left',
                 }}
               >
-                上記内容でよろしければ、登録ボタンを押して下さい。
+                上記内容でよろしければ、削除ボタンを押して下さい。
               </Typography>
 
-              {/* Blue Submit Button (Centered) */}
+              {/* Blue Delete Button (Centered) */}
               <Box sx={{ textAlign: 'center', mb: 5 }}>
                 <Button
                   type="submit"
                   variant="contained"
-                  id="subscription-form1-submit-button"
+                  id="unsubscription-form-submit-button"
                   sx={{
                     backgroundColor: '#0073e6',
                     color: '#ffffff',
@@ -327,16 +265,15 @@ const MagazineSubscription: React.FC = () => {
                     },
                   }}
                 >
-                  登録する
+                  削除する
                 </Button>
               </Box>
             </form>
 
             <Divider sx={{ my: 4 }} />
 
-            {/* Unsubscribe / Change Section */}
+            {/* Newsletter Registration Link Section */}
             <Box sx={{ mb: 3 }}>
-              {/* Unsubscribe instruction note (Left-aligned) */}
               <Typography
                 variant="body1"
                 sx={{
@@ -348,14 +285,14 @@ const MagazineSubscription: React.FC = () => {
                   textAlign: 'left',
                 }}
               >
-                ★登録メールアドレスを変更したい方、又はメールマガジンの購読を中止したい方は、以下のボタンから削除または変更を行ってください。
+                ★メールアドレスの変更、又はパソコン（PC用）や携帯での新規登録を希望される方は、以下のリンクから新しいメールアドレスを登録してください。
               </Typography>
 
-              {/* Pink Change/Cancel Button (Centered) */}
+              {/* Pink Newsletter Registration Button (Centered) */}
               <Box sx={{ textAlign: 'center' }}>
                 <Button
                   variant="contained"
-                  onClick={() => navigate('/mailmagazine_delete')}
+                  onClick={() => navigate('/mailmagazine')}
                   sx={{
                     backgroundColor: '#f77292',
                     color: '#ffffff',
@@ -373,11 +310,10 @@ const MagazineSubscription: React.FC = () => {
                     },
                   }}
                 >
-                  登録変更・解除
+                  メルマガ登録
                 </Button>
               </Box>
             </Box>
-
           </Grid>
 
           {/* Right Sidebar Column (Notice Section) */}
@@ -390,5 +326,4 @@ const MagazineSubscription: React.FC = () => {
   );
 };
 
-export default MagazineSubscription;
-
+export default MagazineDelete;
