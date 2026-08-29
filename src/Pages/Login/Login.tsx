@@ -1,18 +1,9 @@
-import { Button, Typography, FormControlLabel, Radio, RadioGroup } from '@material-ui/core'
-import { Grid } from '@mui/material';
-import React, { useState } from 'react'
-import FormInputTextField from '../../Components/Common/FormInputTextField'
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Alert, AlertColor } from '@mui/material';
-import Heading from '../../Components/Common/Heading';
-import Breadcrumb from '../../Components/Common/BreadCrumb';
-import apiClient from '../../API/API-client';
-import Snackbar from '@mui/material/Snackbar';
 import { useNavigate } from 'react-router-dom';
-
-/**
- * Component used for login (possible only after admin approval)
- */
+import apiClient from '../../API/API-client';
+import { Snackbar, Alert, AlertColor, Grid } from '@mui/material';
+import Navbar from './Navbar';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -20,15 +11,9 @@ const Login = () => {
     const {
         register,
         handleSubmit,
-        control,
-        setValue,
+        reset,
         formState: { errors },
     } = useForm();
-
-    const breadcrumbItems = [
-        { title: 'HOME', href: '/home.html' },
-        { title: '心の体験フォーラム 会員入口' }
-    ];
 
     const [snackbarInfo, setSnackbarInfo] = useState({
         severity: "success",
@@ -43,180 +28,178 @@ const Login = () => {
         }));
     };
 
-    /**
-     * Method used to submit the login details and retrive the authentication status
-     * @param data 
-     */
     const onSubmit = async (data: any) => {
-        if (data.id === undefined) {
-            alert("まずは会員IDを入力してください")
+        if (data.id === undefined || data.id === "") {
+            alert("まずは会員IDを入力してください");
+            return;
         }
-        else if (data.password === undefined) {
-            alert("パスワードが間違っています")
+        if (data.password === undefined || data.password === "") {
+            alert("パスワードが間違っています");
+            return;
         }
-        else if (data.roomSelection === undefined) {
-            alert("部屋を選択してください。")
+        if (data.roomSelection === undefined) {
+            alert("部屋を選択してください。");
+            return;
         }
-        else {
-            try {
-                const DataRequest = {
-                    "username": data.id,
-                    "password": data.password,
-                    "role": "USER"
-                };
+        
+        try {
+            const DataRequest = {
+                "username": data.id,
+                "password": data.password,
+                "role": "USER"
+            };
 
-                const apiData = await apiClient.post("login/authenticate", DataRequest);
+            const apiData = await apiClient.post("login/authenticate", DataRequest);
 
-                if (apiData?.data?.data === "Invalid credentials") {
-                    setSnackbarInfo({
-                        severity: "error",
-                        snackbaraopen: true,
-                        message: "ログイン情報が間違っています"
-                    });
-                    //console.log("Login Failed : ", apiData.data.data)
-                } else {
-                    setSnackbarInfo({
-                        severity: "success",
-                        snackbaraopen: true,
-                        message: "ログイン成功"
-                    });
-                    localStorage.setItem('roomType', data.roomSelection)
-                    localStorage.setItem('memberId', apiData.data.data.user.memberId);
-                    localStorage.setItem('memberNo', apiData.data.data.user.id);//memberNo is also available in the data and sometimes need to change. here used id because for old members no memberid available beacause it is a new field.
-                    localStorage.setItem('memberName', apiData.data.data.user.name); 
-                    apiClient.setToken(apiData.data.data.token);
-                    navigate('/remarklist');
-                    // console.log("Login Successfull : ", apiData.data.data)
-                }
-
-            } catch (error) {
-                //console.error("Login Failed : ", error)
+            if (apiData?.data?.data === "Invalid credentials") {
+                setSnackbarInfo({
+                    severity: "error",
+                    snackbaraopen: true,
+                    message: "ログイン情報が間違っています"
+                });
+            } else {
+                setSnackbarInfo({
+                    severity: "success",
+                    snackbaraopen: true,
+                    message: "ログイン成功"
+                });
+                localStorage.setItem('roomType', data.roomSelection)
+                localStorage.setItem('memberId', apiData.data.data.user.memberId);
+                localStorage.setItem('memberNo', apiData.data.data.user.id);
+                localStorage.setItem('memberName', apiData.data.data.user.name); 
+                apiClient.setToken(apiData.data.data.token);
+                navigate('/remarklist');
             }
+        } catch (error) {
+            //console.error("Login Failed : ", error)
         }
     }
 
     return (
         <Grid>
-            <Heading title='心の体験フォーラム 会員入口' />
-            <Breadcrumb items={breadcrumbItems} />
             <Grid container className='container'>
                 <Grid item xs={12} alignItems='center' justifyContent='center'>
-                    <form className="form" onSubmit={handleSubmit(onSubmit)} id="login-form">
-                        <Grid item container xs={12} pb={3}>
-                            <Grid item xs={12}>
-                                <Typography className='pinkBackground-whiteContent'>
-                                    入室する
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant='h1'>
-                                    *入力必須項目
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant='h1'>
-                                    ★このフォームは、SSL技術（暗号化送信）で送受信されますので、個人情報の流失等がなく、安心・安全にご利用いただけます。
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Typography variant='h1'>
-                                    ★入室する部屋をチエックして下さい。
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                        <FormInputTextField
-                            required={true}
-                            label="ID"
-                            name="id"
-                            control={control}
-                            id="login-form-id"
-                        />
-                        <FormInputTextField
-                            required={true}
-                            label="パスワード"
-                            name="password"
-                            control={control}
-                            id="login-form-password"
-                        />
-                        <Grid xs={12} className='inputcontainer'>
-                            <Typography variant='h4'>
-                                入室する部屋
-                                <span className="span-star"> * </span>
-                            </Typography>
-                            <RadioGroup
-                                name="roomSelection"
-                                row
-                            >
-                                <FormControlLabel
-                                    control={<Radio color="primary" required id="login-form-usually" />}
-                                    className="radio-label"
-                                    value="normal"
-                                    label={
-                                        <Typography variant="subtitle1">
-                                            普通
-                                        </Typography>
-                                    }
-                                    {...register("roomSelection", { required: true })}
-                                />
-                                <FormControlLabel
-                                    control={<Radio color="primary" required id="login-form-anxiety" />}
-                                    className="radio-label"
-                                    value="anxiety"
-                                    label={
-                                        <Typography variant="subtitle1">
-                                            不安
-                                        </Typography>
-                                    }
-                                    {...register("roomSelection", { required: true })}
-                                />
-                                <FormControlLabel
-                                    control={<Radio color="primary" required id="login-form-duress" />}
-                                    className="radio-label"
-                                    value="blackmail"
-                                    label={
-                                        <Typography variant="subtitle1">
-                                            強迫
-                                        </Typography>
-                                    }
-                                    {...register("roomSelection", { required: true })}
-                                />
-                                <FormControlLabel
-                                    control={<Radio color="primary" required id="login-form-others" />}
-                                    className="radio-label"
-                                    value="other"
-                                    label={
-                                        <Typography variant="subtitle1">
-                                            うつ他
-                                        </Typography>
-                                    }
-                                    {...register("roomSelection", { required: true })}
-                                />
-                            </RadioGroup>
-                        </Grid>
-                        <Grid xs={12} className="form-submit-container">
-                            <Button variant="contained" id="login-form-submit-button" className="form-page-button" type="submit">送信</Button>
-                        </Grid>
-                    </form>
+                    <div style={{ fontFamily: 'sans-serif', margin: 0, padding: 0 }}>
+                        <Navbar />
 
-                    {/* Show notification on top of the screen about the login status */}
+                        {/* Sub Header */}
+                        <div style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
+                            Enter the room
+                        </div>
 
-                    <Snackbar
-                        open={snackbarInfo.snackbaraopen}
-                        autoHideDuration={3000}
-                        onClose={handleSnackbarClose}
-                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                    >
-                        <Alert
+                        {/* Main Content */}
+                        <div style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
+                            <ul style={{ fontSize: '14px', lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
+                                <li>This form uses SSL technology (encrypted transmission) for sending and receiving data, so you can use it safely and securely without worrying about the leakage of personal information.</li>
+                                <li>Please check the room you will be entering.</li>
+                                <li><span style={{ color: 'red' }}>*</span> indicates a required field.</li>
+                            </ul>
+
+                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div style={{ marginBottom: '20px' }}>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px' }}>
+                                        ID <span style={{ color: 'red' }}>*</span>
+                                    </label>
+                                    <textarea 
+                                        {...register('id')} 
+                                        rows={1}
+                                        style={{ backgroundColor: '#ffffe0', border: '1px solid #ccc', borderRadius: '4px', padding: '8px', width: '300px', resize: 'both' }} 
+                                    />
+                                </div>
+
+                                <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+
+                                <div style={{ marginBottom: '20px' }}>
+                                    <label style={{ display: 'block', marginBottom: '8px', fontSize: '14px' }}>
+                                        password <span style={{ color: 'red' }}>*</span>
+                                    </label>
+                                    <input 
+                                        type="password" 
+                                        {...register('password')} 
+                                        style={{ backgroundColor: '#ffffe0', border: '1px solid #ccc', borderRadius: '4px', padding: '8px', width: '300px', height: '35px', boxSizing: 'border-box' }} 
+                                    />
+                                </div>
+
+                                <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+
+                                <div style={{ marginBottom: '20px', fontSize: '14px' }}>
+                                    <div style={{ marginBottom: '10px' }}>
+                                        <span style={{ marginRight: '15px' }}>
+                                            Please select the room you wish to enter <span style={{ color: 'red' }}>*</span>
+                                        </span>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="normal" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            A normal room
+                                        </label>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="anxiety" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            Room of Anxiety
+                                        </label>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="blackmail" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            The Room of Obsessive-Compulsive Disorder
+                                        </label>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="other" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            Other rooms
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="growth" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            Room of Growth
+                                        </label>
+                                        <label style={{ marginRight: '15px', cursor: 'pointer' }}>
+                                            <input type="radio" value="diary" {...register('roomSelection')} style={{ marginRight: '5px' }} />
+                                            diary
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+
+                                <div style={{ display: 'flex', alignItems: 'flex-end', gap: '40px', marginLeft: '80px', marginBottom: '20px', marginTop: '30px' }}>
+                                    <button type="submit" style={{ backgroundColor: '#d3d3d3', border: '1px solid #999', padding: '8px 20px', borderRadius: '4px', cursor: 'pointer', textAlign: 'center', boxShadow: '1px 1px 3px rgba(0,0,0,0.2)' }}>
+                                        Enter the<br />room
+                                    </button>
+                                    <button type="button" onClick={() => reset()} style={{ backgroundColor: '#d3d3d3', border: '1px solid #999', padding: '8px 30px', borderRadius: '4px', cursor: 'pointer', boxShadow: '1px 1px 3px rgba(0,0,0,0.2)', marginBottom: '8px' }}>
+                                        Reset
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        {/* Footer Section */}
+                        <div style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
+                            Editing Member Information and Canceling Membership
+                        </div>
+                        <div style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
+                            <ul style={{ fontSize: '14px', lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
+                                <li>Click here to edit your member information.</li>
+                                <li>Click here to cancel your membership.</li>
+                            </ul>
+                        </div>
+
+                        <Snackbar
+                            open={snackbarInfo.snackbaraopen}
+                            autoHideDuration={3000}
                             onClose={handleSnackbarClose}
-                            severity={snackbarInfo.severity as AlertColor}
+                            anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
                         >
-                            {snackbarInfo.message}
-                        </Alert>
-                    </Snackbar>
+                            <Alert
+                                onClose={handleSnackbarClose}
+                                severity={snackbarInfo.severity as AlertColor}
+                            >
+                                {snackbarInfo.message}
+                            </Alert>
+                        </Snackbar>
+                    </div>
                 </Grid>
             </Grid>
         </Grid>
     )
 }
 
-export default Login
+export default Login;
