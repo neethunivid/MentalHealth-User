@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from '@mui/material';
+import { Grid, MenuItem, TextField, Typography } from '@mui/material';
 import { platform } from 'os';
 import React, { useEffect, useState } from 'react';
 import { Controller } from 'react-hook-form'
@@ -19,6 +19,8 @@ interface LayoutProps {
   className?: string;
   disabled?: boolean;
   caption?: string;
+  selectOptions?: string[];
+  selectPlaceholder?: string;
 }
 
 const FormInputTextField = ({
@@ -35,7 +37,9 @@ const FormInputTextField = ({
   size,
   className,
   caption,
-  disabled
+  disabled,
+  selectOptions,
+  selectPlaceholder
 }: LayoutProps) => {
 
   const [textType, setTextType] = useState("text")
@@ -50,7 +54,11 @@ const FormInputTextField = ({
     <Grid className='textfieldcontainer'>
       <Grid item container xs={12} className={className} pt={1}>
         <Grid item className={`${className}-label`}>
-          <Typography variant='h4' id="main-label">
+          <Typography
+            variant='h5'
+            id="main-label"
+            sx={{ fontSize: '0.93rem', color: 'black', fontWeight: 500, lineHeight: 1.5 }}
+          >
             {label ?? ''} {required === true ? <span className="span-star"> * </span> : ''}
           </Typography>
         </Grid>
@@ -58,23 +66,37 @@ const FormInputTextField = ({
         <Grid item xs={12} className={`${className}-input`}>
           <Controller
             control={control}
-            defaultValue={defaultValue}
+            defaultValue={defaultValue ?? ''}
             name={name}
             render={({ field }) => (
               <>
+                {selectOptions && (
+                  <TextField {...field} select fullWidth className="txtfield-box-large" required={required} id="form-select-input" SelectProps={{ displayEmpty: true }}>
+                    {selectPlaceholder && (
+                      <MenuItem value="" disabled sx={{ color: 'black', opacity: 1 }}>
+                        {selectPlaceholder}
+                      </MenuItem>
+                    )}
+                    {selectOptions.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
                 {textarea && (
                   <TextField {...field} required={required} multiline fullWidth rows={4} id="form-large-textarea-input" />
                 )}
-                {!textarea && smalltextField && !fullwidth && (
+                {!selectOptions && !textarea && smalltextField && !fullwidth && (
                   <TextField {...field} type={type} placeholder={placeholder} disabled={disabled} className="txtfield-box-small" required={required} id="form-small-textfield-input" />
                 )}
-                {!textarea && !smalltextField && fullwidth && !size && (
+                {!selectOptions && !textarea && !smalltextField && fullwidth && !size && (
                   <TextField {...field} type={type} placeholder={placeholder} disabled={disabled} fullWidth className="txtfield-box-large" required={required} id="form-large-textfield-input" />
                 )}
-                {!textarea && !smalltextField && !fullwidth && (
+                {!selectOptions && !textarea && !smalltextField && !fullwidth && (
                   <TextField {...field} type={type} placeholder={placeholder} disabled={disabled} className="txtfield-box" required={required} id="form-textfield-input" />
                 )}
-                {!textarea && !smalltextField && fullwidth && size == "small" && (
+                {!selectOptions && !textarea && !smalltextField && fullwidth && size == "small" && (
                   <TextField {...field} type={type} placeholder={placeholder} disabled={disabled} className="txtfield-box" required={required} size={"small"} fullWidth id="form-small-textfield-input" />
                 )}
               </>
