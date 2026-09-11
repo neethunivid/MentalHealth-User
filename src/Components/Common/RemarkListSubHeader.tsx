@@ -33,7 +33,7 @@ const RemarkListSubHeader = () => {
         <nav id="global-nav" className="remark_nav">
             <ul id="menu-shimin-pc" className="menu">
                 <li className="subheader menu_items">
-                    <a href="/search.html">
+                    <a href="/search">
                         <strong className="subheader_items">検索</strong>
                     </a>
                 </li>
