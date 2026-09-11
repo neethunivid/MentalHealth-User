@@ -8,7 +8,20 @@ const Search: React.FC = () => {
     return (
         <>
             <Heading title="検索" />
-            <Box component="main" id="main" sx={{ maxWidth: '1200px', mx: 'auto', px: { xs: 2, sm: 3 }, py: 2 }}>
+            <Box
+                component="main"
+                id="main"
+                sx={{
+                    maxWidth: '1200px',
+                    mx: 'auto',
+                    px: { xs: 2, sm: 3 },
+                    py: 2,
+                    fontFamily: '"MPLUSRounded1c", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important',
+                    '& *': {
+                        fontFamily: '"MPLUSRounded1c", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important',
+                    },
+                }}
+            >
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={8}>
                         <Breadcrumb items={[{ title: 'HOME', href: '/' }, { title: '検索' }]} />
