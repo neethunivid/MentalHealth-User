@@ -21,39 +21,39 @@ import Notice from '../../Components/Common/Notice'
 const questions = [
   {
     id: "q1",
-    label: "Q1. 抑うつ気分"
+    label: "Q1 : 抑うつ気分"
   },
   {
     id: "q2",
-    label: "Q2. 興味と喜びの喪失"
+    label: "Q2 : 興味と喜びの喪失"
   },
   {
     id: "q3",
-    label: "Q3. 集中力と注意力の減退がある"
+    label: "Q3 : 集中力と注意力の減退がある"
   },
   {
     id: "q4",
-    label: "Q4. 自己評価と自信の低下"
+    label: "Q4 : 自己評価と自信の低下"
   },
   {
     id: "q5",
-    label: "Q5. 罪責感と無価値観（軽症エピソードでも）"
+    label: "Q5 : 罪責感と無価値観（軽症エピソードでも）"
   },
   {
     id: "q6",
-    label: "Q6. 将来に対する希望のない悲観的な見方"
+    label: "Q6 : 将来に対する希望のない悲観的な見方"
   },
   {
     id: "q7",
-    label: "Q7. 自傷あるいは自殺の観念や行為"
+    label: "Q7 : 自傷あるいは自殺の観念や行為"
   },
   {
     id: "q8",
-    label: "Q8. 睡眠障害"
+    label: "Q8 : 睡眠障害"
   },
   {
     id: "q9",
-    label: "Q9. 食欲不振"
+    label: "Q9 : 食欲不振"
   }
 ];
 

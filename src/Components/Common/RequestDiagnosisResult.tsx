@@ -14,6 +14,7 @@ interface TestAndResult {
 const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagChange }) => {
     const [checked, setChecked] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     const {
         handleSubmit,
@@ -44,6 +45,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
     };
 
     const onSubmit = async (data: any) => {
+        setSubmitError(null);
         if (checked > 0) {
             if (checkedBoxs.checkbox4.checked && (!data.message || data.message.trim() === ''))
                 alert("内容を入力してください")
@@ -73,7 +75,8 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                         onFlagChange(true)
 
                 } catch (error) {
-                    //console.error("Error sending Data : ", error)
+                    console.error("Error sending Data : ", error)
+                    setSubmitError("送信に失敗しました。しばらくしてから再度お試しください。")
                 }
                 finally {
                     setIsSubmitting(false);
@@ -86,13 +89,13 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit(onSubmit)} id="request-result-form" sx={{ width: '100%' }}>
+        <Box id="request-result-form" sx={{ width: '100%' }}>
             {/* Blue Title Header with Bottom Divider */}
             <Typography
                 variant="h6"
                 sx={{
                     color: '#0066cc',
-                    fontWeight: 'bold',
+                    fontWeight: '400',
                     fontSize: '1.05rem',
                     pb: 1,
                     mb: 2,
@@ -135,7 +138,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         fontSize: '12px',
-                                        fontWeight: 'bold',
+                                        fontWeight: '400',
                                         lineHeight: 1,
                                     }}
                                 >
@@ -183,7 +186,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         fontSize: '12px',
-                                        fontWeight: 'bold',
+                                        fontWeight: '400',
                                         lineHeight: 1,
                                     }}
                                 >
@@ -231,7 +234,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                                         alignItems: 'center',
                                         justifyContent: 'center',
                                         fontSize: '12px',
-                                        fontWeight: 'bold',
+                                        fontWeight: '400',
                                         lineHeight: 1,
                                     }}
                                 >
@@ -248,13 +251,60 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                     }
                     id="request-result-content-3"
                 />
+                <FormControlLabel
+                    control={
+                        <Checkbox
+                            onChange={handleChecked}
+                            value={4}
+                            id="checkbox4"
+                            checked={checkedBoxs.checkbox4.checked}
+                            icon={
+                                <Box
+                                    sx={{
+                                        width: 16,
+                                        height: 16,
+                                        border: '1px solid #767676',
+                                        borderRadius: '2px',
+                                        backgroundColor: '#ffffff',
+                                    }}
+                                />
+                            }
+                            checkedIcon={
+                                <Box
+                                    sx={{
+                                        width: 16,
+                                        height: 16,
+                                        border: '1px solid #0066cc',
+                                        borderRadius: '2px',
+                                        backgroundColor: '#0066cc',
+                                        color: '#ffffff',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '12px',
+                                        fontWeight: '400',
+                                        lineHeight: 1,
+                                    }}
+                                >
+                                    ✓
+                                </Box>
+                            }
+                            sx={{ padding: '4px 8px 4px 0' }}
+                        />
+                    }
+                    label={
+                        <Typography sx={{ fontSize: '0.9rem', color: '#333333' }}>
+                            その他
+                        </Typography>
+                    }
+                    id="request-result-content-4"
+                />
+
             </FormGroup>
 
             {/* Others Textarea Field */}
             <Box sx={{ mb: 2.5 }}>
-                <Typography variant="body2" sx={{ color: '#555555', fontSize: '0.88rem', mb: 0.8 }}>
-                    その他
-                </Typography>
+
                 <Controller
                     control={control}
                     name="message"
@@ -368,10 +418,17 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                 />
             </Box>
 
+            {submitError && (
+                <Typography variant="body2" sx={{ color: '#cc0000', mb: 2, textAlign: 'center' }}>
+                    {submitError}
+                </Typography>
+            )}
+
             {/* Centered Send Pill Button */}
             <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
                 <Button
-                    type="submit"
+                    type="button"
+                    onClick={handleSubmit(onSubmit)}
                     variant="contained"
                     disabled={isSubmitting}
                     id="request-result-form-save-button"
@@ -382,7 +439,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                         px: 7,
                         py: 1.2,
                         fontSize: '0.98rem',
-                        fontWeight: 'bold',
+                        fontWeight: '400',
                         textTransform: 'none',
                         boxShadow: 'none',
                         '&:hover': {

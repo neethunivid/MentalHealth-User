@@ -44,7 +44,7 @@ const Notice: React.FC<{ sx?: object }> = ({ sx }) => {
           borderRadius: '2px',
         }}
       >
-        notice
+        お知らせ
       </Box>
 
       {/* Banners List */}

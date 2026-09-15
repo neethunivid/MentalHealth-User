@@ -14,7 +14,7 @@ interface RemarkInfoReplyCardProps {
   isReplyContainerOpen: boolean;
   ref?: React.Ref<HTMLDivElement>;
   depth: string;
-  onPreviewClick: (data: any, id: number,remarkTitle:string) => void;
+  onPreviewClick: (data: any, id: number, remarkTitle: string) => void;
   textareaValue?: any;
   onToggle: () => void;
   id: number;
@@ -27,30 +27,30 @@ interface RemarkInfoReplyCardProps {
  * @returns 
  */
 const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
-  const { 
-    image, 
-    name, 
+  const {
+    image,
+    name,
     remarkTitle,
-    remarkText, 
-    remarkNo, 
-    date, 
-    isReplyContainerOpen, 
-    ref, 
-    depth, 
-    onPreviewClick, 
-    textareaValue, 
-    onToggle, 
-    id, 
-    parentId 
+    remarkText,
+    remarkNo,
+    date,
+    isReplyContainerOpen,
+    ref,
+    depth,
+    onPreviewClick,
+    textareaValue,
+    onToggle,
+    id,
+    parentId
   } = props;
 
 
-  const { handleSubmit, control, formState: { errors },reset } = useForm();
+  const { handleSubmit, control, formState: { errors }, reset } = useForm();
 
   const [depthvalue, setDepthValue] = useState<any>()
   const [isReplyContainerOpenStatus, setIsReplyContainerOpen] = useState(false);
   const [isPreviewChecked, setIsPreviewChecked] = useState(false);
-  let memberId =localStorage.getItem("memberNo")
+  let memberId = localStorage.getItem("memberNo")
   let memberName = localStorage.getItem("memberName")
   const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
    * @returns 
    */
   function incrementDepth(depth: any) {
-    
+
     const parts = depth?.split('-');
     const lastPart = parseInt(parts?.pop(), 10);
     if (!isNaN(lastPart)) {
@@ -74,21 +74,21 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
     setIsReplyContainerOpen(isReplyContainerOpen);
   }, [isReplyContainerOpen]);
 
- 
+
 
 
   const onSubmit = async (data: any) => {
     let demo = localStorage.getItem("roomType") || "other";
-    const roomTypeMap : { [key: string]: number }= {
+    const roomTypeMap: { [key: string]: number } = {
       anxiety: 2,
       normal: 1,
       blackmail: 3,
       other: 4
     };
-    
+
     let result = roomTypeMap[demo as string] || 0;
     if (isPreviewChecked) {
-      onPreviewClick(data, id,remarkTitle);
+      onPreviewClick(data, id, remarkTitle);
     } else {
       try {
         const requestData = {
@@ -102,7 +102,7 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
         };
         const apiData = await apiClient.post("api/reply/reply", requestData, {});
         if (apiData) {
-           navigate('/remarksuccess')
+          navigate('/remarksuccess')
         }
       } catch (error) {
         console.error("Error sending Data:", error);
@@ -114,10 +114,10 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
     setIsPreviewChecked(e.target.checked);
   };
   //reset the form field 
- const handleReset = async (data: any) => {
-  reset();
+  const handleReset = async (data: any) => {
+    reset();
 
-};
+  };
   return (
     <>
       <Box ref={ref} sx={{ border: '1px solid #e0e0e0', padding: 1 }}>

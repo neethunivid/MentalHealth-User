@@ -17,19 +17,19 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import Notice from '../../Components/Common/Notice';
 
 const questions = [
-  { id: "q1", label: "Q1. 動悸、心悸亢進、または心拍数の増加した" },
-  { id: "q2", label: "Q2. 発汗がある" },
-  { id: "q3", label: "Q3. 身震いまたは震えがある" },
-  { id: "q4", label: "Q4. 息切れ感または息苦しさがある" },
-  { id: "q5", label: "Q5. 窒息感がある" },
-  { id: "q6", label: "Q6. 胸痛または胸部不快感がある" },
-  { id: "q7", label: "Q7. おう気または腹部の不快感" },
-  { id: "q8", label: "Q8. めまい感、ふらつく感じ、頭が軽くなる感じまたは気が遠くなる感じ" },
-  { id: "q9", label: "Q9. 現現実感消失、または離人症状" },
-  { id: "q10", label: "Q10. コントロールを失うことに対する、または気が狂うことに対する恐怖" },
-  { id: "q11", label: "Q11. 死ぬことに対する恐怖" },
-  { id: "q12", label: "Q12. 異常感覚" },
-  { id: "q13", label: "Q13. 冷感または熱感" }
+  { id: "q1", label: "Q1 : 動悸、心悸亢進、または心拍数の増加した" },
+  { id: "q2", label: "Q2 : 発汗がある" },
+  { id: "q3", label: "Q3 : 身震いまたは震えがある" },
+  { id: "q4", label: "Q4 : 息切れ感または息苦しさがある" },
+  { id: "q5", label: "Q5 : 窒息感がある" },
+  { id: "q6", label: "Q6 : 胸痛または胸部不快感がある" },
+  { id: "q7", label: "Q7 : おう気または腹部の不快感" },
+  { id: "q8", label: "Q8 : めまい感、ふらつく感じ、頭が軽くなる感じまたは気が遠くなる感じ" },
+  { id: "q9", label: "Q9 : 現現実感消失、または離人症状" },
+  { id: "q10", label: "Q10 : コントロールを失うことに対する、または気が狂うことに対する恐怖" },
+  { id: "q11", label: "Q11 : 死ぬことに対する恐怖" },
+  { id: "q12", label: "Q12 : 異常感覚" },
+  { id: "q13", label: "Q13 : 冷感または熱感" }
 ];
 
 /**

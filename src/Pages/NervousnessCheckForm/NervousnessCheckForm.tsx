@@ -20,55 +20,55 @@ import Notice from '../../Components/Common/Notice';
 const questions = [
   {
     id: "q1",
-    label: "Q1. 私は今の自分では環境に適応できない（仕事や家庭や学校でうまくやってゆけない）のではないかと不安です"
+    label: "Q1 :  私は今の自分では環境に適応できない（仕事や家庭や学校でうまくやってゆけない）のではないかと不安です"
   },
   {
     id: "q2",
-    label: "Q2. 私は今の悩みを、非常につらく感じます"
+    label: "Q2 : 私は今の悩みを、非常につらく感じます"
   },
   {
     id: "q3",
-    label: "Q3. 私の今の悩みは、自分の性格と関係があると思います"
+    label: "Q3 : 私の今の悩みは、自分の性格と関係があると思います"
   },
   {
     id: "q4",
-    label: "Q4. 私はつらい場面（状態）がまたおこるのではないかといつも不安です"
+    label: "Q4 : 私はつらい場面（状態）がまたおこるのではないかといつも不安です"
   },
   {
     id: "q5",
-    label: "Q5. 私の悩みは、ほかの人にはない特別なものだと思います"
+    label: "Q5 : 私の悩みは、ほかの人にはない特別なものだと思います"
   },
   {
     id: "q6",
-    label: "Q6. 私はなんとか私の悩みを取りのぞきたいと思っています"
+    label: "Q6 : 私はなんとか私の悩みを取りのぞきたいと思っています"
   },
   {
     id: "q7",
-    label: "Q7. 現在、私は自分の悩みしか考えることができません"
+    label: "Q7 : 現在、私は自分の悩みしか考えることができません"
   },
   {
     id: "q8",
-    label: "Q8. 自分の悩みに注意をむければむけるほど、悩みは強くなってしまいます"
+    label: "Q8 : 自分の悩みに注意をむければむけるほど、悩みは強くなってしまいます"
   },
   {
     id: "q9",
-    label: "Q9. 私はこの悩みさえなかったら、自分の望むことができると考えています"
+    label: "Q9 : 私はこの悩みさえなかったら、自分の望むことができると考えています"
   },
   {
     id: "q10",
-    label: "Q10. 私は今の自分をまったくだめな人間と思っています"
+    label: "Q10 : 私は今の自分をまったくだめな人間と思っています"
   },
   {
     id: "q11",
-    label: "Q11. 私はこうありたいという自分の欲望のため、くるしんでいます"
+    label: "Q11 : 私はこうありたいという自分の欲望のため、くるしんでいます"
   },
   {
     id: "q12",
-    label: "Q12. 私は自分の悩みを取りのぞくためにいつも努力をしています"
+    label: "Q12 : 私は自分の悩みを取りのぞくためにいつも努力をしています"
   },
   {
     id: "q13",
-    label: "Q13. 私は内気で、ちょっとしたことでも気にする（苦にする）ほうである"
+    label: "Q13 : 私は内気で、ちょっとしたことでも気にする（苦にする）ほうである"
   },
   {
     id: "q14",
@@ -76,47 +76,47 @@ const questions = [
   },
   {
     id: "q15",
-    label: "Q15. 私はほかの人のいうことが気になったり、傷つきやすいと思います"
+    label: "Q15 : 私はほかの人のいうことが気になったり、傷つきやすいと思います"
   },
   {
     id: "q16",
-    label: "Q16. 私は自分の体や体の調子が気になる性分です"
+    label: "Q16 : 私は自分の体や体の調子が気になる性分です"
   },
   {
     id: "q17",
-    label: "Q17. 私は引っこみ思案で新しいことにとりかかるのが苦手です"
+    label: "Q17 : 私は引っこみ思案で新しいことにとりかかるのが苦手です"
   },
   {
     id: "q18",
-    label: "Q18. 私は物事をきちんとしないと、気になってしかたがありません"
+    label: "Q18 : 私は物事をきちんとしないと、気になってしかたがありません"
   },
   {
     id: "q19",
-    label: "Q19. 私は負けずぎらいです"
+    label: "Q19 : 私は負けずぎらいです"
   },
   {
     id: "q20",
-    label: "Q20. 私は自尊心（プライド）が強いほうです"
+    label: "Q20 : 私は自尊心（プライド）が強いほうです"
   },
   {
     id: "q21",
-    label: "Q21. 私はまったく不安のない状態を望んでいます"
+    label: "Q21 : 私はまったく不安のない状態を望んでいます"
   },
   {
     id: "q22",
-    label: "Q22. 私は自分の気持ちや周囲の人たちを思いどおりに動かしたいほうです"
+    label: "Q22 : 私は自分の気持ちや周囲の人たちを思いどおりに動かしたいほうです"
   },
   {
     id: "q23",
-    label: "Q23. 私は白か黒か、ゼロか100か、どちらかに決めないと気がすまないほうです"
+    label: "Q23 : 私は白か黒か、ゼロか100か、どちらかに決めないと気がすまないほうです"
   },
   {
     id: "q24",
-    label: "Q24. 私は内弁慶（外でおとなしく、内でわがまま）です"
+    label: "Q24 : 私は内弁慶（外でおとなしく、内でわがまま）です"
   },
   {
     id: "q25",
-    label: "Q25. 私は理屈っぽく、頭でっかちのほうです"
+    label: "Q25 : 私は理屈っぽく、頭でっかちのほうです"
   }
 ];
 
@@ -256,7 +256,7 @@ const NervousnessCheckForm = () => {
       <SubHeader />
       <Heading title='神経質性格度チェック' />
 
-      <Box sx={{ maxWidth: '1200px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
+      <Box sx={{ maxWidth: '1350px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
         <Grid container spacing={3}>
           {/* Left Main Content Column */}
           <Grid item xs={12} md={8}>
@@ -267,12 +267,12 @@ const NervousnessCheckForm = () => {
                 alignItems: 'center',
                 flexWrap: 'wrap',
                 gap: 0.8,
-                fontSize: '0.82rem',
+                fontSize: '1.1rem',
                 color: '#666666',
                 mb: 2,
               }}
             >
-              <HomeRoundedIcon sx={{ fontSize: '1rem', color: '#666666' }} />
+              <HomeRoundedIcon sx={{ fontSize: '1.2rem', color: '#666666' }} />
               <a href="/home.html" style={{ color: '#666666', textDecoration: 'none' }}>
                 HOME
               </a>
@@ -292,7 +292,7 @@ const NervousnessCheckForm = () => {
                   sx={{
                     color: '#555555',
                     fontWeight: 600,
-                    fontSize: '0.95rem',
+                    fontSize: '1.1rem',
                     mb: 2.5,
                   }}
                 >
@@ -319,6 +319,7 @@ const NervousnessCheckForm = () => {
                           borderRadius: 0,
                           padding: '16px 20px',
                           marginBottom: '12px',
+                          letterSpacing: '1.2px',
                           cursor: 'pointer',
                         }}
                         id={`nervousness-selftest-question-${question.id}`}
@@ -326,7 +327,7 @@ const NervousnessCheckForm = () => {
                         <Typography
                           variant="body1"
                           sx={{
-                            fontSize: { xs: '0.88rem', sm: '0.93rem' },
+                            fontSize: { xs: '0.93rem', sm: '1rem' },
                             color: '#333333',
                             lineHeight: 1.5,
                             pr: 2,
@@ -337,7 +338,7 @@ const NervousnessCheckForm = () => {
                         </Typography>
                         <Checkbox
                           checked={isQuestionChecked(question.id)}
-                          onChange={() => {}}
+                          onChange={() => { }}
                           id={question.id}
                           icon={
                             <Box
@@ -362,7 +363,7 @@ const NervousnessCheckForm = () => {
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: '13px',
+                                fontSize: '14px',
                                 fontWeight: 'bold',
                                 lineHeight: 1,
                               }}
