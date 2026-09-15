@@ -1,11 +1,13 @@
 .remark_nav {
     width: 100%;
+    margin-bottom: 15px;
   }
   
   .menu {
+    display: flex;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0 0 8px 0;
     border-radius: 10px; 
     overflow: hidden;
     background-color: #fff;
@@ -14,12 +16,13 @@
   
   .menu_items {
     width: 100%; 
+    flex: 1;
   }
   
   .menu_items a {
     display: block; /* Make the link a block element */
     width: 100%;
-    padding: 5px;
+    padding: 8px 5px;
     text-align: center;
     text-decoration: none; 
     color: white; 
@@ -27,8 +30,12 @@
     border-left: 1px solid white;
   }
 
+  .menu_items:first-child a {
+    border-left: none;
+  }
+
   .menu_items a:hover {
-    background: linear-gradient(rgb(0,26,255),rgb(12,0,139))
+    background: linear-gradient(rgb(0,26,255),rgb(12,0,139));
   }
 
   .room.menu_items a:hover {
@@ -51,6 +58,5 @@
 
 .active a {
     background: linear-gradient(rgb(135, 164, 243), rgb(83, 125, 233));
-   
 }
   
