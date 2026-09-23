@@ -1,0 +1,204 @@
+@charset "UTF-8"; /*fuan.css*/
+
+.fuan-wrapper {
+  width: 1500px;
+}
+.navigate {
+  font-size: 12px;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+.fuan {
+  display: flex;
+  max-width: 1000px;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.title h2 {
+  width: 90%;
+  color: #0000ff;
+  background-color: #fffacd;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+.fuan img {
+  display: flex;
+  float: left;
+  height: 150px;
+  margin-left: 50px;
+  padding: 10px;
+}
+.disorders h3 {
+  width: 90%;
+  color: 0000ff;
+  border-bottom: 2px solid #dcdcdc;
+  padding: 5px;
+  margin-left: 50px;
+}
+.fuan-text {
+  width: 90%;
+  font-size: 16px;
+  line-height: 2.0;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.t-color {
+  color: #dc143c;
+}
+.depression li {
+  list-style: decimal;
+  color: #ff0000;
+  font-weight: bold;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.d-text p {
+  width:80%;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.utsu-contents {
+  background-color: #e6e6fa;
+  padding: 20px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.utsu-contents li {
+  list-style: disc;
+  line-height: 1;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.spectrum-text {
+  text-indent: 1em;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.spectrum-text li {
+  list-style: disc;
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;/* 画面全体の高さを確保 */
+}
+
+/*-----------------------------------
+メインiframe部分
+-----------------------------------*/
+.main-content {
+  flex: 3;  /*メインは3の割合で */
+  padding: 20px;
+  box-sizing: border-box;
+}
+.main-content iframe {
+  width: 100%;
+  height: 100vh; /*画面高さにフィット*/
+  border: none;
+}
+
+/*-----------------------------------
+サイドバー広告
+-----------------------------------*/
+.sidebar {
+  width: 300px;
+  height: 100%;
+  /*flex: 1;  /*サイドバーは1の割合で可燃*/
+  background-color: #ffffff;
+  padding: 10px;
+  /*box-shadow: 2px 0 5px rgba(0,0,0,0,1);*/
+  /*display: flex;*/
+  flex-direction: column;
+  gap: 20px;  /* 画像の間隔 */
+}
+.sidebar img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transform: transform 0 2s ease;
+}
+/*.sidebar img hover {
+  transform: scale(1.05);
+}*/
+
+/*-------------------------------------------
+スマートフォン
+-------------------------------------------*/
+@media screen and (max-width: 768px) {
+
+  .fuan {
+    margin-top: 0;
+    margin-left: 10px;
+  }
+  .fuan-text {
+    width: 90%;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+  .title h2 {
+    margin-left: 10px;
+  margin-bottom: 10px;
+}
+  .fuan img {
+    margin-left: 10px;
+  padding: 10px;
+  }
+  .disorders h3 {
+    margin-left: 10px;
+}
+  .depression li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  .d-text p {
+    text-indent: 1;
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+.utsu-contents {
+    padding: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+.utsu-contents li {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+  .spectrum-text {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+  .spectrum-text li {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+  .container {
+    margin-top: 0;
+    flex-direction: column;
+  }
+ /*---------------------------------------
+ 広告部分
+ --------------------------------------*/
+  .main-content {
+    display: none;
+  }
+  .sidebar {
+    width: 100%;
+    order: 2;  /*main-contentの下に移動*/
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0;
+  }
+. sidebar img {
+    width: 100%;
+    max-width: 200px;  * /*広告画像が大きすぎないよう制御 */
+  }
+}
