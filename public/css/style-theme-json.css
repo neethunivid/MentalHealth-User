@@ -2863,7 +2863,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
   --vk-size-text-lg: 1.5rem;
   --vk-size-text-sm: 0.875rem;
   --vk-size-text-xs: 0.75rem;
-  --vk-size-radius: 5px;
+  --vk-size-radius: 10px;
   --vk-size-radius-sm: calc( var( --vk-size-radius) * 0.5);
   --vk-size-radius-lg: calc( var( --vk-size-radius) * 1.5);
   --vk-line-height: 1.7em;
@@ -3446,21 +3446,26 @@ body .wp-block-image figure {
 }
 
 .wp-block-search .wp-block-search__button {
-  width: 33%;
-  color: #fff;
-  background-color: var(--vk-color-primary);
-  border: none;
-  padding: 6px;
-  font-size: 16px;
-  box-shadow: none;
-  text-align: center
+  text-align: center;
+    display: block;
+    max-width: 250px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 40px;
+    background-color: var(--vk-color-primary);
+    transform: rotate(0.03deg);
+    margin-top: 10px;
 }
 
 .wp-block-search input.wp-block-search__input {
   max-width: initial;
   width: 64%;
   border: 1px solid #ccc;
-  padding: 6px 12px;
+  padding: 10px 20px;
   font-size: 14px;
   margin-right: 0;
   margin-bottom: 0

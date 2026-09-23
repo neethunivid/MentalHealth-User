@@ -32,8 +32,8 @@ const citizenlink = [
       { title: '研究者の皆様', link: 'kenkyu.html' },
       { title: '財団の紹介', link: 'z-top.html' },
       { title: 'SNS', link: 'sns.html' },
-      { title: '検索', link: 'search.html' },
-      { title: 'お問合せ', link: 'contact.html' },
+      { title: '検索', link: '/search' },
+      { title: 'お問合せ', link: 'inquiry' },
     ],
   },
   {

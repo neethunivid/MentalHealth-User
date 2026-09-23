@@ -36,6 +36,7 @@ import RemarkList from "./Pages/Remarks/RemarkList";
 import RemarkTreeList from "./Pages/Remarks/RemarkTreeList";
 import RemarkSuccess from "./Pages/Remarks/RemarkSuccess";
 import RedirectToHome from "./Pages/HomePage/RedirecttoHome";
+import Search from "./Pages/Search/Search";
 
 const baseTheme = createTheme({
   typography: {
@@ -60,6 +61,8 @@ const AppRouter: React.FC = () => {
             <ThemeProvider theme={baseTheme}>
               <Routes>
                 <Route path="/" element={<RedirectToHome />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/search.html" element={<Search />} />
                 <Route path="/kenkyu1" element={<Form1Ui />} />
                 <Route path="/kenkyu2" element={<Form2Ui />} />
                 <Route path="/kenkyu3" element={<Form3Ui />} />
