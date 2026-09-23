@@ -1,0 +1,141 @@
+<!DOCUTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="財団概要">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>財団概要|メンタルヘルス岡本記念財団</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" type="image/png" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+
+ <header id="header">
+ <div class="header-wrapper">
+  <div class="logo">
+   <a href="index.html"><img src="images/headerlogo.jpg" alt=""></a>
+  </div>
+
+   <div class="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+    <nav class="navi">
+     <ul class="menu">
+      <li class="menu-first">
+       <span>HOME</span>
+       <ul class="menu-second">
+        <li><a href="index.html">TOP</a></li>
+        <li><a href="fuan.html">市民の皆様</a></li>
+        <li><a href="kenkyu.html">研究者の皆様</a></li>
+        <li><a href="z-top.html">財団の紹介</a></li>
+        <li><a href="sns.html">SNS</a></li>
+        <li><a href="search.html">検索</a></li>
+        <li><a href="contact.html">お問合せ</a></li>
+       </ul>
+     </li>
+      <li class="menu-first">
+       <span>財団紹介</span>
+       <ul class="menu-second">
+        <li><a href="z-top.html">はじめに</a></li>
+        <li><a href="z-naiyou.html">事業目的と内容</a></li>
+        <li><a href="z-soshiki.html">組織・役員</a></li>
+        <li><a href="z-houkoku.html">事業報告</a></li>
+        <li><a href="z-keikaku.html">事業計画</a></li>
+        <li><a href="z-zaimu.html">財務状況</a></li>
+        <li><a href="z-teikan.html">定款</a></li>
+        <li><a href="z-kojin.html">個人情報保護方針</a></li>
+       </ul>
+     </li>
+     <li><a href="contact.html">お問合せ</a></li>
+     </ul>
+    </nav>
+    
+ </div>
+ <div class="mask"></div>
+ </header>
+
+
+ <main>
+  <div class="topsub">
+    <picture>
+      <source srcset="images/topsub-sp.jpg" media="(max-width: 767px)">
+      <img src="images/topsub-scaled.jpg" alt="title">
+    </picture>
+    <div class="overlay"></div>
+    <div class="topsub-text"><h1>はじめに</h1></div>
+  </div>
+
+ <div class="home-wrapper">
+  <a href="index.html" class="navigate-link"><img class="home-icon" src="images/home.png" alt=""><p class="navigate">HOME</p></a>
+  ／<p class="navigate">財団紹介</p>
+  ／<p class="navigate">はじめに</p>
+</div>
+
+<div class="container">
+
+ <section class="main-content">
+    <div class="">
+      <h2><span class="b-color">今こそ、こころの健康を</span></h2>
+    </div>
+  <div class="box-space"></div>
+
+  <div class="up-text">
+    <p class="text-right">公益財団法人<br>メンタルヘルス岡本記念財団<br>理事長&emsp;岡本&emsp;信夫</p>
+  </div>
+  <div class="box-space"></div>
+   <div class="img-right">
+    <img src="images/okamoto1.jpg">
+   </div>
+
+  <div class="main-text">
+    <p>近年、わが国の医療技術の発展はめざましく、世界のトップレベルにあって、人びとの生命維持や健康増進に大きく寄与しています。<br>ところが昨今、社会環境の多様化、高度化、複雑化等の環境変化もあって、過度のストレスや精神不安から、ともすればこころや体の変調をきたすなど、いわゆる「神経症（不安症）」状態におちいる人が少なくありません。</p>
+  <div class="box-space"></div>
+  <p>当財団は、創始者の岡本常男自身が、神経症による極度の胃腸神経症に苦しみ、悩み抜いた末に森田療法に出会い、その理論の学習と実践によって、驚くほど短期間に全治することができました。そしてその時の感動と感謝の気持ちから、このすぐれた精神療法をひとりでも多くの神経症や心の病で悩み苦しむ人達に知ってもらいたい、という使命のもと、1988年に当財団を設立しました。</p>
+  <div class="box-space"></div>
+  <p>森田療法は、森田正馬博士（1874〜1938年）が創始した日本が世界に誇る、独自の精神療法です。この優れた森田療法及びその他の精神療法への助成活動や普及・啓発活動を通じて、これからも広く、人びとの心の健康と福祉の向上・発展に微力ながら貢献したいと念願している次第です。</p>
+  </div>
+  <div class="box-space"></div>
+
+ </section>
+ 
+ <!-- bannar --> 
+ <div id="seminarbanner"></div>
+ <script>
+ 	fetch("seminarbanner.html")
+	   .then((response) => response.text())
+	   .then((data) => document.querySelector("#seminarbanner").innerHTML = data);
+ </script>
+ <!-- bannar end -->
+</div>
+
+</main>
+
+<hr class="line"></hr>
+
+ <footer id="footer" class="wrapper">
+  <div class="zaidan">
+    <p><a href="sitemap.html">サイトマップ</a></p>
+    <p>|</p>
+    <p><a href="z-top.html">財団紹介</a></p>
+    <p>|</p>
+    <p><a href="access.html">アクセス</a></p>
+    <p>|</p>
+    <p><a href="mailmagazine.html">メルマガ購読</a></p>
+    <p>|</p>
+    <p><a href="z-kojin.html">個人情報保護方針</a></p>
+  </div>
+  <div class="copyright">
+   <p>Copyright(c)2009 The Mental Health Okamoto Foundation</p>
+  </div>
+ </footer>
+
+</body>
+</html>
