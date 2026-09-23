@@ -1,0 +1,122 @@
+@charset "UTF-8"; /*topics.css*/
+
+.topics h2 {
+  max-width: 1100px;
+  margin-left: 310px;
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  background-color:#d2f1fe;
+  /*background-color: b0c4de;*/
+    border: 1px solid #ffffff;
+    border-radius: 40px;
+    padding: 10px 0;
+}
+.topics-wrapper {
+  width: 1100px;
+  /*justify-content: space-between;*/
+  margin-left: 310px;
+  /*background-color: #f8f8ff;*/
+}
+.topics-flex {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+.topics-eria {
+  flex: 1 1 calc(50% - 10px);
+ box-sizing: border-box;  
+  max-width: 500px;
+  margin: 10px auto; 
+  padding: 0 10px;
+  /*text-align: left;*/
+}
+.topics-img {
+  display: flex;
+  float: left;
+  width: 100px;
+  height: 100px;
+  /*margin-left: 10px;*/
+  padding: 10px;
+}
+.topic-title h3 {
+  display: flex;
+  width: 300px;
+  font-size: 20px;
+  color: #ff0000;
+}
+.no-wrap {
+  /*white-space: nowrap;*/
+  font-size: 14px;
+}
+.subtext {
+  font-size: 14px;
+  /*width: 300px;*/
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.line2 {
+  width: 95%;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border: 0.5px solid #ccc;
+}
+/*-------------------------------------------
+スマートフォン
+-------------------------------------------*/
+@media screen and (max-width: 767px) {
+
+.topics h2 {
+  max-width: 350px;
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+  background-color:#d2f1fe;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 10px 0;
+}
+.topics-wrapper {
+  width: 350px;
+  margin-left: 5px;
+}
+.topics-flex {
+  display: block;
+  /*flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 5vw;*/
+}
+.topics-eria {
+  max-width: 100%;
+  /*margin: 0px auto;
+  /*padding: 0 10px;*/
+}
+.topics-img {
+  /*display: flex;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+  margin-left: 5px;*/
+  padding: 5px;
+}
+.topic-title h3 {
+  display: flex;
+  /*width: 300px;*/
+  font-size: 14px;
+}
+.no-wrap {
+  font-size: 12px;
+}
+.subtext {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.line2 {
+  margin-left: 10px;
+  /*border: 0.5px solid #ccc;*/
+}
