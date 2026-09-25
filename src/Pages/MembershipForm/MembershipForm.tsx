@@ -7,8 +7,9 @@ import FormInputTextField from '../../Components/Common/FormInputTextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormInputPreview from '../../Components/Common/FormInputPreview';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import apiClient from '../../API/API-client';
+import Notice from '../../Components/Common/Notice';
 
 /**
  * Component used for user to register
@@ -246,27 +247,31 @@ const MembershipForm = () => {
         <Grid>
             <Heading title='心の体験フォーラム 入会希望' />
             <Breadcrumb items={breadcrumbItems} />
-            <Grid container className='container' alignItems='center' justifyContent='center'>
-                <Grid item sm={12} xs={12}>
+             <Box sx={{ maxWidth: '1200px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
+            <Grid container className='container' alignItems='center' justifyContent='center' spacing={3} >
+                <Grid item xs={12} md={8}>
 
                     {/* Display as default when page loads to the first time and the form is not entered or in case of edit the details */}
 
                     {!FilledForm && SendDataFlag == false &&
                         <form id="membership-form" className="form" onSubmit={handleSubmit(onSubmit)}>
                             <Grid item container xs={12} pb={3}>
-                                <Grid item xs={12} sm={12}>
+                                {/* <Grid item xs={12} sm={12}>
                                     <Typography className='pinkBackground-whiteContent'>
                                         入会申し込みフォーム
                                     </Typography>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={12} sm={12}>
-                                    <Typography variant='h1'>
-                                        ★下記の項目を入力して下さい。*は必須入力項目です。未入力の場合、申し込みは無効となります。
+                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400 }}>
+                                        質問項目又は入力欄をクリックして入力して下さい。
+                                        <span style={{ color: 'red' }}>
+                                            *は入力必須項目です。未入力の場合、送信できませんのでご了承下さい。
+                                        </span>
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
-                                    <Typography variant='h1'>
-                                        ★このフォームは、SSL技術（暗号化送信）で送受信されますので、個人情報の流失等がなく、安心・安全にご利用いただけます。
+                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400 }}>
+                                        当サイトはセキュアサイト（暗号化送信）ですので安心・安全にご利用できます。
                                     </Typography>
                                 </Grid>
                             </Grid>
@@ -721,7 +726,11 @@ const MembershipForm = () => {
                             </Typography>
                         </Grid>}
                 </Grid>
+                <Grid item xs={12} md={4}>
+                    <Notice />
+                </Grid>
             </Grid>
+            </Box>
         </Grid>
     )
 }
