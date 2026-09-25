@@ -76,19 +76,19 @@ const Login = () => {
     }
 
     return (
-        <Grid container style={{ width: '100%', justifyContent: 'center' }}>
+        <Grid container style={{ width: '100%', justifyContent: 'center', fontFamily: '"MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif', color: '#333333' }}>
             <Grid item xs={12} style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}>
                 <Box style={{ margin: 0, padding: 0, width: '100%' }}>
                     <Navbar />
 
                     {/* Sub Header */}
-                    <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontSize: '16px', fontWeight: 'bold' }}>
+                    <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
                         入室する
                     </Box>
 
                     {/* Main Content */}
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px', width: '100%', boxSizing: 'border-box' }}>
-                        <ul style={{ fontSize: '16px', lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
+                        <ul style={{ fontSize: "14px", lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
                             <li>このフォームは、SSL技術（暗号化送信）で送受信されますので個人情報の流失等がなく、安心・安全にご利用いただけます。</li>
                             <li>入室する部屋をチエックして下さい。</li>
                             <li><span style={{ color: 'red' }}>*</span>は入力必須項目です。</li>
@@ -98,7 +98,7 @@ const Login = () => {
 
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <Box style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontSize: '16px', fontWeight: 'bold' }}>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '400' }}>
                                     ID <span style={{ color: 'red' }}>*</span>
                                 </label>
                                 <textarea
@@ -109,7 +109,6 @@ const Login = () => {
                                         border: '1px solid #ccc',
                                         borderRadius: '4px',
                                         padding: '8px',
-                                        fontSize: '16px',
                                         width: '100%',
                                         maxWidth: '320px',
                                         boxSizing: 'border-box',
@@ -121,7 +120,7 @@ const Login = () => {
                             <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
 
                             <Box style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontSize: '16px', fontWeight: 'bold' }}>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '400' }}>
                                     パスワード <span style={{ color: 'red' }}>*</span>
                                 </label>
                                 <input
@@ -144,7 +143,7 @@ const Login = () => {
                             <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
 
                             <Box style={{ marginBottom: '20px', fontSize: '14px' }}>
-                                <Box style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 'bold' }}>
+                                <Box style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '400' }}>
                                     入室する部屋を選択して下さい <span style={{ color: 'red' }}>*</span>
                                 </Box>
 
@@ -219,11 +218,11 @@ const Login = () => {
                     </Box>
 
                     {/* Footer Section */}
-                    <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontSize: '16px', fontWeight: 'bold' }}>
+                    <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
                         会員情報の修正と退会
                     </Box>
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
-                        <ul style={{ fontSize: '16px', lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
+                        <ul style={{ lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
                             <li><a href="/forumbbs2.html" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
                             <li><a href="/forumbbs3.html" style={{ color: '#0066cc', textDecoration: 'none' }}>退会手続きはこちらへ</a></li>
                         </ul>
