@@ -98,10 +98,10 @@ const citizenlink = [
     link: 'check.html',
     rendermob: false,
     subItems: [
-      { title: '神経質度', link: 'check1.html' },
-      { title: '対人恐怖度', link: 'check2.html' },
-      { title: 'パニック症', link: 'check3.html' },
-      { title: '強迫症', link: 'check4.html' },
+      { title: '神経質度', link: '/check1' },
+      { title: '対人恐怖度', link: '/check2' },
+      { title: 'パニック症', link: '/check3' },
+      { title: '強迫症', link: '/check4' },
       { title: 'うつ病', link: 'check5.html' },
     ],
   },
@@ -289,10 +289,10 @@ const Navigation = () => {
   const navigate = useNavigate()
   const location = useLocation();
 
-  const isLogoutComponent = 
-  location.pathname === '/remarklist' || 
-  location.pathname === '/remarktree_reply' || 
-  location.pathname === '/remarksuccess';
+  const isLogoutComponent =
+    location.pathname === '/remarklist' ||
+    location.pathname === '/remarktree_reply' ||
+    location.pathname === '/remarksuccess';
 
   const handleMenuToggle = (index: any) => {
     setOpenMenuIndex(openMenuIndex === index ? null : index);
@@ -331,7 +331,7 @@ const Navigation = () => {
   };
 
   function handleNavigationClick(pagelink: any): void {
-    window.location.href=pagelink
+    window.location.href = pagelink
   }
 
   return (

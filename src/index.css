@@ -1,10 +1,26 @@
+@font-face {
+  font-family: "MPLUSRounded1c";
+  src: url("/fonts/MPLUSRounded1c-Regular.woff2") format("woff2"),
+       url("/fonts/MPLUSRounded1c-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "MPLUSRounded1c";
+  src: url("/fonts/MPLUSRounded1c-Bold.woff2") format("woff2"),
+       url("/fonts/MPLUSRounded1c-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Meiryo&family=Hiragino+Kaku+Gothic+Pro&family=MS+P+Gothic&family=Osaka&display=swap');
 body { 
-  font-family: Lato, "Noto Sans JP", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  font-family: "MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+  color: #333333;
   font-size: 62.5%;
   line-height: 1.5;
   font-weight: 100;
-  color: #3a3a3a;
   background-color: #ffffff;
 }
 
