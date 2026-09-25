@@ -24,10 +24,10 @@ const pages = ['HOME', '市民の皆さま', '研究者の皆さま', 'お問い
 const citizenlink = [
   {
     title: 'HOME',
-    link: 'index.html',
+    link: 'home.html',
     rendermob: false,
     subItems: [
-      { title: 'TOP', link: 'index.html' },
+      { title: 'TOP', link: 'home.html' },
       { title: '市民の皆様', link: 'fuan.html' },
       { title: '研究者の皆様', link: 'kenkyu.html' },
       { title: '財団の紹介', link: 'z-top.html' },
