@@ -1,4 +1,5 @@
-@charset "UTF-8"; /*fourumbbs.css*/
+@charset "UTF-8";
+/*fourumbbs.css*/
 
 /* .forumbbs-wrapper {
   width: 100%;
@@ -7,13 +8,15 @@
 } */
 .forumbbs {
   width: 100%;
-  margin-left:0;
+  margin-left: 0;
   margin-bottom: 20px;
 }
+
 .forumbbs h1 {
   color: #fff;
   font-size: 22px;
 }
+
 .bbs-title {
   display: flex;
   justify-content: space-between;
@@ -21,19 +24,23 @@
   height: 45px;
   background-color: #006bc9;
   padding: 10px;
-  position: relative;          /* 右端固定に必要 */
+  position: relative;
+  /* 右端固定に必要 */
 }
+
 .bbs-title p {
   font-size: 14px;
   font-weight: bold;
   color: #ffffff;
 }
+
 .bbs-title h2 {
   font-size: 18px;
   font-weight: bold;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
 }
+
 .bbs-title .logout {
   display: inline-block;
   padding: 2px 5px;
@@ -46,9 +53,11 @@
   text-align: center;
   transform: rotate(0.03deg);
 }
+
 .first-menubar {
   display: flex;
 }
+
 .search {
   width: 33.3%;
   text-align: center;
@@ -59,22 +68,27 @@
   text-shadow: 2px 2px 3px #696969;
   margin-left: 10px;
 }
+
 .search-menu h3 {
   font-size: 14px;
 }
+
 .newcoment {
   width: 33.3%;
   text-align: center;
   padding: 6px;
-  background-color: #6495ed;;
+  background-color: #6495ed;
+  ;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
   border-right: 1px solid #ffffff;
 }
+
 .coment-menu h3 {
   font-size: 14px;
 }
+
 .on-newcoment {
   width: 33.3%;
   text-align: center;
@@ -85,6 +99,7 @@
   border-left: 1px solid #ffffff;
   border-right: 1px solid #ffffff;
 }
+
 .open {
   width: 33.3%;
   text-align: center;
@@ -92,27 +107,32 @@
   background-color: #6495ed;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
-  border-radius:0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   margin-right: 10px;
 }
+
 .open-menu h3 {
   font-size: 14px;
 }
+
 .second-menubar {
   display: flex;
   font-size: 14px;
 }
+
 .futsu-room {
   width: 20%;
   text-align: center;
   padding: 6px;
-  background-color: #47c947;/*    active*/
+  background-color: #47c947;
+  /*    active*/
   /*background-color: #808080;*/
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   border-radius: 10px 0 0 10px;
   margin-left: 10px;
 }
+
 .futsu-room2 {
   width: 20%;
   text-align: center;
@@ -135,6 +155,7 @@
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
 }
+
 .kyouhaku-room {
   width: 20%;
   text-align: center;
@@ -145,6 +166,7 @@
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
 }
+
 .utsuetc-room {
   width: 20%;
   text-align: center;
@@ -156,31 +178,36 @@
   border-left: 1px solid #ffffff;
   border-right: 1px solid #ffffff;
 }
+
 .growth-room {
   width: 20%;
   text-align: center;
   padding: 6px;
- /*background-color: #9370db;     /*active*/
+  /*background-color: #9370db;     /*active*/
   background-color: #808080;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
-  border-radius:0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   margin-right: 10px;
 }
+
 .growth-room2 {
   width: 20%;
   text-align: center;
   padding: 6px;
- background-color: #9370db;     /*active*/
+  background-color: #9370db;
+  /*active*/
   /*background-color: #808080;*/
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
-  border-radius:0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   margin-right: 10px;
 }
+
 .middle-menubar {
   display: flex;
 }
+
 .three {
   width: 20%;
   text-align: center;
@@ -192,6 +219,7 @@
   border-radius: 10px 0 0 10px;
   margin-left: 10px;
 }
+
 .newest {
   width: 20%;
   text-align: center;
@@ -201,6 +229,7 @@
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
 }
+
 .newarticle {
   width: 20%;
   text-align: center;
@@ -210,16 +239,18 @@
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
 }
+
 .diary {
   width: 20%;
   text-align: center;
   padding: 6px;
   /*background-color: #ffc0cb;*/
-  background-color:  #ff69b4;
+  background-color: #ff69b4;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   border-left: 1px solid #ffffff;
 }
+
 .advice {
   width: 20%;
   text-align: center;
@@ -227,21 +258,24 @@
   background-color: #ffc0cb;
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
-  border-radius:0 10px 10px 0;
+  border-radius: 0 10px 10px 0;
   margin-right: 10px;
   border-left: 1px solid #ffffff;
 }
+
 .kakomi-box {
   margin: 0 10px;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
+
 .bbs-theme {
   text-align: left;
   padding: 6px;
   text-indent: 1em;
-  background-color: #47c947;   /*普通＝futsu-room*/
+  background-color: #47c947;
+  /*普通＝futsu-room*/
   /*background-color: #daa520;   /*不安＝fuan-room*/
   /*background-color: #4682b4;   /*強迫＝kyouhaku-room*/
   /*background-color: #db7093;    /*うつ他=utsuetc-room*/
@@ -250,42 +284,52 @@
   text-shadow: 2px 2px 3px #696969;
   margin-top: 12px;
 }
+
 .bbs-theme5 {
   text-align: left;
   padding: 6px;
   text-indent: 1em;
-  background-color: #9370db;    /*成長=growth-room*/
+  background-color: #9370db;
+  /*成長=growth-room*/
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   margin-top: 12px;
 }
+
 .bbs-nocoment {
   background-color: #ffffff;
 }
+
 .bbs-nocoment h4 {
   text-align: center;
 }
+
 .bbs-theme h3 {
   font-size: 14px;
 }
+
 .bbs-theme5 h3 {
   font-size: 14px;
 }
+
 .bbs-notes {
   height: 700px;
   text-align: left;
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .bbs-notes ul {
   list-style: disct;
   padding-left: 1.2em;
   margin-left: 10px;
 }
+
 .bbs-notes li {
   list-style: disc;
   font-size: 14px;
 }
+
 .bbs-line {
   border: 0;
   border-top: 1px solid #c0c0c0;
@@ -293,49 +337,58 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .bbs-notes .img img {
   width: 100%;
   margin-left: 20px;
 }
+
 .bbs-contents {
   display: flex;
 }
 
-.bbs-faceimg img{
+.bbs-faceimg img {
   width: 50px;
   float: left;
   margin: 0 auto;
   margin-top: 5px;
   margin-left: 15px;
 }
-.bbs-faceimg > p {
+
+.bbs-faceimg>p {
   text-align: center;
 }
+
 .bbs-byname h3 {
   font-size: 16px;
   margin-top: 10px;
   margin-left: 10px;
 }
+
 .bbs-byname p {
   font-size: 14px;
   margin-left: 10px;
 }
+
 .bbs-faceimg p {
   font-size: 14px;
   margin-left: 20px;
 }
+
 .bbs-coments {
   font-size: 16px;
   line-height: 1.8;
   margin: 0 15px;
   margin-bottom: 10px;
 }
+
 .bbs-follow {
   padding: 6px;
   background-color: #47c947;
   color: #ffffff;
   text-align: center;
 }
+
 .bbs-follow2 {
   display: flex;
   justify-content: center;
@@ -345,59 +398,71 @@
   padding: 10px;
   /*margin-left: 5px;*/
 }
+
 .bbs-followopen {
   padding: 6px;
   background-color: #47c947;
   margin-top: 5px;
 }
+
 .bbs-followopen h3 {
   font-size: 16px;
   color: ffffff;
   text-align: left;
   text-indent: 1;
 }
+
 /*.follow-coment {
   display: flex;
 }*/
 .follower {
   display: flex;
 }
-.follower h3,h4 {
+
+.follower h3,
+h4 {
   font-size: 14px;
   font-weight: normal;
   padding: 10px;
   margin-left: 10px;
 }
+
 .follow-title {
   display: flex;
 }
+
 .follow-title h2 {
   font-size: 14px;
   margin-left: 15px;
   padding: 5px;
   text-align: center;
 }
+
 .follow-title h3 {
   font-size: 12px;
   font-weight: normal;
   margin-left: 15px;
 }
+
 .follow-title h4 {
-  width:90%;
+  width: 90%;
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 14px;
   padding: 10px;
   margin-left: 10px;
 }
+
 .title-box {
   margin-top: 20px;
   margin-left: 15px;
 }
+
 .d-titlebox {
   margin-top: 20px;
   margin-left: 5px;
 }
+
 .msg-titlebox {
   max-width: 90%;
   border: 1px solid #ccc;
@@ -405,6 +470,7 @@
   margin-left: 80px;
   margin-top: 15px;
 }
+
 .newmsg-titlebox {
   max-width: 90%;
   border: 1px solid #ccc;
@@ -414,6 +480,7 @@
   margin-top: 15px;
   margin-bottom: 10px;
 }
+
 .dmsg-titlebox {
   max-width: 90%;
   border: 1px solid #ccc;
@@ -423,18 +490,22 @@
   margin-top: 15px;
   margin-bottom: 10px;
 }
+
 .title-textarea {
   width: 100%;
   font-size: 14px;
   padding: 10px;
   box-sizing: border-box;
 }
+
 .follow-box {
   margin-left: 15px;
 }
+
 .newfollow-box {
   margin-left: 5px;
 }
+
 .msg-box {
   max-width: 90%;
   border: 1px solid #ccc;
@@ -442,6 +513,7 @@
   margin-left: 80px;
   margin-top: 15px;
 }
+
 .newmsg-box {
   max-width: 90%;
   border: 1px solid #ccc;
@@ -450,12 +522,14 @@
   margin-left: 15px;
   margin-top: 15px;
 }
+
 .hp-textarea {
   width: 100%;
   font-size: 14px;
   padding: 10px;
   box-sizing: border-box;
 }
+
 .check-select {
   display: flex;
   flex-wrap: wrap;
@@ -463,25 +537,31 @@
   margin: 10px 0;
   gap: 10px 20px;
 }
+
 .check-select dt.select {
   margin-left: 5px;
   margin-bottom: 10px;
   align-items: center;
   margin: 4px 0;
 }
+
 .check-select dd.place input[type="radio"] {
-  margin-right: 8px;   /* チェックと文字の間隔 */
+  margin-right: 8px;
+  /* チェックと文字の間隔 */
 }
+
 .check-area {
   margin: 0.5em 0;
   margin-left: 100px;
 }
+
 .btn-area {
-  display:inline-block;
+  display: inline-block;
   text-align: center;
   margin-left: 40px;
   padding: 10px;
 }
+
 .btn-area button {
   display: inline-block;
   width: 100px;
@@ -493,6 +573,7 @@
   margin-top: 5px;
   border-radius: 5px;
 }
+
 .bbs-rogin {
   text-align: left;
   padding: 6px;
@@ -501,14 +582,17 @@
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
 }
+
 .bbs-rogin h3 {
   font-size: 14px;
   color: #ffffff;
 }
+
 .roginid {
   font-size: 16px;
   margin-left: 10px;
 }
+
 .roginid-box {
   font-size: 14px;
   width: 300px;
@@ -517,14 +601,17 @@
   background-color: #ffffe0;
   color: #000000;
 }
+
 .roginid-textarea {
   width: 100%;
   box-sizing: border-box;
 }
+
 .ps-word {
   font-size: 16px;
   margin-left: 10px;
 }
+
 .ps-box {
   font-size: 14px;
   width: 300px;
@@ -533,10 +620,12 @@
   background-color: #ffffe0;
   color: #000000;
 }
+
 .ps-textarea {
   width: 100%;
   box-sizing: border-box;
 }
+
 .reason-msg {
   font-size: 14px;
   width: 300px;
@@ -545,14 +634,16 @@
   background-color: #ffffe0;
   color: #000000;
 }
+
 .reason-textarea {
   width: 100%;
   box-sizing: border-box;
 }
+
 .bbs-follow h3 {
   display: inline-block;
   width: 100px;
-   padding: 3px;
+  padding: 3px;
   font-size: 14px;
   font-weight: normal;
   border: 1px solid #ffffff;
@@ -560,10 +651,11 @@
   background-color: #dcdcdc;
   color: 000000;
 }
+
 .bbs-follow2 h3 {
   display: inline-block;
   width: 100px;
-   padding: 3px;
+  padding: 3px;
   font-size: 14px;
   font-weight: normal;
   border: 1px solid #ffffff;
@@ -573,10 +665,11 @@
   text-align: center;
   margin-right: 10px;
 }
+
 .bbs-follow2 h4 {
   display: inline-block;
   width: 100px;
-   padding: 3px;
+  padding: 3px;
   font-size: 14px;
   font-weight: normal;
   border: 1px solid #ffffff;
@@ -586,6 +679,7 @@
   text-align: center;
   margin-left: 10px;
 }
+
 .bbs-new {
   border: 1px solid #ccc;
   background-color: #e0ffff;
@@ -594,10 +688,12 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
 .rogin-back {
   background-color: #e0ffff;
   border: 1px solid #ccc;
 }
+
 /* .rogin-back2 {
   border: 1px solid #ccc;
   margin-top: 12px;
@@ -608,17 +704,20 @@
   margin-right: 10px;
   /*border: 1px solid #ccc;*/
 }
+
 .rogin-notes ul {
   list-style: disct;
   padding-left: 1.2em;
   margin-left: 10px;
   padding: 10px;
 }
+
 .rogin-notes li {
   list-style: disc;
   font-size: 14px;
   padding: 5px;
 }
+
 .dwrite {
   width: 600px;
   background-color: #6495ed;
@@ -627,12 +726,14 @@
   margin-bottom: 10px;
   border-radius: 20px;
 }
+
 .dwrite h2 {
   font-size: 20px;
   color: #ffffff;
   text-align: center;
   padding: 10px;
 }
+
 .dwrite-text {
   width: 550px;
   font-size: 14px;
@@ -641,36 +742,42 @@
   line-height: 2em;
   /*margin-left: 60px;*/
 }
+
 .dwrite-text li {
   list-style: disc;
   font-size: 16px;
 }
+
 .ex-diary {
   display: block;
   justify-content: center;
   width: 30%;
   border: 1px solid #ccc;
   /*margin-left: 70px;*/
-  
+
 }
+
 .ex-daiary h4 {
   font-size: 14px;
 }
+
 .ex-diary img {
   width: 60%;
   margin-top: 20px;
   /*margin-left: 50px;*/
   margin-bottom: 10px;
 }
+
 .mbtn-area {
   text-align: center;
   align-items: center;
   margin-top: 10px;
 }
+
 .modalbtn {
   display: inline-block;
   padding: 5px;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   background: #6495ed;
   color: #ffffff;
   border-radius: 10px;
@@ -679,10 +786,11 @@
   cursor: pointer;
   margin-left: 5px;
 }
+
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   display: none;
   justify-content: center;
   align-items: center;
@@ -698,162 +806,204 @@
   border-radius: 8px;
   overflow: auto;
 }
+
 .bbs-container {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .letter-p {
   font-size: 14px;
   margin-left: 15px;
   margin-bottom: 10px;
 }
+
 /*---------------------------------------
 スマートフォン
 ---------------------------------------*/
 @media screen and (max-width: 767px) {
 
-.forumbbs h1 {
-  color: #fff;
-  font-size: 18px;
-}
-.bbs-title .logout {
-  font-size: 12px;
-}
-.topsub img {
- display: none;
-}
-.search {
-  font-size: 12px;
-  padding: 5px;
-}
-.search-menu h3 {
-  font-size: 12px;
-}
-.newcoment {
-  font-size: 12px;
-  padding: 5px;
-}
-.coment-menu h3 {
-  font-size: 12px;
-}
-.on-newcoment h3 {
-  font-size: 12px;
-}
-.open {
-  font-size: 12px;
-  padding: 5px;
-}
-.open-menu h3 {
-  font-size: 12px;
-}
-.futsu-room {
-  font-size: 12px;
-  padding: 5px;
-}
-.fuan-room {
-  font-size: 12px;
-  padding: 5px;
-}
-.kyouhaku-room {
-  font-size: 12px;
-  padding: 5px;
-}
-.utsuetc-room {
-  font-size: 12px;
-  padding: 5px;
-}
-.growth-room {
-  font-size: 12px;
-  padding: 5px;
-}
-.three {
-  font-size: 12px;
-}
-.newest {
-  font-size: 12px;
-}
-.newarticle {
-  font-size: 12px;
-}
-.diary {
-  font-size: 12px;
-}
-.advice {
-  font-size: 12px;
-}
-.bbs-faceimg img{
-  margin-left: 12px;
-}
-.bbs-byname h3 {
-  font-size: 14px;
-}
-.bbs-byname p {
-  font-size: 14px;
-  margin-left: 10px;
-}
-.bbs-faceimg p {
-  font-size: 14px;
-  margin-left: 10px;
-}
-.bbs-coments {
-  font-size: 14px;
-}
-.follow-title {
-  display: block;
-  width: 98%;
-}
-.follow-title h3 {
-  font-size: 14px;
-}
-.msg-box {
-  margin-left: 10px;
-}
-.hp-textarea {
-  max-width: 350px;
-}
-.check-select {
-  flex-direction: column;
-  padding: 10px;
-}
-.check-select dd.place input[type="radio"] {
-  margin-right: 6px;   /* チェックと文字の間隔 */
-}
-.check-select dt.select {
-  margin-left: 0;
-  margin-bottom: 10px;
-}
-.check-area {
-  margin-left: 60px;
-}
-.btn-area button {
-  margin-left: 20px;
-}
-.dwrite {
-  width: 70vw;
-  background-color: #6495ed;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-}
-.dwrite h2 {
-  font-size: 18px;
-  color: #ffffff;
-  text-align: center;
-  padding: 10px;
-}
-.dwrite-text {
-  width: 70vw;
-  font-size: 13px;
-  list-style: disc;
-  padding-left: 1.4em;
-  line-height: 2em;
-}
-.dwrite-text li {
-  list-style: disc;
-  font-size: 16px;
-}
-.modal-content {
-  width: 90vw;
-}
+  .forumbbs h1 {
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .bbs-title .logout {
+    font-size: 12px;
+  }
+
+  .topsub img {
+    display: none;
+  }
+
+  .search {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .search-menu h3 {
+    font-size: 12px;
+  }
+
+  .newcoment {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .coment-menu h3 {
+    font-size: 12px;
+  }
+
+  .on-newcoment h3 {
+    font-size: 12px;
+  }
+
+  .open {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .open-menu h3 {
+    font-size: 12px;
+  }
+
+  .futsu-room {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .fuan-room {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .kyouhaku-room {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .utsuetc-room {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .growth-room {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .three {
+    font-size: 12px;
+  }
+
+  .newest {
+    font-size: 12px;
+  }
+
+  .newarticle {
+    font-size: 12px;
+  }
+
+  .diary {
+    font-size: 12px;
+  }
+
+  .advice {
+    font-size: 12px;
+  }
+
+  .bbs-faceimg img {
+    margin-left: 12px;
+  }
+
+  .bbs-byname h3 {
+    font-size: 14px;
+  }
+
+  .bbs-byname p {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .bbs-faceimg p {
+    font-size: 14px;
+    margin-left: 10px;
+  }
+
+  .bbs-coments {
+    font-size: 14px;
+  }
+
+  .follow-title {
+    display: block;
+    width: 98%;
+  }
+
+  .follow-title h3 {
+    font-size: 14px;
+  }
+
+  .msg-box {
+    margin-left: 10px;
+  }
+
+  .hp-textarea {
+    max-width: 350px;
+  }
+
+  .check-select {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .check-select dd.place input[type="radio"] {
+    margin-right: 6px;
+    /* チェックと文字の間隔 */
+  }
+
+  .check-select dt.select {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .check-area {
+    margin-left: 60px;
+  }
+
+  .btn-area button {
+    margin-left: 20px;
+  }
+
+  .dwrite {
+    width: 70vw;
+    background-color: #6495ed;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+  }
+
+  .dwrite h2 {
+    font-size: 18px;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .dwrite-text {
+    width: 70vw;
+    font-size: 13px;
+    list-style: disc;
+    padding-left: 1.4em;
+    line-height: 2em;
+  }
+
+  .dwrite-text li {
+    list-style: disc;
+    font-size: 16px;
+  }
+
+  .modal-content {
+    width: 90vw;
+  }
 }
