@@ -1,0 +1,161 @@
+<!DOCUTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="財務状況">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>財務状況|メンタルヘルス岡本記念財団</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" type="image/png" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+
+    <header id="header">
+      <div class="header-wrapper">
+        <div class="logo">
+          <a href="home.html"><img src="images/headerlogo.jpg" alt=""></a>
+        </div>
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <nav class="navi">
+          <ul class="menu">
+            <li class="menu-first">
+              <span>HOME</span>
+              <ul class="menu-second">
+                <li><a href="home.html">TOP</a></li>
+                <li><a href="fuan.html">市民の皆様</a></li>
+                <li><a href="kenkyu.html">研究者の皆様</a></li>
+                <li><a href="z-top.html">財団の紹介</a></li>
+                <li><a href="sns.html">SNS</a></li>
+                <li><a href="search.html">検索</a></li>
+                <li><a href="contact.html">お問合せ</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>財団紹介</span>
+              <ul class="menu-second">
+                <li><a href="z-top.html">はじめに</a></li>
+                <li><a href="z-naiyou.html">事業目的と内容</a></li>
+                <li><a href="z-soshiki.html">組織・役員</a></li>
+                <li><a href="z-houkoku.html">事業報告</a></li>
+                <li><a href="z-keikaku.html">事業計画</a></li>
+                <li><a href="z-zaimu.html">財務状況</a></li>
+                <li><a href="z-teikan.html">定款</a></li>
+                <li><a href="z-kojin.html">個人情報保護方針</a></li>
+              </ul>
+            </li>
+            <li><a href="contact.html">お問合せ</a></li>
+          </ul>
+        </nav>
+
+      </div>
+      <div class="mask"></div>
+    </header>
+
+
+    <main>
+      <div class="topsub">
+        <picture>
+          <source srcset="images/topsub-sp.jpg" media="(max-width: 767px)">
+          <img src="images/topsub-scaled.jpg" alt="title">
+        </picture>
+        <div class="overlay"></div>
+        <div class="topsub-text">
+          <h1>財務状況</h1>
+        </div>
+      </div>
+
+      <div class="home-wrapper">
+        <a href="home.html" class="navigate-link"><img class="home-icon" src="images/home.png" alt="">
+          <p class="navigate">HOME</p>
+        </a>
+        ／<p class="navigate">財団紹介</p>
+        ／<p class="navigate">財務状況</p>
+      </div>
+
+      <div class="container">
+
+        <section class="main-content">
+          <div class="bg-b-title">
+            <h2>令和6年度の財務状況</h2>
+          </div>
+
+          <div class="gray-under">
+            <h3 id="">貸借対照表</h3>
+          </div>
+          <p>令和7年3月31日現在</p>
+          <a href="images/taisyaku_r06.png"><img src="images/taisyaku_r06.png"></a>
+          <div class="box-space"></div>
+
+          <div class="gray-under">
+            <h3 id="">正味財産増減計算書</h3>
+          </div>
+          <p>令和6年4月1日から令和7年3月31日まで</p>
+          <a href="images/zaisan_zougen_r06.png"><img src="images/zaisan_zougen_r06.png"></a>
+          <div class="box-space"></div>
+
+          <div class="gray-under">
+            <h3 id="">正味財産増減計算書内訳表</h3>
+          </div>
+          <p>令和6年4月1日から令和7年3月31日まで</p>
+          <a href="images/uchiwake_r06.png"><img src="images/uchiwake_r06.png"></a>
+          <div class="box-space"></div>
+
+          <div class="gray-under">
+            <h3 id="">財産目録</h3>
+          </div>
+          <p>令和7年3月31日現在</p>
+          <a href="images/zaisan_mokuroku_r06.png"><img src="images/zaisan_mokuroku_r06.png"></a>
+          <div class="box-space"></div>
+
+          <a href="z-zaimu-old.html" class="b-btn"><span>過去の財務状況</span></a>
+
+        </section>
+
+        <!-- bannar -->
+        <div id="seminarbanner"></div>
+        <script>
+          fetch("seminarbanner.html")
+            .then((response) => response.text())
+            .then((data) => document.querySelector("#seminarbanner").innerHTML = data);
+        </script>
+        <!-- bannar end -->
+      </div>
+
+    </main>
+
+    <hr class="line">
+    </hr>
+
+    <footer id="footer" class="wrapper">
+      <div class="zaidan">
+        <p><a href="sitemap.html">サイトマップ</a></p>
+        <p>|</p>
+        <p><a href="z-top.html">財団紹介</a></p>
+        <p>|</p>
+        <p><a href="access.html">アクセス</a></p>
+        <p>|</p>
+        <p><a href="mailmagazine.html">メルマガ購読</a></p>
+        <p>|</p>
+        <p><a href="z-kojin.html">個人情報保護方針</a></p>
+      </div>
+      <div class="copyright">
+        <p>Copyright(c)2009 The Mental Health Okamoto Foundation</p>
+      </div>
+    </footer>
+
+  </body>
+
+  </html>
