@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { AppBar, Toolbar, Typography, Grid, Drawer, List, ListItemButton, ListItemText, IconButton, Badge, Avatar, Link } from '@mui/material';
+import { AppBar, Toolbar, Typography, Grid, Drawer, List, ListItemButton, ListItemText, IconButton, Badge, Avatar, Link, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import "../Components/Common/commonstyle.scss";
 import Navigation from './Common/Header';
@@ -26,8 +26,21 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </Grid>
 
             </Grid>
+            {/* Separator */}
+            <Box
+                component="hr"
+
+                sx={{
+                    width: "100%",
+                    maxWidth: "100%",
+                    marginTop: "10px",
+                    marginBottom: 0,
+                    boxSizing: "border-box",
+                    color: "red",
+                }}
+            />
             {/* footer */}
-            <Grid container item xs={12} maxWidth="100%"  >
+            <Grid container item xs={12} maxWidth="100%" marginTop="10px" >
                 <Footer />
             </Grid>
 

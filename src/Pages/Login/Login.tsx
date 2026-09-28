@@ -77,15 +77,17 @@ const Login = () => {
 
     return (
         <Grid container style={{ width: '100%', justifyContent: 'center', fontFamily: '"MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif', color: '#333333' }}>
-            <Grid item xs={12} style={{ width: '100%', maxWidth: '1000px', margin: '0 auto' }}>
+            <Grid item xs={12} style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
                 <Box style={{ margin: 0, padding: 0, width: '100%' }}>
                     <Navbar />
 
                     {/* Sub Header */}
+                    <Box style={{ backgroundColor: '#fff', color: 'white', padding: '4px 0px', fontWeight: 'bold' }}>
+
+                    </Box>
                     <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
                         入室する
                     </Box>
-
                     {/* Main Content */}
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px', width: '100%', boxSizing: 'border-box' }}>
                         <ul style={{ fontSize: "14px", lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
@@ -97,8 +99,8 @@ const Login = () => {
                         <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
 
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <Box style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '400' }}>
+                            <Box style={{ marginBottom: '4px' }}>
+                                <label style={{ display: 'block', marginBottom: '4px', fontWeight: '400' }}>
                                     ID <span style={{ color: 'red' }}>*</span>
                                 </label>
                                 <textarea
@@ -117,10 +119,10 @@ const Login = () => {
                                 />
                             </Box>
 
-                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
 
-                            <Box style={{ marginBottom: '20px' }}>
-                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '400' }}>
+                            <Box style={{ marginBottom: '4px' }}>
+                                <label style={{ display: 'block', marginBottom: '4px', fontWeight: '400' }}>
                                     パスワード <span style={{ color: 'red' }}>*</span>
                                 </label>
                                 <input
@@ -140,7 +142,7 @@ const Login = () => {
                                 />
                             </Box>
 
-                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
 
                             <Box style={{ marginBottom: '20px', fontSize: '14px' }}>
                                 <Box style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '400' }}>
