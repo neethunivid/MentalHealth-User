@@ -149,12 +149,14 @@
   color: white !important;
   font-size: 15px !important;
 }
+
 .logout {
   color: white !important;
   font-size: 22px !important;
   margin-left: 10px;
   margin-bottom: 20px;
 }
+
 @media (max-width: 768px) {
   .bottom-navigation {
     background-color: rgb(18, 37, 204);
@@ -223,9 +225,10 @@
   position: relative;
   color: #ffffff !important;
   text-align: center;
+  //background-color: #006bc9;
   background: url(../../assets/pageheader-scaled.jpg) no-repeat 50% center;
   background-size: cover;
-  min-height: 7rem;
+  min-height: 4rem;
   opacity: 0.7;
   margin: 0;
   padding: 0;
@@ -1400,4 +1403,4 @@
   padding: 4px !important;
   z-index: 1000000 !important;
   outline: none !important;
-}
+}
