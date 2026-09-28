@@ -261,6 +261,94 @@
   }
 }
 
+.member-id-check-container {
+  display: flex;
+  justify-content: left;
+}
+
+.member-id-check-button {
+  width: 280px;
+  max-width: 100%;
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background-color: #0870ce;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.member-id-check-button:hover {
+  background-color: #0660b3;
+}
+
+.membership-icon-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 4px;
+}
+
+.membership-icon-choice {
+  width: 64px;
+  margin: 0 !important;
+  align-items: center;
+}
+
+.membership-icon-image,
+.membership-icon-preview {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+.member-id-check-container {
+  display: flex;
+  justify-content: left;
+}
+
+.member-id-check-button {
+  width: 280px;
+  max-width: 100%;
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background-color: #0870ce;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.member-id-check-button:hover {
+  background-color: #0660b3;
+}
+
+.membership-icon-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0 4px;
+}
+
+.membership-icon-choice {
+  width: 64px;
+  margin: 0 !important;
+  align-items: center;
+}
+
+.membership-icon-image,
+.membership-icon-preview {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
 
 
 
@@ -441,6 +529,12 @@
   }
 
   .form {
+
+    &#membership-form {
+      .MuiTypography-body1 {
+        font-family: $font !important;
+      }
+    }
 
     h1 {
 
