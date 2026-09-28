@@ -1,6 +1,6 @@
 import { Button, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import Heading from '../../Components/Common/Heading';
 import Breadcrumb from '../../Components/Common/BreadCrumb';
 import FormInputTextField from '../../Components/Common/FormInputTextField';
@@ -32,6 +32,7 @@ const MembershipForm = () => {
         register,
         handleSubmit,
         control,
+        reset,
         setValue,
         formState: { errors },
     } = useForm();
@@ -91,6 +92,10 @@ const MembershipForm = () => {
         return formatted;
     };
 
+    const checkId = () => {
+        return;
+    };
+
     /**
      * Method  is used to save the data and goto section that allows preview the details entered in the form
      * @param data 
@@ -98,9 +103,34 @@ const MembershipForm = () => {
 
     const onSubmit = async (data: any) => {
 
+        const postCodeFirst = String(data.post_code_first ?? '');
+        const postCodeSecond = String(data.post_code_second ?? '');
+        data.post_code = `${postCodeFirst}-${postCodeSecond}`;
+        data.mobile_number = [
+            data.mobile_number_first,
+            data.mobile_number_second,
+            data.mobile_number_third,
+        ].join('-');
+
+        const selectedYear = Number(data.dobYear);
+        const selectedMonth = Number(data.dobMonth);
+        const selectedDay = Number(data.dobDay);
+        const selectedDate = new Date(selectedYear, selectedMonth - 1, selectedDay);
+        const hasValidDob = Boolean(data.dobYear && data.dobMonth && data.dobDay)
+            && selectedDate.getFullYear() === selectedYear
+            && selectedDate.getMonth() === selectedMonth - 1
+            && selectedDate.getDate() === selectedDay;
+
+        if (hasValidDob) {
+            data.dob = `${data.dobYear}-${String(selectedMonth).padStart(2, '0')}-${String(selectedDay).padStart(2, '0')}`;
+        }
+
         const today = convertToDate(getCurrentDate())
 
-        if (data.name === undefined && data.name1 === undefined) {
+        if (!hasValidDob) {
+            alert("正しい生年月日を選択してください。");
+        }
+        else if (data.name === undefined && data.name1 === undefined) {
             alert("フルネームを入力してください。");
         }
         else if (data.namek === undefined && data.namek1 === undefined) {
@@ -118,7 +148,7 @@ const MembershipForm = () => {
         else if (data.sex === undefined) {
             alert("あなたの性別を選択してください");
         }
-        else if (data.post_code === undefined) {
+        else if (!/^\d{3}-\d{4}$/.test(data.post_code)) {
             alert("郵便番号を記入してください。")
         }
         else if (data.city === undefined) {
@@ -127,7 +157,7 @@ const MembershipForm = () => {
         else if (data.street_address === undefined) {
             alert("住所を入力してください");
         }
-        else if (!(/^(\d{4}-\d{4}-\d{4}|\d{12})$/.test(data.mobile_number))) {
+        else if (!(/^\d{4}-\d{4}-\d{4}$/.test(data.mobile_number))) {
             alert("有効な電話番号を入力して下さい。");
         }
         else if (data.reference === undefined) {
@@ -175,13 +205,26 @@ const MembershipForm = () => {
         setFilledForm(false)
     }
 
+    const handleReset = () => {
+        reset();
+        setMembershipData({});
+        setFilledForm(false);
+        setSendDataFlag(false);
+        setSex("sex");
+        setProfession('会社員');
+        setProfessionIndex("1");
+        setPrefecture('北海道');
+        setPrefectureIndex("1");
+        setNewsletterSubscription("購読");
+    }
+
     /**
      * Method used to submit the form after verifying details through preview section are correct
      * This will also sent data to database
      */
 
     const handleSendData = async () => {
-
+        console.log("membershipData", membershipData)
         if (membershipData) {
             try {
                 const DataRequest = {
@@ -190,6 +233,7 @@ const MembershipForm = () => {
                     "namek": membershipData.namek,
                     "namek2": membershipData.namek2,
                     "memberid": membershipData.memberId,
+                    "icon": membershipData.icon,
                     "password": membershipData.password,
                     "sex": membershipData.sex === '男性' ? "1" : "2",
                     "dob": formatDateString(membershipData.dob),
@@ -212,17 +256,18 @@ const MembershipForm = () => {
                     "deleteRequest": 0,
                     "date": getCurrentDate(),
                 }
-
                 const apiData = await apiClient.post("api/members/addMember", DataRequest, {});
                 if (apiData) {
                     setSendDataFlag(true)
                 }
             } catch (error: any) {
-                // console.error("Error sending Data : ",error)
-                if (error.response.data.error == "MemberId already exists") {
+                const errorCode = error?.response?.data?.error;
+                if (errorCode === "MemberId already exists") {
                     alert("別の会員IDを選択してください。")
-                } else if (error.response.data.error == "Email already exists") {
+                } else if (errorCode === "Email already exists") {
                     alert("メールは既に存在します")
+                } else {
+                    alert("送信に失敗しました。時間をおいて再度お試しください。")
                 }
             }
         }
@@ -248,13 +293,20 @@ const MembershipForm = () => {
             <Heading title='心の体験フォーラム 入会希望' />
             <Breadcrumb items={breadcrumbItems} />
              <Box sx={{ maxWidth: '1200px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
-            <Grid container className='container' alignItems='center' justifyContent='center' spacing={3} >
+            <Grid container spacing={3} sx={{ alignItems: 'flex-start' }}>
                 <Grid item xs={12} md={8}>
 
                     {/* Display as default when page loads to the first time and the form is not entered or in case of edit the details */}
 
                     {!FilledForm && SendDataFlag == false &&
-                        <form id="membership-form" className="form" onSubmit={handleSubmit(onSubmit)}>
+                        <form
+                            id="membership-form"
+                            className="form"
+                            onSubmit={handleSubmit(onSubmit)}
+                            style={{
+                                fontFamily: '"メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS P Gothic", "Osaka", "Verdana", "Arial", "Helvetica", sans-serif'
+                            }}
+                        >
                             <Grid item container xs={12} pb={3}>
                                 {/* <Grid item xs={12} sm={12}>
                                     <Typography className='pinkBackground-whiteContent'>
@@ -262,39 +314,41 @@ const MembershipForm = () => {
                                     </Typography>
                                 </Grid> */}
                                 <Grid item xs={12} sm={12}>
-                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400 }}>
+                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400, fontSize: '14px', fontFamily: 'inherit' }}>
                                         質問項目又は入力欄をクリックして入力して下さい。
-                                        <span style={{ color: 'red' }}>
+                                        <span style={{ color: 'red', fontFamily: 'inherit' }}>
                                             *は入力必須項目です。未入力の場合、送信できませんのでご了承下さい。
                                         </span>
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={12} sm={12}>
-                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400 }}>
-                                        当サイトはセキュアサイト（暗号化送信）ですので安心・安全にご利用できます。
+                                    <Typography variant='h1' style={{ color: 'black', fontWeight: 400, fontSize: '14px', fontFamily: 'inherit' }}>
+                                        当サイトは安全（暗号化通信）ですので、安心してご利用いただけます。
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid container item xs={12} sm={12}>
-                                <Grid container item xs={12} sm={8} spacing={2}>
-                                    <Grid item xs={12} sm={5.5}>
+                            <Grid container item xs={12} sm={12} direction="column">
+                                <Typography variant='body1'>
+                                    名前（漢字）<span style={{ color: 'red' }}>*</span>
+                                </Typography>
+                                <Grid container item xs={12} sm={12} spacing={2}>
+                                    <Grid item xs={12} sm={4}>
                                         <FormInputTextField
-                                            required={true}
-                                            label="名前（漢字）"
                                             name="name"
                                             control={control}
-                                            caption="名"
-                                            fullwidth={true}
+                                            caption="姓"
+                                            captionOnLeft={true}
+                                            fullwidth={false}
                                             id="membership-form-name"
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={5.5}>
+                                    <Grid item xs={12} sm={4}>
                                         <FormInputTextField
-                                            required={true}
                                             name="name2"
                                             control={control}
-                                            caption="姓"
-                                            fullwidth={true}
+                                            caption="名"
+                                            captionOnLeft={true}
+                                            fullwidth={false}
                                             className='second-field-inputs'
                                             id="membership-form-name2"
                                         />
@@ -302,25 +356,27 @@ const MembershipForm = () => {
                                 </Grid>
                             </Grid>
                             <Grid container item xs={12} sm={12}>
-                                <Grid container item xs={12} sm={8} spacing={2}>
-                                    <Grid item xs={12} sm={5.5}>
+                                <Typography variant='body1'>
+                                    ふりがな<span style={{ color: 'red' }}>*</span>
+                                </Typography>
+                                <Grid container item xs={12} sm={12} spacing={2}>
+                                    <Grid item xs={12} sm={4}>
                                         <FormInputTextField
-                                            required={true}
-                                            label="ふりがな"
                                             name="namek"
                                             control={control}
-                                            caption="名"
-                                            fullwidth={true}
+                                            caption="姓"
+                                            captionOnLeft={true}
+                                            fullwidth={false}
                                             id="membership-form-namek"
                                         />
                                     </Grid>
-                                    <Grid item xs={12} sm={5.5}>
+                                    <Grid item xs={12} sm={4}>
                                         <FormInputTextField
                                             name="namek2"
-                                            required={true}
                                             control={control}
-                                            caption="姓"
-                                            fullwidth={true}
+                                            caption="姪"
+                                            captionOnLeft={true}
+                                            fullwidth={false}
                                             className='second-field-inputs'
                                             id="membership-form-namek2"
                                         />
@@ -333,36 +389,101 @@ const MembershipForm = () => {
                                     label="希望ID"
                                     required={true}
                                     control={control}
-                                    smalltextField={true}
+                                    fullwidth={true}
                                     caption="※4～15字の英数大小文字※掲示板使用時のニックネーム"
+                                    captionOnTop={true}
                                     id="membership-form-memberId"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} className="member-id-check-container">
+                                {/* <Button class="button" type="button" value="使用可能なIDかチェック" onclick="checkId();"></Button> */}
+                                <button
+                                    type="button"
+                                    className="member-id-check-button"
+                                    onClick={() => checkId()}
+                                >
+                                   使用可能なIDかチェック
+                                </button>
+                            </Grid>
+                            <Grid item xs={12} className="inputcontainer" sx={{ pt: '2rem' }}>
+                                <Typography variant="body1">
+                                    アイコン<span style={{ color: 'red' }}> *</span>
+                                </Typography>
+                                <Typography variant="caption" component="p">
+                                    ※発言投稿時に使用します
+                                </Typography>
+                                <Controller
+                                    control={control}
+                                    name="icon"
+                                    defaultValue=""
+                                    rules={{ required: 'アイコンを選択してください。' }}
+                                    render={({ field }) => (
+                                        <RadioGroup
+                                            aria-label="アイコン"
+                                            className="membership-icon-options"
+                                            row
+                                            name={field.name}
+                                            value={field.value}
+                                            onChange={field.onChange}
+                                        >
+                                            {Array.from({ length: 8 }, (_, index) => {
+                                                const iconNumber = index + 1;
+
+                                                return (
+                                                    <FormControlLabel
+                                                        key={iconNumber}
+                                                        className="membership-icon-choice"
+                                                        value={String(iconNumber)}
+                                                        labelPlacement="top"
+                                                        control={<Radio color="primary" id={`membership-form-icon-${iconNumber}`} />}
+                                                        label={
+                                                            <img
+                                                                className="membership-icon-image"
+                                                                src={`/images/icon${iconNumber}.png`}
+                                                                alt={`アイコン${iconNumber}`}
+                                                            />
+                                                        }
+                                                    />
+                                                );
+                                            })}
+                                        </RadioGroup>
+                                    )}
+                                />
+                                {errors.icon && (
+                                    <Typography color="error" role="alert">
+                                        {String(errors.icon.message)}
+                                    </Typography>
+                                )}
+                            </Grid>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="password"
                                     label="パスワード"
                                     required={true}
+                                    type="password"
                                     control={control}
-                                    smalltextField={true}
                                     caption="※6～15字英数大小文字"
+                                    captionOnTop={true}
+                                    fullwidth={true}
                                     id="membership-form-password"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="confirmPassword"
                                     label="パスワード再入力"
                                     required={true}
+                                    type="password"
                                     control={control}
-                                    smalltextField={true}
+                                    captionOnTop={true}
+                                    fullwidth={true}
                                     id="membership-form-confirmPassword"
                                 />
                             </Grid>
-                            <Grid item xs={12} className='inputcontainer'>
-                                <Typography variant='h4'>
+                            <Grid item xs={12} marginTop={2} className='inputcontainer'>
+                                <Typography variant="body1">
                                     性別
-                                    <span className="span-star"> * </span>
+                                <span className="span-star"> * </span>
                                 </Typography>
                                 <RadioGroup
                                     name="sex"
@@ -394,20 +515,67 @@ const MembershipForm = () => {
                                     />
                                 </RadioGroup>
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormInputTextField
-                                    name="dob"
-                                    label="生年月日"
-                                    placeholder="2000/01/01"
-                                    required={true}
-                                    control={control}
-                                    smalltextField={true}
-                                    id="membership-form-dob"
-                                />
+                            <Grid item xs={12} marginTop={2} className="inputcontainer">
+                                <Typography variant="body1">
+                                    生年月日<span style={{ color: 'red' }}> *</span>
+                                </Typography>
+                                <Grid container spacing={1}>
+                                    <Grid item xs={5} sm={2}>
+                                        <Controller
+                                            control={control}
+                                            name="dobYear"
+                                            defaultValue=""
+                                            rules={{ required: true }}
+                                            render={({ field }) => (
+                                                <Select {...field} displayEmpty fullWidth required id="membership-form-dob-year">
+                                                    <MenuItem value="" disabled>年</MenuItem>
+                                                    {Array.from({ length: new Date().getFullYear() - 1899 }, (_, yearIndex) => {
+                                                        const year = new Date().getFullYear() - yearIndex;
+                                                        return <MenuItem key={year} value={String(year)}>{year}年</MenuItem>;
+                                                    })}
+                                                </Select>
+                                            )}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={4} sm={2}>
+                                        <Controller
+                                            control={control}
+                                            name="dobMonth"
+                                            defaultValue=""
+                                            rules={{ required: true }}
+                                            render={({ field }) => (
+                                                <Select {...field} displayEmpty fullWidth required id="membership-form-dob-month">
+                                                    <MenuItem value="" disabled>月</MenuItem>
+                                                    {Array.from({ length: 12 }, (_, monthIndex) => {
+                                                        const month = monthIndex + 1;
+                                                        return <MenuItem key={month} value={String(month)}>{month}月</MenuItem>;
+                                                    })}
+                                                </Select>
+                                            )}
+                                        />
+                                    </Grid>
+                                    <Grid item xs={3} sm={2}>
+                                        <Controller
+                                            control={control}
+                                            name="dobDay"
+                                            defaultValue=""
+                                            rules={{ required: true }}
+                                            render={({ field }) => (
+                                                <Select {...field} displayEmpty fullWidth required id="membership-form-dob-day">
+                                                    <MenuItem value="" disabled>日</MenuItem>
+                                                    {Array.from({ length: 31 }, (_, dayIndex) => {
+                                                        const day = dayIndex + 1;
+                                                        return <MenuItem key={day} value={String(day)}>{day}</MenuItem>;
+                                                    })}
+                                                </Select>
+                                            )}
+                                        />
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid container item sm={12} xs={12} className='inputcontainer'>
+                            <Grid container item sm={12} xs={12} className='inputcontainer' marginTop={2}>
                                 <Grid item sm={3} xs={12}>
-                                    <Typography variant='h4'>
+                                    <Typography variant='body1'>
                                         職業
                                         <span className="span-star"> * </span>
                                     </Typography>
@@ -428,26 +596,46 @@ const MembershipForm = () => {
                                     </Select>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="occupation"
                                     label="職業の詳細"
                                     control={control}
+                                    fullwidth={true}
                                     id="membership-form-occupation"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormInputTextField
-                                    name="post_code"
-                                    label="郵便番号"
-                                    required={true}
-                                    control={control}
-                                    smalltextField={true}
-                                    id="membership-form-id"
-                                />
+                            <Grid item xs={12} marginTop={2}>
+                                <Typography variant="body1">
+                                    郵便番号<span style={{ color: 'red' }}> *</span>
+                                </Typography>
+                                <Grid container alignItems="center" spacing={1}>
+                                    <Grid item xs={5} sm={2}>
+                                        <FormInputTextField
+                                            name="post_code_first"
+                                            control={control}
+                                            smalltextField={true}
+                                            id="membership-form-post_code-first"
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography aria-hidden="true">-</Typography>
+                                    </Grid>
+                                    <Grid item xs={6} sm={2}>
+                                        <FormInputTextField
+                                            name="post_code_second"
+                                            control={control}
+                                            smalltextField={true}
+                                            id="membership-form-post_code-second"
+                                        />
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid container item sm={12} xs={12} className='inputcontainer'>
+                            <Grid container item sm={12} xs={12} className='inputcontainer' marginTop={2}>
                                 <Grid item sm={3} xs={12}>
+                                    <Typography variant="body1">
+                                        住所（都道府県）<span style={{ color: 'red' }}> *</span>
+                                    </Typography>
                                     <Select
                                         // name="prefecture"
                                         fullWidth
@@ -455,7 +643,7 @@ const MembershipForm = () => {
                                         value={prefecture}
                                         {...register("prefecture")}
                                         onChange={(e) => setPrefecture(e.target.value)}
-                                        id="membership-form-prefecture"
+                                        id="membersship-form-prefecture"
                                     >
                                         {prefectureData?.map((item: any) => (
                                             <MenuItem key={item.id} value={item.name} onClick={(e) => setPrefectureIndex(item.id)}>
@@ -465,97 +653,145 @@ const MembershipForm = () => {
                                     </Select>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
+                                {/* <Typography variant="body1">
+                                    住所（市・区・町・村<span style={{ color: 'red' }}> *</span>
+                                </Typography> */}
+                            </Grid>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="city"
-                                    label="市区郡町村"
+                                    label="住所（市・区・町・村)"
                                     required={true}
+                                    fullwidth={true}
                                     control={control}
                                     id="membership-form-city"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="street_address"
-                                    label="番地"
+                                    label="住所（番地)"
                                     required={true}
+                                    fullwidth={true}
                                     control={control}
-                                    smalltextField={true}
                                     id="membership-form-street_address"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                             <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
-                                    name="mobile_number"
-                                    label="電話・携帯番号"
-                                    type="tel"
+                                    name="building_name"
+                                    label="アパート・建物名"
                                     required={true}
+                                    fullwidth={true}
                                     control={control}
-                                    smalltextField={true}
-                                    id="membership-form-mobile_number"
+                                    id="membership-form-building_name"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
+                                <Typography variant="body1">
+                                    電話・携帯番号<span style={{ color: 'red' }}> *</span>
+                                </Typography>
+                                <Grid container alignItems="center" spacing={1}>
+                                    <Grid item xs={3} sm={2}>
+                                        <FormInputTextField
+                                            name="mobile_number_first"
+                                            type="tel"
+                                            control={control}
+                                            smalltextField={true}
+                                            id="membership-form-mobile_number-first"
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography aria-hidden="true">-</Typography>
+                                    </Grid>
+                                    <Grid item xs={3} sm={2}>
+                                        <FormInputTextField
+                                            name="mobile_number_second"
+                                            type="tel"
+                                            control={control}
+                                            smalltextField={true}
+                                            id="membership-form-mobile_number-second"
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <Typography aria-hidden="true">-</Typography>
+                                    </Grid>
+                                    <Grid item xs={3} sm={2}>
+                                        <FormInputTextField
+                                            name="mobile_number_third"
+                                            type="tel"
+                                            control={control}
+                                            smalltextField={true}
+                                            id="membership-form-mobile_number-third"
+                                        />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="work_place"
                                     label="勤め先・学校"
                                     control={control}
+                                    fullwidth={true}
                                     id="membership-form-work_place"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="reference"
                                     required={true}
                                     label="何で知ったか"
                                     control={control}
+                                    fullwidth={true}
                                     id="membership-form-reference"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="email1"
                                     label="メールアドレス1"
                                     type="email"
                                     required={true}
+                                    fullwidth={true}
                                     control={control}
-                                    caption="（半角英数字）"
                                     id="membership-form-email1"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="email2"
                                     label="メールアドレス2"
                                     type="email"
-                                    required={true}
+                                    fullwidth={true}
                                     control={control}
-                                    caption="（半角英数字）"
                                     id="membership-form-email2"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="speech_title"
                                     label="発言タイトル"
                                     required={true}
+                                    fullwidth={true}
                                     control={control}
                                     id="membership-form-speech_title"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} marginTop={2}>
                                 <FormInputTextField
                                     name="message"
                                     label="発言内容"
                                     required={true}
                                     textarea={true}
                                     control={control}
-                                    caption="※400字以内で記入して下さい。"
+                                    caption="*400文字以内で記入してください。"
+                                    captionOnTop={true}
                                     id="membership-form-message"
                                 />
                             </Grid>
-                            <Grid item xs={12} className='inputcontainer'>
-                                <Typography variant='h4'>
+                            <Grid item xs={12} marginTop={2} className='inputcontainer'>
+                                <Typography variant='body1'>
                                     メルマガ購読希望の有無
                                 </Typography>
                                 <RadioGroup
@@ -571,7 +807,7 @@ const MembershipForm = () => {
                                         value="購読"
                                         label={
                                             <Typography variant="subtitle1">
-                                                購読
+                                                購読する
                                             </Typography>
                                         }
                                         {...register("subscribeNewsletter")}
@@ -582,15 +818,36 @@ const MembershipForm = () => {
                                         value="中止"
                                         label={
                                             <Typography variant="subtitle1">
-                                                中止
+                                               購読しない
                                             </Typography>
                                         }
                                         {...register("subscribeNewsletter")}
                                     />
                                 </RadioGroup>
                             </Grid>
-                            <Grid item xs={12} className="form-preview-container">
-                                <Button variant="contained" id="membership-form-submit-button" className="form-page-button" type="submit">プレビュー</Button>
+                            <Typography variant='body1' className='membership-form-note' style={{ marginTop: '1rem' }}>
+                                上記の情報が正しい場合は、送信ボタンをクリックしてください
+                            </Typography>
+                            <Grid item xs={12} pt={2} className="form-preview-container" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.7rem' }}>
+                                <Button
+                                    variant="contained"
+                                    id="membership-form-send-button"
+                                    className="form-page-button"
+                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff' }}
+                                    type="submit"
+                                >
+                                    送信
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    id="membership-form-reset-button"
+                                    className="form-page-button"
+                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff' }}
+                                    type="button"
+                                    onClick={handleReset}
+                                >
+                                    リセット
+                                </Button>
                             </Grid>
                         </form>
                     }
@@ -598,7 +855,7 @@ const MembershipForm = () => {
                     {/* Displays when the form is filled and not submitted, and also used to review the details entered in the form */}
 
                     {FilledForm && membershipData && SendDataFlag == false &&
-                        <Grid container className="form" alignItems='center' justifyContent='center' pt={2}>
+                        <Grid container className="form" alignItems='center' justifyContent='center' rowSpacing={2} pt={2}>
                             <FormInputPreview
                                 label="名前（漢字）"
                                 inputValue={`${membershipData.name} ${membershipData.name2}`}
@@ -614,6 +871,18 @@ const MembershipForm = () => {
                                 inputValue={membershipData.memberId}
                                 id="membership-form-memberId"
                             />
+                            <Grid container item className="textfieldcontainer">
+                                <Grid item className="labelcontainer" xs={12} md={4}>
+                                    <Typography variant="body1">アイコン</Typography>
+                                </Grid>
+                                <Grid item xs={12} md={6}>
+                                    <img
+                                        className="membership-icon-preview"
+                                        src={`/images/icon${membershipData.icon}.png`}
+                                        alt={`アイコン${membershipData.icon}`}
+                                    />
+                                </Grid>
+                            </Grid>
                             <FormInputPreview
                                 label="パスワード"
                                 inputValue={membershipData.password}
@@ -699,10 +968,10 @@ const MembershipForm = () => {
                                 id="membership-form-subscribeNewsletter"
                             />
                             <Grid container className="form-save-container">
-                                <Grid item className="form-save-container-confirm-text">
+                                <Grid item className="form-save-container-confirm-text" marginTop={2}>
                                     上記の内容でよろしければ、送信ボタンをクリックしてください。
                                 </Grid>
-                                <Grid item container>
+                                <Grid item container spacing={2} className="form-save-container-button" marginTop={1}>
                                     <Grid item>
                                         <Button variant="contained" id="membership-form-save-button" className="form-save-container-submit-button" type="submit" onClick={handleSendData}>送信</Button>
                                     </Grid>

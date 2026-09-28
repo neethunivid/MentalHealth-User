@@ -17,7 +17,7 @@ const FormInputPreview = ({
   return (
     <Grid container item className="textfieldcontainer">
       <Grid item className="labelcontainer" xs={12} md={4}>
-        <Typography variant='h4'>
+        <Typography variant='body1'>
           {label ?? ''} 
         </Typography>
       </Grid>

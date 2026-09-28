@@ -19,6 +19,8 @@ interface LayoutProps {
   className?: string;
   disabled?: boolean;
   caption?: string;
+  captionOnLeft?: boolean;
+  captionOnTop?: boolean;
   selectOptions?: string[];
   selectPlaceholder?: string;
 }
@@ -37,6 +39,8 @@ const FormInputTextField = ({
   size,
   className,
   caption,
+  captionOnLeft,
+  captionOnTop,
   disabled,
   selectOptions,
   selectPlaceholder
@@ -49,6 +53,8 @@ const FormInputTextField = ({
       setTextType(type)
     }
   },[]);
+
+  const showCaptionOnTop = Boolean(captionOnTop && caption);
 
   return (
     <Grid className='textfieldcontainer'>
@@ -63,7 +69,23 @@ const FormInputTextField = ({
           </Typography>
         </Grid>
 
-        <Grid item xs={12} className={`${className}-input`}>
+        {captionOnLeft && caption ? (
+          <Grid item className={`${className}-caption`} sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant='h5' id="sub-label" sx={{marginRight: '8px', fontSize: '0.93rem', color: 'black', fontWeight: 500, lineHeight: 1.5}}>
+              {caption}
+            </Typography>
+          </Grid>
+        ) : null}
+
+        {showCaptionOnTop && (
+          <Grid item xs={12} className={`${className}-caption`}>
+            <Typography variant='h5' id="sub-label" sx={{ fontSize: '0.8rem', color: 'black', fontWeight: 500, lineHeight: 1.5 }}>
+              {caption}
+            </Typography>
+          </Grid>
+        )}
+
+        <Grid item xs={captionOnLeft ? true : 12} className={`${className}-input`}>
           <Controller
             control={control}
             defaultValue={defaultValue ?? ''}
@@ -104,7 +126,7 @@ const FormInputTextField = ({
           />
         </Grid>
 
-        {caption ? (
+        {caption && !captionOnLeft && !captionOnTop ? (
           <Grid item className={`${className}-caption`}>
             <Typography variant='h5' id="sub-label">
               {caption}
