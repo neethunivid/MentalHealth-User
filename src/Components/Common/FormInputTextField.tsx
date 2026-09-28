@@ -63,7 +63,7 @@ const FormInputTextField = ({
           <Typography
             variant='h5'
             id="main-label"
-            sx={{ fontSize: '0.93rem', color: 'black', fontWeight: 500, lineHeight: 1.5 }}
+            sx={{ fontSize: '0.93rem', fontFamily: 'inherit', color: 'black', fontWeight: 500, lineHeight: 1.5 }}
           >
             {label ?? ''} {required === true ? <span className="span-star"> * </span> : ''}
           </Typography>

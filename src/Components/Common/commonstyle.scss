@@ -529,7 +529,7 @@
   }
 
   .form {
-
+    
     &#membership-form {
       .MuiTypography-body1 {
         font-family: $font !important;
@@ -612,6 +612,7 @@
       h5 {
         display: block;
         font-size: 14px;
+        font-family: $font !important;
         line-height: 17px;
         margin: 5px;
         padding: 0;

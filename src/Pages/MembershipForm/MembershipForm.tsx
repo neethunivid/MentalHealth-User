@@ -1,4 +1,4 @@
-import { Button, FormControlLabel, Radio, RadioGroup, Typography } from '@material-ui/core';
+import { Button, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form';
 import Heading from '../../Components/Common/Heading';
@@ -7,7 +7,7 @@ import FormInputTextField from '../../Components/Common/FormInputTextField';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormInputPreview from '../../Components/Common/FormInputPreview';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import apiClient from '../../API/API-client';
 import Notice from '../../Components/Common/Notice';
 
@@ -308,11 +308,6 @@ const MembershipForm = () => {
                             }}
                         >
                             <Grid item container xs={12} pb={3}>
-                                {/* <Grid item xs={12} sm={12}>
-                                    <Typography className='pinkBackground-whiteContent'>
-                                        入会申し込みフォーム
-                                    </Typography>
-                                </Grid> */}
                                 <Grid item xs={12} sm={12}>
                                     <Typography variant='h1' style={{ color: 'black', fontWeight: 400, fontSize: '14px', fontFamily: 'inherit' }}>
                                         質問項目又は入力欄をクリックして入力して下さい。
