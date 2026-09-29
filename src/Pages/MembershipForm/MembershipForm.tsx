@@ -294,7 +294,7 @@ const MembershipForm = () => {
             <Breadcrumb items={breadcrumbItems} />
              <Box sx={{ maxWidth: '1200px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
             <Grid container spacing={3} sx={{ alignItems: 'flex-start' }}>
-                <Grid item xs={12} md={8}>
+                <Grid item xs={12} md={8} sx={{ '& .MuiTypography-body1': { fontWeight: 500 }, '& .MuiTypography-caption': { fontWeight: 600 }, '& p': { fontWeight: 600 } }}>
 
                     {/* Display as default when page loads to the first time and the form is not entered or in case of edit the details */}
 
@@ -404,7 +404,7 @@ const MembershipForm = () => {
                                 <Typography variant="body1">
                                     アイコン<span style={{ color: 'red' }}> *</span>
                                 </Typography>
-                                <Typography variant="caption" component="p">
+                                <Typography variant="caption" sx={{ display: 'block', fontFamily: 'inherit', color: 'black', fontWeight:200 }}>
                                     ※発言投稿時に使用します
                                 </Typography>
                                 <Controller
@@ -828,7 +828,7 @@ const MembershipForm = () => {
                                     variant="contained"
                                     id="membership-form-send-button"
                                     className="form-page-button"
-                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff' }}
+                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff', fontWeight: 600, fontFamily: 'inherit' }}
                                     type="submit"
                                 >
                                     送信
@@ -837,7 +837,7 @@ const MembershipForm = () => {
                                     variant="contained"
                                     id="membership-form-reset-button"
                                     className="form-page-button"
-                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff' }}
+                                    style={{ padding: '0.7rem 2rem', borderRadius: '2rem', width: 'min(100%, 248px)', backgroundColor: '#1976d2', color: '#fff',  fontWeight: 600, fontFamily: 'inherit'  }}
                                     type="button"
                                     onClick={handleReset}
                                 >

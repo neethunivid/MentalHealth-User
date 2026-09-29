@@ -63,7 +63,7 @@ const FormInputTextField = ({
           <Typography
             variant='h5'
             id="main-label"
-            sx={{ fontSize: '0.93rem', fontFamily: 'inherit', color: 'black', fontWeight: 500, lineHeight: 1.5 }}
+            sx={{ fontSize: '0.93rem', fontFamily: 'inherit', color: 'black', fontWeight: 600, lineHeight: 1.5 }}
           >
             {label ?? ''} {required === true ? <span className="span-star"> * </span> : ''}
           </Typography>
@@ -71,7 +71,7 @@ const FormInputTextField = ({
 
         {captionOnLeft && caption ? (
           <Grid item className={`${className}-caption`} sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant='h5' id="sub-label" sx={{marginRight: '8px', fontSize: '0.93rem', color: 'black', fontWeight: 500, lineHeight: 1.5}}>
+            <Typography variant='h5' id="sub-label" sx={{marginRight: '8px', fontSize: '0.93rem', color: 'black', fontWeight: 300, lineHeight: 1.5}}>
               {caption}
             </Typography>
           </Grid>
@@ -79,7 +79,7 @@ const FormInputTextField = ({
 
         {showCaptionOnTop && (
           <Grid item xs={12} className={`${className}-caption`}>
-            <Typography variant='h5' id="sub-label" sx={{ fontSize: '0.8rem', color: 'black', fontWeight: 500, lineHeight: 1.5 }}>
+            <Typography variant='h5' id="sub-label" sx={{ fontSize: '0.8rem', color: 'black', fontWeight: 300, lineHeight: 1.5 }}>
               {caption}
             </Typography>
           </Grid>
