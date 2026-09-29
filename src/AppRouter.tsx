@@ -73,6 +73,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/mailmagazine" element={<MagazineSubscription />} />
                 <Route path="/mailmagazine_delete" element={<MagazineDelete />} />
                 <Route path="/forumkaisoku" element={<MembershipForm />} />
+                <Route path="/membershipform" element={<MembershipForm />} />
                 <Route path="/check1" element={<NervousnessCheckForm />} />
                 <Route path="/check2" element={<SocialPhobiaCheckForm />} />
                 <Route path="/check3" element={<PanicDisorderCheckForm />} />
