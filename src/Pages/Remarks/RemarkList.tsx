@@ -2,20 +2,18 @@ import { Box, Divider, Grid, IconButton } from "@mui/material";
 import { Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import apiClient from "../../API/API-client";
-import Heading from "../../Components/Common/Heading";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Pagination from "../../Components/Common/PaginationComponent";
 import TreeView from "../../Components/Common/TreeData";
 import { useNavigate } from "react-router-dom";
 import DateConversion from "../../Components/Common/DateConversion";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import Breadcrumb from "../../Components/Common/BreadCrumb";
-import RemarkListSubHeader from "../../Components/Common/RemarkListSubHeader";
+import RemarksLayout from "./RemarksLayout";
 
 
 /**
- * dispaly the  main remark and the tree view of its children remarks 
- * @returns 
+ * display the main remark and the tree view of its children remarks
+ * @returns
  */
 const RemarkList = () => {
   const [remarkList, setRemarkList] = useState<any[]>([]);
@@ -29,16 +27,8 @@ const RemarkList = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [count, setCount] = useState(0);
 
-  const breadcrumbItems = [
-    { title: 'HOME', href: '/home.html' },
-    { title: '市民の皆様 ', href: '/home.html' },
-    { title: '体験フォーラム ', href: '/home.html' },
-    { title: '掲示板〈普通神経症の部屋' }
-  ];
-
-
   /**
-   * get the reamrk based on the current page 
+   * get the remark based on the current page
    */
   useEffect(() => {
     getRemarkList();
@@ -68,8 +58,8 @@ const RemarkList = () => {
   };
 
   /**
-   * setting the current page  based on page number
-   * @param pageNumber 
+   * setting the current page based on page number
+   * @param pageNumber
    */
   const handlePageChange = (pageNumber: any) => {
     setCurrentPage(pageNumber);
@@ -77,8 +67,8 @@ const RemarkList = () => {
 
   /**
    * to toggle the main remark to show its children
-   * @param item 
-   * @param navigateOnExpand 
+   * @param item
+   * @param navigateOnExpand
    */
   const toggleExpandRemark = async (item: any, navigateOnExpand = false) => {
     if (expandedRemark === item.id) {
@@ -110,8 +100,8 @@ const RemarkList = () => {
   };
 
   /**
-   * handle the node click to navigate to remarktree reply 
-   * @param id 
+   * handle the node click to navigate to remarktree reply
+   * @param id
    */
   const handleNodeClick = (id: number) => {
     navigate('/remarktree_reply', {
@@ -120,9 +110,9 @@ const RemarkList = () => {
   };
 
   /**
-   * to check whether the remark is within 48 hours 
-   * @param dateArray 
-   * @returns 
+   * to check whether the remark is within 48 hours
+   * @param dateArray
+   * @returns
    */
   const isWithin48Hours = (dateArray: any) => {
     if (!dateArray || !Array.isArray(dateArray) || dateArray.length < 5 || dateArray.length > 6) {
@@ -143,25 +133,26 @@ const RemarkList = () => {
     return date >= fortyEightHoursAgo && date <= now;
   };
 
-
+  const roomType = localStorage.getItem('roomType') ?? 'normal';
+  const roomThemeClass = `bbs-theme bbs-theme--${roomType}`;
 
   return (
-    <Grid>
-      <Heading title="体験フォーラム" />
-      <RemarkListSubHeader />
-
+    <RemarksLayout>
       <Grid className="remark-main-container">
+        <Grid className={roomThemeClass}>
+          <h3>発言</h3>
+        </Grid>
         <Grid className="remark-border">
-
           <Grid className="remark_container">
+
             <Grid className="info">
               <Grid className="info-container">
-                <Typography >{`•`}</Typography>
+                <Typography>{`• `}</Typography>
                 <Typography className="info-text">48時間以内の記事は</Typography>
                 <Typography className="info-text-red">new!</Typography><Typography className="info-text">で表示されます。</Typography>
               </Grid>
               <Grid className="info-container">
-                <Typography >{`•`}</Typography>
+                <Typography>{`• `}</Typography>
                 <Typography className="info-text">右窓枠の数字はフォロー返信数を表示。数字が</Typography>
                 <Typography className="info-text-red">赤文字 </Typography><Typography className="info-text">の場合は、新着返信があります。</Typography>
               </Grid>
@@ -169,8 +160,8 @@ const RemarkList = () => {
             <Divider className="remark-divider" />
             {remarkList && remarkList.map((item: any, index: number) => (
               <div key={index}>
-                <Grid container xs={12} className="sub-container" alignItems="center" justifyContent="space-between">
-                  <Grid item xs={10} className="left-side" >
+                <Grid container xs={12} className="sub-container" alignItems="flex-start" justifyContent="space-between">
+                  <Grid item xs={9} sm={10} className="left-side" style={{ minWidth: 0 }}>
                     <Typography className="staricon">{`★`}</Typography>
                     <Typography className="titles" onClick={() => toggleExpandRemark(item, true)}>{item?.title}</Typography>
                     <Typography className="membername">{`By ${item.memberName}`}</Typography>
@@ -178,7 +169,7 @@ const RemarkList = () => {
                     <Typography className="remark-no">{item?.remarkNo}</Typography>
                     {isWithin48Hours(item?.date) && <Typography className="info-text-red">new!</Typography>}
                   </Grid>
-                  <Grid item xs={2} className="remark-right">
+                  <Grid item xs={3} sm={2} className="remark-right">
                     <Box className="remark-count">
                       <Typography className="remark-count-text">{item?.count}</Typography>
                     </Box>
@@ -190,7 +181,6 @@ const RemarkList = () => {
                         <KeyboardArrowDownIcon className="remark-icon" />
                       </IconButton>
                     }
-
                   </Grid>
                 </Grid>
                 {expandedRemark === item.id && remarkdata && item.id && loaded && (
@@ -215,13 +205,13 @@ const RemarkList = () => {
               </Grid>
             )}
 
-
-
           </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </RemarksLayout>
   );
 };
 
 export default RemarkList;
+
+

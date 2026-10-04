@@ -40,7 +40,7 @@ import Search from "./Pages/Search/Search";
 
 const baseTheme = createTheme({
   typography: {
-    fontFamily: ["Yu Gothic"].join(","),
+    fontFamily: ['"MPLUSRounded1c"', '"Hiragino Kaku Gothic ProN"', '"Yu Gothic"', '"Meiryo"', 'sans-serif'].join(","),
     fontWeightRegular: 400,
     fontSize: 12,
   },
@@ -87,7 +87,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/remarklist" element={<RemarkList />} />
                 <Route path="/remarktree_reply" element={<RemarkTreeList />} />
                 <Route path="/remarksuccess" element={<RemarkSuccess />} />
-             
+
               </Routes>
             </ThemeProvider>
           </Layout>

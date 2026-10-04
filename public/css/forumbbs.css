@@ -274,16 +274,19 @@
   text-align: left;
   padding: 6px;
   text-indent: 1em;
-  background-color: #47c947;
-  /*普通＝futsu-room*/
-  /*background-color: #daa520;   /*不安＝fuan-room*/
-  /*background-color: #4682b4;   /*強迫＝kyouhaku-room*/
-  /*background-color: #db7093;    /*うつ他=utsuetc-room*/
-  /*background-color: #9370db;    /*成長=growth-room*/
+  background-color: #47c947; /* 普通（default） */
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   margin-top: 12px;
 }
+
+/* Room-type color overrides */
+.bbs-theme--normal   { background-color: #47c947; } /* 普通 */
+.bbs-theme--anxiety  { background-color: #daa520; } /* 不安 */
+.bbs-theme--blackmail{ background-color: #4682b4; } /* 強迫 */
+.bbs-theme--other    { background-color: #db7093; } /* うつ他 */
+.bbs-theme--growingup{ background-color: #9370db; } /* 成長 */
+.bbs-theme--diary    { background-color: #47c947; } /* 日記 (addition1) */
 
 .bbs-theme5 {
   text-align: left;

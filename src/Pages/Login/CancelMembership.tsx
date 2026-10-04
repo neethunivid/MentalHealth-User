@@ -5,7 +5,7 @@ import apiClient from '../../API/API-client';
 import { Snackbar, Alert, AlertColor, Grid, Box } from '@mui/material';
 import Navbar from './Navbar';
 
-const Login = () => {
+const CancelMembership = () => {
     const navigate = useNavigate();
 
     const {
@@ -149,18 +149,7 @@ const Login = () => {
                                     入室する部屋を選択して下さい <span style={{ color: 'red' }}>*</span>
                                 </Box>
 
-                                <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 20px', fontSize: '14px' }}
-                                    sx={{
-                                        display: 'flex',
-                                        flexWrap: 'wrap',
-                                        gap: '15px 20px',
-                                        fontSize: '14px',
-                                        '@media (max-width: 600px)': {
-                                            flexDirection: 'column',
-                                            alignItems: 'flex-start',
-                                            gap: '12px',
-                                        },
-                                    }}>
+                                <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 20px', alignItems: 'center', fontSize: '14px' }}>
                                     <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
                                         <input type="radio" value="normal" {...register('roomSelection')} style={{ marginRight: '6px' }} />
                                         普通の部屋
@@ -260,4 +249,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default CancelMembership;

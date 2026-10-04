@@ -304,7 +304,7 @@ const MembershipForm = () => {
                             className="form"
                             onSubmit={handleSubmit(onSubmit)}
                             style={{
-                                fontFamily: '"メイリオ", "Meiryo", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS P Gothic", "Osaka", "Verdana", "Arial", "Helvetica", sans-serif'
+                                fontFamily: '"MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif'
                             }}
                         >
                             <Grid item container xs={12} pb={3}>

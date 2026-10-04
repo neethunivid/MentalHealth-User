@@ -125,8 +125,9 @@ const PanicDisorderCheckForm = () => {
                     mb: 2.5,
                   }}
                 >
-                  ＜パニック発作とは＞<br />
-                  強い恐怖又は不快を感じる、はっきり他と区分できる期間で、その時以下の症状のうち4つ（又はそれ以上）が突然に出現し、10分以内にその頂点に達する場合。
+                  問：現在のあなたの状態で以下に該当する項目にチェックしてください。
+                  {/* ＜パニック発作とは＞<br />
+                  強い恐怖又は不快を感じる、はっきり他と区分できる期間で、その時以下の症状のうち4つ（又はそれ以上）が突然に出現し、10分以内にその頂点に達する場合。 */}
                 </Typography>
 
                 {/* Questions Checklist */}
@@ -167,7 +168,7 @@ const PanicDisorderCheckForm = () => {
                         </Typography>
                         <Checkbox
                           checked={!!checkedQuestions[question.id]}
-                          onChange={() => {}}
+                          onChange={() => { }}
                           id={question.id}
                           icon={
                             <Box

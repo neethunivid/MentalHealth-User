@@ -1,32 +1,29 @@
 import React from 'react';
-import { Grid, Box, Typography } from '@mui/material';
-import RemarkListSubHeader from "../../Components/Common/RemarkListSubHeader";
+import { Grid, Box } from '@mui/material';
+import RemarksLayout from './RemarksLayout';
 
 /**
- * to dispaly the remark has sent
- * @returns 
+ * to display the remark has been sent
+ * @returns
  */
 const RemarkSuccess = () => {
   return (
-    <Grid>
-    <RemarkListSubHeader/>
-    <Box className="remark-successs-container">
-      <Grid container spacing={2}>
-        <Grid item xs={12} className="green-background">
-        <Grid item xs={12} className="message-text">
-        メッセージをどうぞ（フォロー発言）
-         
-        </Grid> 
-       
-        <Grid item xs={12} className="red-text">
-          メッセージは送信されました
-         
+    <RemarksLayout>
+      <Box className="remark-successs-container">
+        <Grid container spacing={2}>
+          <Grid item xs={12} className="green-background">
+            <Grid item xs={12} className="message-text">
+              メッセージをどうぞ（フォロー発言）
+            </Grid>
+            <Grid item xs={12} className="red-text">
+              メッセージは送信されました
+            </Grid>
+          </Grid>
         </Grid>
-        </Grid>
-      </Grid>
-    </Box>
-    </Grid>
+      </Box>
+    </RemarksLayout>
   );
 };
 
 export default RemarkSuccess;
+

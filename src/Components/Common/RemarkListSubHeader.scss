@@ -1,62 +1,121 @@
 .remark_nav {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  .menu {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0 0 8px 0;
-    border-radius: 10px; 
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-  }
-  
-  .menu_items {
-    width: 100%; 
-    flex: 1;
-  }
-  
-  .menu_items a {
-    display: block; /* Make the link a block element */
-    width: 100%;
-    padding: 8px 5px;
-    text-align: center;
-    text-decoration: none; 
-    color: white; 
-    transition: background-color 0.3s; 
-    border-left: 1px solid white;
-  }
+  width: 100%;
+  margin-top: 8px;
+}
 
-  .menu_items:first-child a {
-    border-left: none;
-  }
+.menu {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 1 1 0px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  .menu_items a:hover {
-    background: linear-gradient(rgb(0,26,255),rgb(12,0,139));
-  }
+.menu_items {
+  width: 100%;
+  flex: 1;
+}
 
-  .room.menu_items a:hover {
-    background: linear-gradient(rgb(135, 164, 243), rgb(83, 125, 233));
-  }
-  
-  .subheader {
-    list-style: none;
-    padding: 0;
-    margin: 0; 
-    background: linear-gradient(rgb(135, 164, 243), rgb(83, 125, 233));
-  }
-  
-  .room {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background: linear-gradient( rgb(208, 208, 208), rgb(171, 170, 170));
-  }
+.menu_items a {
+  display: block;
+  /* Make the link a block element */
+  //width: 100%;
+  padding: 8px 5px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+  border-left: 1px solid white;
+}
+
+.menu_items:first-child a {
+  border-left: none;
+}
+
+.menu_items a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #808080 80%, white),
+    color-mix(in srgb, #808080 60%, black)
+  );
+}
+
+.room.menu_items a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #808080 80%, white),
+    color-mix(in srgb, #808080 60%, black)
+  );
+}
+
+.subheader {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: linear-gradient(rgb(135, 164, 243), rgb(83, 125, 233));
+}
+
+.room {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #808080;
+  //background: linear-gradient(rgb(208, 208, 208), rgb(171, 170, 170));
+}
 
 .active a {
-    background: linear-gradient(rgb(135, 164, 243), rgb(83, 125, 233));
+  background: #47c947;
 }
-  
+
+.active a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #47c947 80%, white),
+    color-mix(in srgb, #47c947 60%, black)
+  );
+}
+
+.active-room2 a {
+  background: #DAA521;
+}
+
+.active-room2 a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #DAA521 80%, white),
+    color-mix(in srgb, #DAA521 60%, black)
+  );
+}
+
+.active-room3 a {
+  background: #4682b4;
+}
+
+.active-room3 a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #4682b4 80%, white),
+    color-mix(in srgb, #4682b4 60%, black)
+  );
+}
+
+.active-room4 a {
+  background: #DB7092;
+}
+
+.active-room4 a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #DB7092 80%, white),
+    color-mix(in srgb, #DB7092 60%, black)
+  );
+}
+
+/* Growing up */
+.active-room5 a {
+  background: #9470DB;
+}
+
+.active-room5 a:hover {
+  background: linear-gradient(
+    color-mix(in srgb, #9470DB 80%, white),
+    color-mix(in srgb, #9470DB 60%, black)
+  );
+}

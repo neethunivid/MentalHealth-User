@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Typography } from '@mui/material';
 import manimage from '../../../src/assets/men-pict.gif';
 import womenimage from '../../../src/assets/women-pict.gif';
@@ -6,41 +6,41 @@ import { useLocation } from 'react-router-dom';
 import RemarkInfoReplyCard from './RemarkInfoReplyCard';
 import DepthCount from '../../Components/Common/DepthCount';
 import PreviewComponent from './RemarkReplyPreview';
-import RemarkListSubHeader from "../../Components/Common/RemarkListSubHeader";
+import RemarksLayout from './RemarksLayout';
 /**
  * to display the remark tree and allow user to reply to the remark 
  * @returns 
  */
 function RemarkTreeList() {
   const location = useLocation();
-  const { expandedRemarkData, remarkdata, id ,parentid} = location.state || {};
-  const { parentcountvalue, tree } = DepthCount(remarkdata,parentid?parentid:id);
+  const { expandedRemarkData, remarkdata, id, parentid } = location.state || {};
+  const { parentcountvalue, tree } = DepthCount(remarkdata, parentid ? parentid : id);
   const [expandedReplyContainer, setExpandedReplyContainer] = useState<string | null>(null);
-  const [isPreviewVisible, setIsPreviewVisible] = useState(false); 
+  const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   const [previewData, setPreviewData] = useState(null);
   const [textareaValue, setTextAreaValue] = useState(null);
   const [selectedRemarkReply, setSelectedRemarkReply] = useState(null);
   const [remarktitle, setRemarkTitle] = useState(null);
-  
-  
-useEffect(()=>{
-setExpandedReplyContainer(id)
 
-},[id])
 
-/**
- * display the preview of the remarks if the preview is selected
- * @param data 
- * @param id 
- */
-  const handlePreviewClick = (data: any,id:any,remarkTitle:any) => {
+  useEffect(() => {
+    setExpandedReplyContainer(id)
+
+  }, [id])
+
+  /**
+   * display the preview of the remarks if the preview is selected
+   * @param data 
+   * @param id 
+   */
+  const handlePreviewClick = (data: any, id: any, remarkTitle: any) => {
 
     setPreviewData(data);
     setRemarkTitle(remarkTitle);
     setTextAreaValue(data.textarea);
     setIsPreviewVisible(true);
     setSelectedRemarkReply(id)
-    
+
   };
 
   /**
@@ -69,10 +69,10 @@ setExpandedReplyContainer(id)
     <Grid container spacing={2}>
       {nodes.map((node: any) => (
         <Grid item key={node.item.id} xs={12}>
-       
+
           <RemarkInfoReplyCard
             key={node.item.id}
-            image={node.item.memberSex ==1?manimage:womenimage}
+            image={node.item.memberSex == 1 ? manimage : womenimage}
             name={node.item.memberName}
             remarkTitle={node.item.title}
             remarkText={node.item.text}
@@ -82,7 +82,7 @@ setExpandedReplyContainer(id)
             isReplyContainerOpen={expandedReplyContainer === node.item.id}
             onToggle={() => handleToggleReplyContainer(node.item.id)}
             onPreviewClick={handlePreviewClick}
-            textareaValue={selectedRemarkReply?node.item.id === selectedRemarkReply ? textareaValue : '':""}
+            textareaValue={selectedRemarkReply ? node.item.id === selectedRemarkReply ? textareaValue : '' : ""}
             id={node.item.id}
             parentId={node.item.remarks}
           />
@@ -93,48 +93,47 @@ setExpandedReplyContainer(id)
   );
 
   return (
-    <Grid>
-      <RemarkListSubHeader/>
+    <RemarksLayout>
       <Grid className='container-remarkdetails'>
-        {isPreviewVisible  && previewData ? (
-          <PreviewComponent 
-          onReturnClick={handleReturnClick} 
-          data={previewData}
-          remarktitle={remarktitle}
-          selectedRemarkReply={selectedRemarkReply}
-         />
+        {isPreviewVisible && previewData ? (
+          <PreviewComponent
+            onReturnClick={handleReturnClick}
+            data={previewData}
+            remarktitle={remarktitle}
+            selectedRemarkReply={selectedRemarkReply}
+          />
         ) : (
           <>
             <Grid className="heading-container">
               <Typography className="heading">発言</Typography>
             </Grid>
-           
-            {expandedRemarkData && (parentcountvalue==0||parentcountvalue>0) && (
+
+            {expandedRemarkData && (parentcountvalue == 0 || parentcountvalue > 0) && (
               <>
-               
-              <RemarkInfoReplyCard
-              key={expandedRemarkData.id}
-                image={expandedRemarkData.memberSex ==1?manimage:womenimage}
-                name={expandedRemarkData.memberName}
-                remarkTitle={expandedRemarkData.title}
-                remarkText={expandedRemarkData.text}
-                date={expandedRemarkData.date}
-                remarkNo={expandedRemarkData.remarkNo}
-                depth={`Re-${parentcountvalue}`}
-                isReplyContainerOpen={expandedRemarkData.id === expandedReplyContainer}
-                onToggle={() => handleToggleReplyContainer(expandedRemarkData.id)}
-                onPreviewClick={handlePreviewClick}
-                textareaValue={selectedRemarkReply?expandedRemarkData.id=== selectedRemarkReply ? textareaValue : '':""}
-                id={expandedRemarkData.id}
-                parentId={expandedRemarkData.remarks}
-              />
+
+                <RemarkInfoReplyCard
+                  key={expandedRemarkData.id}
+                  image={expandedRemarkData.memberSex == 1 ? manimage : womenimage}
+                  name={expandedRemarkData.memberName}
+                  remarkTitle={expandedRemarkData.title}
+                  remarkText={expandedRemarkData.text}
+                  date={expandedRemarkData.date}
+                  remarkNo={expandedRemarkData.remarkNo}
+                  depth={`Re-${parentcountvalue}`}
+                  isReplyContainerOpen={expandedRemarkData.id === expandedReplyContainer}
+                  onToggle={() => handleToggleReplyContainer(expandedRemarkData.id)}
+                  onPreviewClick={handlePreviewClick}
+                  textareaValue={selectedRemarkReply ? expandedRemarkData.id === selectedRemarkReply ? textareaValue : '' : ""}
+                  id={expandedRemarkData.id}
+                  parentId={expandedRemarkData.remarks}
+                />
               </>
             )}
             {tree && <Grid>{renderTree(tree)}</Grid>}
           </>
         )}
       </Grid>
-    </Grid>
+    </RemarksLayout>
   );
 }
 

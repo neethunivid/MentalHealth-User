@@ -17,7 +17,7 @@ const Footer = () => {
         },
         {
             label: "メルマガ購読",
-            href: "mailmagazine.html",
+            href: "/mailmagazine",
         },
         {
             label: "個人情報保護方針",

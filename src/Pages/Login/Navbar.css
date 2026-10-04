@@ -1,0 +1,26 @@
+.navbar-title {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.logout-button {
+    background-color: white;
+    font-size: 14px;
+    color: #0066cc;
+    border: none;
+    border-radius: 15px;
+    padding: 5px 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-title {
+        font-size: 18px;
+    }
+
+    .logout-button {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+}

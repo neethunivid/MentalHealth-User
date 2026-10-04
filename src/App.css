@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Meiryo&family=Hiragino+Kaku+Gothic+Pro&family=MS+P+Gothic&family=Osaka&display=swap');
+/* Apply M+ font globally to all elements including MUI components */
+* {
+  font-family: "MPLUSRounded1c", "M PLUS Rounded 1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif !important;
+}
 
 body {
-  font-family: "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS P Gothic", "Osaka", Verdana, Arial, Helvetica, sans-serif;
   font-size: 62.5%;
   line-height: 1.5;
   font-weight: 100;
