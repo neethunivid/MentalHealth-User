@@ -10,19 +10,11 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider';
 const theme = createMuiTheme({
   typography: {
     fontFamily: [
-      "メイリオ",
-      "Meiryo", 
-      "ヒラギノ角ゴ Pro W3",
-       "Hiragino Kaku Gothic Pro",
-        "ＭＳ Ｐゴシック",
-         "MS P Gothic",
-          "Osaka",
-           "Verdana",
-            "Arial",
-             "Helvetica",
-              "sans-serif"
-
-     
+      '"MPLUSRounded1c"',
+      '"Hiragino Kaku Gothic ProN"',
+      '"Yu Gothic"',
+      '"Meiryo"',
+      'sans-serif',
     ].join(','),
   }
 });
@@ -31,9 +23,9 @@ function App() {
   return (
 
     <div className="App">
-      
-          <AppRouter />
-      
+
+      <AppRouter />
+
     </div>
 
 

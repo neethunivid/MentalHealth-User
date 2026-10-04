@@ -1,0 +1,42 @@
+/* ── Remarks page shell ── */
+.remarks-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Sub-header strip — full width, small horizontal padding */
+.remarks-subheader-wrapper {
+  width: 100%;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+
+/* ── 3-column grid container ── */
+.remarks-layout-grid {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Side spacer columns — invisible, just provide the offset */
+.remarks-side-col {
+  /* no visual styling needed */
+}
+
+/* Centre content column */
+.remarks-content-col {
+  padding: 0 4px !important;
+  box-sizing: border-box;
+}
+
+/* ── Mobile: collapse side columns, give content full width ── */
+@media (max-width: 900px) {
+  .remarks-subheader-wrapper {
+    padding: 0 4px;
+  }
+
+  .remarks-content-col {
+    padding: 0 4px !important;
+  }
+}

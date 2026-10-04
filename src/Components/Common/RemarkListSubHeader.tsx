@@ -6,13 +6,14 @@ const RemarkListSubHeader = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const navigate = useNavigate();
 
-    type RoomType = 'normal' | 'anxiety' | 'blackmail' | 'other';
+    type RoomType = 'normal' | 'anxiety' | 'blackmail' | 'other' | 'growingup';
 
     const indexMap: Record<RoomType, number> = {
         normal: 0,
         anxiety: 1,
         blackmail: 2,
         other: 3,
+        growingup: 4
     };
 
     useEffect(() => {
@@ -25,13 +26,14 @@ const RemarkListSubHeader = () => {
     const handleRoomTypeClick = (roomType: RoomType) => {
         const index = indexMap[roomType]; // Get index based on room type
         localStorage.setItem('roomType', roomType); // Store room type in local storage
-        setActiveIndex(index); 
+        setActiveIndex(index);
         navigate('/remarklist'); // Navigate to the remark list
     };
 
     return (
+
         <nav id="global-nav" className="remark_nav">
-            <ul id="menu-shimin-pc" className="menu">
+            <ul id="menu-shimin-pc" className="menu" >
                 <li className="subheader menu_items">
                     <a href="/search">
                         <strong className="subheader_items">検索</strong>
@@ -54,21 +56,27 @@ const RemarkListSubHeader = () => {
                         <strong className="room_items">普通</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 1 ? "active" : ""}`} onClick={(e) => handleRoomTypeClick("anxiety")}> 
+                <li className={`room menu_items ${activeIndex === 1 ? "active-room2" : ""}`} onClick={(e) => handleRoomTypeClick("anxiety")}>
                     <a href='/remarklist'>
                         <strong className="room_items">不安</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 2 ? "active" : ""}`} onClick={(e) => handleRoomTypeClick("blackmail")}> 
+                <li className={`room menu_items ${activeIndex === 2 ? "active-room3" : ""}`} onClick={(e) => handleRoomTypeClick("blackmail")}>
                     <a href='/remarklist'>
-                        <strong className="room_items">強迫</strong> 
+                        <strong className="room_items">強迫</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 3 ? "active" : ""}`} onClick={(e) => handleRoomTypeClick("other")}>
+                <li className={`room menu_items ${activeIndex === 3 ? "active-room4" : ""}`} onClick={(e) => handleRoomTypeClick("other")}>
                     <a href='/remarklist'>
                         <strong className="room_items">うつ他</strong>
                     </a>
                 </li>
+                <li className={`room menu_items ${activeIndex === 4 ? "active-room5" : ""}`} onClick={(e) => handleRoomTypeClick("growingup")}>
+                    <a href='/remarklist'>
+                        <strong className="room_items">成長</strong>
+                    </a>
+                </li>
+
             </ul>
         </nav>
     );

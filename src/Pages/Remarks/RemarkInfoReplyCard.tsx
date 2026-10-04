@@ -120,7 +120,7 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
   };
   return (
     <>
-      <Box ref={ref} sx={{ border: '1px solid #e0e0e0', padding: 1 }}>
+      <Box ref={ref} sx={{ border: '1px solid #e0e0e0', padding: 2 }}>
         <div className="content-card">
           <div className="row-left">
             <div className="row-image">
@@ -136,7 +136,6 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
         </div>
         <Divider className="remark-divider" />
         <Grid>
-          <Typography className='remark-text'>{remarkTitle}</Typography>
           <Typography className='remark-text'>{remarkText}</Typography>
         </Grid>
       </Box>
@@ -161,9 +160,9 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
             </div>
             <Divider className="remark-divider" />
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Grid className="content-card">
+              <Grid className="content-card" marginTop={4}>
                 <Grid className="row-left">
-                  <Typography className='remark-text'>タイトル</Typography>
+                  <Typography className='member-label'>タイトル</Typography>
                 </Grid>
                 <Grid className="textbox-right">
                   <Controller
@@ -178,8 +177,8 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
                         sx={{
                           width: '90%',
                           '& .MuiInputBase-root': {
-                            height: '30px',
-                            fontSize: '10px',
+                            height: '40px',
+                            fontSize: '14px',
                           },
                           '& .MuiOutlinedInput-input': {
                             padding: '0 14px',
@@ -190,10 +189,10 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-              <Divider className="remark-divider" />
+
               <Grid className="content-card">
                 <Grid className="row-left">
-                  <Typography className='remark-text'>発言内容</Typography>
+                  <Typography className='member-label'>発言内容</Typography>
                 </Grid>
                 <Grid className="textbox-right">
                   <Controller
@@ -205,7 +204,15 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
                       <TextField
                         {...field}
                         variant="outlined"
-                        sx={{ width: '90%' }}
+                        sx={{
+                          width: '90%', '& .MuiInputBase-root': {
+
+                            fontSize: '14px',
+                          },
+                          '& .MuiOutlinedInput-input': {
+                            padding: '0 14px',
+                          }
+                        }}
                         multiline
                         rows={4}
                       />
@@ -213,25 +220,26 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
                   />
                 </Grid>
               </Grid>
-              <Divider className="remark-divider" />
-              <Grid container justifyContent="center" className="submitbtn-container">
+
+              <Grid container className="submitbtn-container">
                 <button type="submit" className='submitbtn'>
                   送信
                 </button>
                 <button type="reset" className='submitbtn' onClick={handleReset}>
                   リセット
                 </button>
+
+              </Grid>
+              <Grid container className="submitbtn-container">
                 <Grid className='previewbtn-container'>
                   <Checkbox
                     onChange={handleCheckboxChange}
                     inputProps={{ 'aria-label': 'preview checkbox' }}
                     style={{ padding: 0, marginRight: 4 }}
                   />
-                  <Typography className='previewtext'>プレビュー</Typography>
+                  <Typography className='previewtext'>プレビュー（確認)</Typography>
                 </Grid>
               </Grid>
-
-
             </form>
           </Grid>
         </>
