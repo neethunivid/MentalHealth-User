@@ -5,7 +5,7 @@ import apiClient from '../../API/API-client';
 import { Snackbar, Alert, AlertColor, Grid, Box } from '@mui/material';
 import Navbar from './Navbar';
 
-const CancelMembership = () => {
+const EditMemberLogin = () => {
     const navigate = useNavigate();
 
     const {
@@ -86,14 +86,14 @@ const CancelMembership = () => {
 
                     </Box>
                     <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
-                        会員資格をキャンセルする
+                        会員情報の修正
                     </Box>
                     {/* Main Content */}
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px', width: '100%', boxSizing: 'border-box' }}>
                         <ul style={{ fontSize: "14px", lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
-                            <li>会員登録の解除をご希望の場合は、IDとパスワードを入力してください。</li>
+                            <li>登録された会員情報を修正したい場合は、あなたのID、PWを入力して下さい。</li>
                             <li>このフォームは、SSL技術（暗号化送信）で送受信されますので、個人情報の流失等がなく、安心・安全にご利用いただけます。</li>
-                            <li><span style={{ color: 'red' }}>*</span>は入力必須項目です。</li>
+                            <li><span style={{ color: 'red' }}>*</span>は入力必須項目です。未入力の場合はログインできません。</li>
                         </ul>
 
                         <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
@@ -144,28 +144,6 @@ const CancelMembership = () => {
 
                             <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
 
-                            <Box style={{ marginBottom: '4px' }}>
-                                <label style={{ display: 'block', marginBottom: '4px', fontWeight: '400' }}>
-                                    取り下げの理由 <span style={{ color: 'red' }}>*</span>
-                                </label>
-                                <textarea
-                                    {...register('reason')}
-                                    rows={6}
-                                    style={{
-                                        backgroundColor: '#ffffe0',
-                                        border: '1px solid #ccc',
-                                        borderRadius: '4px',
-                                        padding: '8px',
-                                        width: '100%',
-                                        maxWidth: '320px',
-                                        boxSizing: 'border-box',
-                                        resize: 'vertical'
-                                    }}
-                                />
-                            </Box>
-
-                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
-
                             <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', margin: '30px 0 20px 0' }}>
                                 <button
                                     type="submit"
@@ -182,8 +160,7 @@ const CancelMembership = () => {
                                         minWidth: '120px'
                                     }}
                                 >
-                                   
-                                    提出する
+                                    送信
                                 </button>
                                 <button
                                     type="button"
@@ -214,7 +191,7 @@ const CancelMembership = () => {
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
                         <ul style={{ lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
                             <li><a href="/forumlogin" style={{ color: '#0066cc', textDecoration: 'none' }}>入室（ログイン）こちらへ</a></li>
-                            <li><a href="/editMemberLogin" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
+                            <li><a href="/cancelMembership" style={{ color: '#0066cc', textDecoration: 'none' }}>退会手続きはこちらへ</a></li>
                         </ul>
                     </Box>
 
@@ -237,4 +214,4 @@ const CancelMembership = () => {
     );
 };
 
-export default CancelMembership;
+export default EditMemberLogin;
