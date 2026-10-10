@@ -236,8 +236,8 @@ const Login = () => {
                     </Box>
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
                         <ul style={{ lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
-                            <li><a href="/forumbbs2.html" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
-                            <li><a href="/forumbbs3.html" style={{ color: '#0066cc', textDecoration: 'none' }}>退会手続きはこちらへ</a></li>
+                            <li><a href="/editMemberLogin" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
+                            <li><a href="/cancelMembership" style={{ color: '#0066cc', textDecoration: 'none' }}>退会手続きはこちらへ</a></li>
                         </ul>
                     </Box>
 
