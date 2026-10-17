@@ -37,11 +37,6 @@ const CancelMembership = () => {
             alert("パスワードを入力してください");
             return;
         }
-        if (data.roomSelection === undefined) {
-            alert("部屋を選択してください。");
-            return;
-        }
-
         try {
             const DataRequest = {
                 "username": data.id,
@@ -57,23 +52,31 @@ const CancelMembership = () => {
                     snackbaraopen: true,
                     message: "ログイン情報が間違っています"
                 });
-            } else {
-                setSnackbarInfo({
-                    severity: "success",
-                    snackbaraopen: true,
-                    message: "ログイン成功"
-                });
-                localStorage.setItem('roomType', data.roomSelection);
-                localStorage.setItem('memberId', apiData.data.data.user.memberId);
-                localStorage.setItem('memberNo', apiData.data.data.user.id);
-                localStorage.setItem('memberName', apiData.data.data.user.name);
-                apiClient.setToken(apiData.data.data.token);
-                navigate('/remarklist');
+                return;
             }
+            setSnackbarInfo({
+                severity: "success",
+                snackbaraopen: true,
+                message: "ログイン成功"
+            });
+            localStorage.setItem('memberId', apiData.data.data.user.memberId);
+            localStorage.setItem('memberNo', apiData.data.data.user.id);
+            localStorage.setItem('memberName', apiData.data.data.user.name);
+            apiClient.setToken(apiData.data.data.token);
+            //navigate('/remarklist');
+            const id = apiData.data.data.user.id;
+            const response = await apiClient.delete(`api/members/member/${id}`);
+            localStorage.removeItem('roomType');
+            localStorage.removeItem('memberId');
+            localStorage.removeItem('memberNo');
+            localStorage.removeItem('memberName');
+            console.log("Delete Response:", response.data);
+
         } catch (error) {
             //console.error("Login Failed : ", error)
         }
     }
+
 
     return (
         <Grid container style={{ width: '100%', justifyContent: 'center', fontFamily: '"MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif', color: '#333333' }}>
@@ -182,7 +185,7 @@ const CancelMembership = () => {
                                         minWidth: '120px'
                                     }}
                                 >
-                                   
+
                                     提出する
                                 </button>
                                 <button

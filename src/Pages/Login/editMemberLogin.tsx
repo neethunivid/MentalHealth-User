@@ -28,6 +28,8 @@ const EditMemberLogin = () => {
         }));
     };
 
+    
+
     const onSubmit = async (data: any) => {
         if (data.id === undefined || data.id === "") {
             alert("まずは会員IDを入力してください");
@@ -35,10 +37,6 @@ const EditMemberLogin = () => {
         }
         if (data.password === undefined || data.password === "") {
             alert("パスワードを入力してください");
-            return;
-        }
-        if (data.roomSelection === undefined) {
-            alert("部屋を選択してください。");
             return;
         }
 
@@ -68,7 +66,7 @@ const EditMemberLogin = () => {
                 localStorage.setItem('memberNo', apiData.data.data.user.id);
                 localStorage.setItem('memberName', apiData.data.data.user.name);
                 apiClient.setToken(apiData.data.data.token);
-                navigate('/remarklist');
+                navigate('/membershipform');
             }
         } catch (error) {
             //console.error("Login Failed : ", error)
