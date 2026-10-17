@@ -86,13 +86,13 @@ const CancelMembership = () => {
 
                     </Box>
                     <Box style={{ backgroundColor: '#6495ed', color: 'white', padding: '10px 20px', fontWeight: 'bold' }}>
-                        入室する
+                        会員資格をキャンセルする
                     </Box>
                     {/* Main Content */}
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px', width: '100%', boxSizing: 'border-box' }}>
                         <ul style={{ fontSize: "14px", lineHeight: '1.8', marginTop: 0, paddingLeft: '20px' }}>
-                            <li>このフォームは、SSL技術（暗号化送信）で送受信されますので個人情報の流失等がなく、安心・安全にご利用いただけます。</li>
-                            <li>入室する部屋をチエックして下さい。</li>
+                            <li>会員登録の解除をご希望の場合は、IDとパスワードを入力してください。</li>
+                            <li>このフォームは、SSL技術（暗号化送信）で送受信されますので、個人情報の流失等がなく、安心・安全にご利用いただけます。</li>
                             <li><span style={{ color: 'red' }}>*</span>は入力必須項目です。</li>
                         </ul>
 
@@ -144,40 +144,27 @@ const CancelMembership = () => {
 
                             <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
 
-                            <Box style={{ marginBottom: '20px', fontSize: '14px' }}>
-                                <Box style={{ marginBottom: '12px', fontSize: '14px', fontWeight: '400' }}>
-                                    入室する部屋を選択して下さい <span style={{ color: 'red' }}>*</span>
-                                </Box>
-
-                                <Box style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 20px', alignItems: 'center', fontSize: '14px' }}>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="normal" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        普通の部屋
-                                    </label>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="anxiety" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        不安の部屋
-                                    </label>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="blackmail" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        強迫の部屋
-                                    </label>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="other" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        うつ他の部屋
-                                    </label>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="growth" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        成長の部屋
-                                    </label>
-                                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                                        <input type="radio" value="diary" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                                        日記
-                                    </label>
-                                </Box>
+                            <Box style={{ marginBottom: '4px' }}>
+                                <label style={{ display: 'block', marginBottom: '4px', fontWeight: '400' }}>
+                                    取り下げの理由 <span style={{ color: 'red' }}>*</span>
+                                </label>
+                                <textarea
+                                    {...register('reason')}
+                                    rows={6}
+                                    style={{
+                                        backgroundColor: '#ffffe0',
+                                        border: '1px solid #ccc',
+                                        borderRadius: '4px',
+                                        padding: '8px',
+                                        width: '100%',
+                                        maxWidth: '320px',
+                                        boxSizing: 'border-box',
+                                        resize: 'vertical'
+                                    }}
+                                />
                             </Box>
 
-                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '20px 0' }} />
+                            <hr style={{ border: 'none', borderBottom: '1px solid #ccc', margin: '10px 0' }} />
 
                             <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '20px', margin: '30px 0 20px 0' }}>
                                 <button
@@ -195,7 +182,8 @@ const CancelMembership = () => {
                                         minWidth: '120px'
                                     }}
                                 >
-                                    入室する
+                                   
+                                    提出する
                                 </button>
                                 <button
                                     type="button"
@@ -225,8 +213,8 @@ const CancelMembership = () => {
                     </Box>
                     <Box style={{ backgroundColor: '#e6ffff', padding: '20px' }}>
                         <ul style={{ lineHeight: '1.8', margin: 0, paddingLeft: '20px' }}>
-                            <li><a href="/forumbbs2.html" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
-                            <li><a href="/forumbbs3.html" style={{ color: '#0066cc', textDecoration: 'none' }}>退会手続きはこちらへ</a></li>
+                            <li><a href="/forumlogin" style={{ color: '#0066cc', textDecoration: 'none' }}>入室（ログイン）こちらへ</a></li>
+                            <li><a href="/editMemberLogin" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
                         </ul>
                     </Box>
 

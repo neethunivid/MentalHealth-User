@@ -19,6 +19,7 @@ import Thank_page from "./Components/Grant Permission/ThanksPage";
 import Layout from "./Components/Layout";
 import InquiryForm from "./Pages/InquiryForm/InquiryForm";
 import Login from "./Pages/Login/Login";
+import EditMemberLogin from "./Pages/Login/editMemberLogin";
 import MagazineSubscription from "./Pages/MagazineSubscription/MagazineSubscription";
 import MagazineDelete from "./Pages/MagazineSubscription/MagazineDelete";
 import MembershipForm from "./Pages/MembershipForm/MembershipForm";
@@ -37,6 +38,7 @@ import RemarkTreeList from "./Pages/Remarks/RemarkTreeList";
 import RemarkSuccess from "./Pages/Remarks/RemarkSuccess";
 import RedirectToHome from "./Pages/HomePage/RedirecttoHome";
 import Search from "./Pages/Search/Search";
+import CancelMembership from "./Pages/Login/CancelMembership";
 
 const baseTheme = createTheme({
   typography: {
@@ -70,6 +72,8 @@ const AppRouter: React.FC = () => {
                 <Route path="/kenkyuThanks" element={<Thank_page />} />
                 <Route path="/inquiry" element={<InquiryForm />} />
                 <Route path="/forumlogin" element={<Login />} />
+                <Route path="/editMemberLogin" element={<EditMemberLogin />} />
+                <Route path="/cancelMembership" element={<CancelMembership />} />
                 <Route path="/mailmagazine" element={<MagazineSubscription />} />
                 <Route path="/mailmagazine_delete" element={<MagazineDelete />} />
                 <Route path="/forumkaisoku" element={<MembershipForm />} />
