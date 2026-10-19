@@ -28,7 +28,7 @@ const MembershipForm = () => {
     const [prefectureIndex, setPrefectureIndex] = useState("1");
     const [professionData, setProfessionData] = useState<any>([])
     const [professionIndex, setProfessionIndex] = useState("1");
-
+    const [isEdit, setIsEdit] = useState(false);
     const {
         register,
         handleSubmit,
@@ -43,7 +43,7 @@ const MembershipForm = () => {
     const watchedMemberId = watch('memberId');
 
     useEffect(() => {
-        setMemberIdAvailability(null);
+        setMemberIdAvailability(null);      
     }, [watchedMemberId]);
 
     const breadcrumbItems = [
@@ -246,7 +246,6 @@ const MembershipForm = () => {
      */
 
     const handleSendData = async () => {
-        console.log("membershipData", membershipData)
         if (membershipData) {
             try {
                 const DataRequest = {
@@ -255,6 +254,7 @@ const MembershipForm = () => {
                     "namek": membershipData.namek,
                     "namek2": membershipData.namek2,
                     "memberid": membershipData.memberId,
+                    "id": isEdit ? membershipData.id : null,
                     "icon": membershipData.icon,
                     "password": membershipData.password,
                     "sex": membershipData.sex === '男性' ? "1" : "2",
@@ -264,6 +264,7 @@ const MembershipForm = () => {
                     "zipcode": formatPinNumber(membershipData.post_code),
                     "address1": membershipData.city,
                     "address2": membershipData.street_address,
+                    "address3": membershipData.building_name,
                     "tel": formatPhoneNumber(membershipData.mobile_number),
                     "workplace": membershipData.work_place,
                     "howfound": membershipData.reference,
@@ -277,10 +278,16 @@ const MembershipForm = () => {
                     "ngMember": 0,
                     "deleteRequest": 0,
                     "date": getCurrentDate(),
+                    "email_smart": 'vanisree@nivid.co'
+
                 }
-                const apiData = await apiClient.post("api/members/addMember", DataRequest, {});
+                const apiData = isEdit ? await apiClient.put("api/members/updatemember", DataRequest, {}) : await apiClient.post("api/members/addMember", DataRequest, {});
                 if (apiData) {
                     setSendDataFlag(true)
+                    localStorage.removeItem('roomType');
+                    localStorage.removeItem('memberId');
+                    localStorage.removeItem('memberNo');
+                    localStorage.removeItem('memberName');
                 }
             } catch (error: any) {
                 const errorCode = error?.response?.data?.error;
@@ -296,18 +303,116 @@ const MembershipForm = () => {
     }
 
     useEffect(() => {
-        fetchProfessionData();
-        fetchPrefectureData();
+        const initializeForm = async () => {
+            try {
+                const [professions, prefectures] = await Promise.all([
+                    fetchProfessionData(),
+                    fetchPrefectureData(),
+                ]);
+                await fetchMemberData(professions, prefectures);
+            } catch (error) {
+                console.error('Failed to load membership form data:', error);
+            }
+        };
+
+        initializeForm();
     }, []);
+
+    const fetchMemberData = async (professions: any[], prefectures: any[]) => {
+        const memberId = localStorage.getItem('memberId');
+       
+        if (!memberId) {
+            return;
+        }
+        setIsEdit(true);
+        const dataRequest = {
+            "memberid": memberId
+        }
+        const apiData = await apiClient.post("api/members/memberSearch", dataRequest, {});
+        const result = apiData?.data?.data;
+        const member = Array.isArray(result) ? result[0] : result;
+        console.log("member", member)
+        if (!member) {
+            return;
+        }
+
+        const birthDateParts: number[] = Array.isArray(member.dob)
+            ? member.dob.slice(0, 3).map(Number)
+            : (String(member.dob ?? '').match(/^(\d{4})\D+(\d{1,2})\D+(\d{1,2})/) ?? [])
+                .slice(1)
+                .map(Number);
+        const parsedBirthDate = birthDateParts.length === 3
+            ? new Date(birthDateParts[0], birthDateParts[1] - 1, birthDateParts[2])
+            : null;
+        const hasValidBirthDate = Boolean(
+            parsedBirthDate
+            && parsedBirthDate.getFullYear() === birthDateParts[0]
+            && parsedBirthDate.getMonth() === birthDateParts[1] - 1
+            && parsedBirthDate.getDate() === birthDateParts[2]
+        );
+        const postalCode = String(member.zipcode ?? '').replace(/\D/g, '');
+        const phoneNumber = String(member.tel ?? '').replace(/\D/g, '');
+        const phoneParts = phoneNumber.match(/.{1,4}/g) ?? [];
+        const professionOption = professions.find((item) => String(item.id) === String(member.job));
+        const prefectureOption = prefectures.find((item) => String(item.id) === String(member.pref));
+        const sexValue = String(member.sex) === '1' ? '男性'
+            : String(member.sex) === '2' ? '女性'
+                : String(member.sex ?? '');
+        const newsletterValue = String(member.mailmagazine) === '2' ? '中止' : '購読';
+
+        reset({
+            id: member.id ?? '',
+            name: member.name ?? '',
+            name2: member.name2 ?? '',
+            namek: member.namek ?? '',
+            namek2: member.namek2 ?? '',
+            memberId: member.memberid ?? member.memberId ?? '',
+            icon: member.icon == null ? '' : String(member.icon),
+            password: member.password ?? '',
+            confirmPassword: member.password ?? '',
+            sex: sexValue,
+            dobYear: hasValidBirthDate ? String(birthDateParts[0]) : '',
+            dobMonth: hasValidBirthDate ? String(birthDateParts[1]) : '',
+            dobDay: hasValidBirthDate ? String(birthDateParts[2]) : '',
+            profession: professionOption?.name ?? '',
+            occupation: member.job_additional ?? '',
+            post_code_first: postalCode.slice(0, 3),
+            post_code_second: postalCode.slice(3),
+            prefecture: prefectureOption?.name ?? '',
+            city: member.address1 ?? '',
+            street_address: member.address2 ?? '',
+            building_name: member.address3 ?? '',
+            mobile_number_first: phoneParts[0] ?? '',
+            mobile_number_second: phoneParts[1] ?? '',
+            mobile_number_third: phoneParts[2] ?? '',
+            work_place: member.workplace ?? '',
+            reference: member.howfound ?? '',
+            email1: member.email_pc ?? '',
+            email2: member.email_mob || member.email_smart || '',
+            speech_title: member.speech_title ?? '',
+            message: member.message ?? '',
+            subscribeNewsletter: newsletterValue,
+        });
+        setSex(sexValue);
+        setProfession(professionOption?.name ?? '');
+        setProfessionIndex(professionOption ? String(professionOption.id) : '1');
+        setPrefecture(prefectureOption?.name ?? '');
+        setPrefectureIndex(prefectureOption ? String(prefectureOption.id) : '1');
+        setNewsletterSubscription(newsletterValue);
+    };
 
     const fetchPrefectureData = async () => {
         const apiData = await apiClient.post("api/members/prefList", {});
-        setPrefectureData(apiData?.data?.data);
+        const data = apiData?.data?.data ?? [];
+        setPrefectureData(data);
+        return data;
     }
 
     const fetchProfessionData = async () => {
         const apiData = await apiClient.post("api/members/job", {});
-        setProfessionData(apiData?.data?.data);
+        const data = apiData?.data?.data ?? [];
+        setProfessionData(data);
+        return data;
     }
 
     return (
@@ -348,27 +453,36 @@ const MembershipForm = () => {
                                     <Typography variant='body1'>
                                         名前（漢字）<span style={{ color: 'red' }}>*</span>
                                     </Typography>
-                                    <Grid container item xs={12} sm={12} spacing={2}>
-                                        <Grid item xs={12} sm={4}>
-                                            <FormInputTextField
-                                                name="name"
-                                                control={control}
-                                                caption="姓"
-                                                captionOnLeft={true}
-                                                fullwidth={false}
-                                                id="membership-form-name"
-                                            />
+                                    <Grid container item xs={12} sm={12} spacing={2} alignItems="flex-end">
+                                        <Grid item xs={12} sm={8}>
+                                            <Grid container item xs={12} sm={12} spacing={2}>
+                                                <Grid item xs={12} sm={4}>
+                                                    <FormInputTextField
+                                                        name="name"
+                                                        control={control}
+                                                        caption="姓"
+                                                        captionOnLeft={true}
+                                                        fullwidth={false}
+                                                        id="membership-form-name"
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} sm={4}>
+                                                    <FormInputTextField
+                                                        name="name2"
+                                                        control={control}
+                                                        caption="名"
+                                                        captionOnLeft={true}
+                                                        fullwidth={false}
+                                                        className='second-field-inputs'
+                                                        id="membership-form-name2"
+                                                    />
+                                                </Grid>
+                                            </Grid>
                                         </Grid>
-                                        <Grid item xs={12} sm={4}>
-                                            <FormInputTextField
-                                                name="name2"
-                                                control={control}
-                                                caption="名"
-                                                captionOnLeft={true}
-                                                fullwidth={false}
-                                                className='second-field-inputs'
-                                                id="membership-form-name2"
-                                            />
+                                        <Grid item xs={12} sm={4} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                            <Typography variant='body1' sx={{ display: 'block', fontFamily: 'inherit', color: 'black', fontWeight: 600, textAlign: 'right' }}>
+                                                （注）難しい漢字は簡単な方で入力する（例：齋藤　→ 斎藤）
+                                            </Typography>
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -493,7 +607,7 @@ const MembershipForm = () => {
                                         name="password"
                                         label="パスワード"
                                         required={true}
-                                        type="password"
+                                        type="test"
                                         control={control}
                                         caption="※6～15字英数大小文字"
                                         captionOnTop={true}
@@ -506,7 +620,7 @@ const MembershipForm = () => {
                                         name="confirmPassword"
                                         label="パスワード再入力"
                                         required={true}
-                                        type="password"
+                                        type="text"
                                         control={control}
                                         captionOnTop={true}
                                         fullwidth={true}
@@ -1018,7 +1132,7 @@ const MembershipForm = () => {
 
                         {/* Display only when the form data is submitted successfully */}
 
-                        {SendDataFlag === true &&
+                        {(SendDataFlag === true && isEdit === false) &&
                             <Grid sx={{ backgroundColor: "#f9f9f9", padding: 5, fontSize: 16, border: 1, borderColor: "#9f9f9f", margin: 10 }}>
                                 <Typography>
                                     お問合わせいただき、ありがとうございます。
@@ -1026,6 +1140,13 @@ const MembershipForm = () => {
                                 <Typography>
                                     後日、事務局よりメールにてご連絡致しますので、しばらくお待ち下さい。
                                 </Typography>
+                            </Grid>}
+                         {(SendDataFlag === true && isEdit === true) &&
+                            <Grid sx={{ backgroundColor: "#f9f9f9", padding: 5, fontSize: 16, border: 1, borderColor: "#9f9f9f", margin: 10 }}>
+                                <Typography>
+                                    会員情報が正常に更新されました。
+                                </Typography>
+                               
                             </Grid>}
                     </Grid>
                     <Grid item xs={12} md={4}>
