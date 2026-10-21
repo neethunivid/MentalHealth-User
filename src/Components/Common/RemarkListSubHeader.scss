@@ -105,3 +105,33 @@
   background: linear-gradient(color-mix(in srgb, #9470DB 80%, white),
       color-mix(in srgb, #9470DB 60%, black));
 }
+
+/* MENU sub-row – visible only when MENU is toggled */
+.menu-sub-pc-list {
+  background-color: #ffc0cb;
+
+  .menu-sub-item {
+    background: #ffc0cb;
+
+    a {
+      color: #fff;
+    }
+
+    a:hover {
+      background: linear-gradient(color-mix(in srgb, #ffc0cb 80%, white),
+          color-mix(in srgb, #ffc0cb 60%, black));
+    }
+  }
+
+  .menu-sub-item.active-menu {
+    a {
+      background: #ff69b4;
+      color: #fff;
+    }
+
+    a:hover {
+      background: linear-gradient(color-mix(in srgb, #ff69b4 80%, white),
+          color-mix(in srgb, #ff69b4 60%, black));
+    }
+  }
+}
