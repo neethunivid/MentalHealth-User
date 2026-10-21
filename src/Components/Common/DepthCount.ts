@@ -26,6 +26,8 @@ interface TreeNode {
  * @returns 
  */
 function createNestedStructure(data: DataItem[], parentid: number) {
+  if (!data || !Array.isArray(data)) return [];
+
   const itemMap: { [id: number]: TreeNode } = {};
   const depthMap: { [id: number]: string } = {};
   const childCountMap: { [id: number]: number } = {};
@@ -91,7 +93,7 @@ function createNestedStructure(data: DataItem[], parentid: number) {
  * @param parentid 
  * @returns 
  */
-const DepthCount = (value: DataItem[], parentid: number) => { 
+const DepthCount = (value: DataItem[], parentid: number) => {
 
   /**
    * calculate the total children node
@@ -100,6 +102,7 @@ const DepthCount = (value: DataItem[], parentid: number) => {
    * @returns 
    */
   function countParentNodes(data: DataItem[], parentid: number): number {
+    if (!data || !Array.isArray(data)) return 0;
     let parentCount = 0;
     data.forEach((item) => {
       if (item.remarks === parentid) {
@@ -111,7 +114,7 @@ const DepthCount = (value: DataItem[], parentid: number) => {
 
   const tree = createNestedStructure(value, parentid);
   const parentcountvalue = countParentNodes(value, parentid);
- 
+
   return { parentcountvalue, tree };
 };
 

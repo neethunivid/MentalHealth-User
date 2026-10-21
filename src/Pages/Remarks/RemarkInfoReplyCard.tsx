@@ -124,7 +124,7 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
         <div className="content-card">
           <div className="row-left">
             <div className="row-image">
-              <img src={image} alt="Profile" />
+              <img src={image && !image.startsWith('blob:') && !image.startsWith('http') && !image.startsWith('/') && !image.startsWith('data:') ? `images/${image}` : image} alt="Profile" />
             </div>
             <Typography className='name'>{name}</Typography>
           </div>

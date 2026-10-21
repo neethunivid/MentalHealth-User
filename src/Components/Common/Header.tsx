@@ -102,7 +102,7 @@ const citizenlink = [
       { title: '対人恐怖度', link: '/check2' },
       { title: 'パニック症', link: '/check3' },
       { title: '強迫症', link: '/check4' },
-      { title: 'うつ病', link: 'check5.html' },
+      { title: 'うつ病', link: '/check5' },
     ],
   },
   {

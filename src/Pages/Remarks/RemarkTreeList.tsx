@@ -67,28 +67,29 @@ function RemarkTreeList() {
    */
   const renderTree = (nodes: any): JSX.Element => (
     <Grid container spacing={2}>
-      {nodes.map((node: any) => (
-        <Grid item key={node.item.id} xs={12}>
-
-          <RemarkInfoReplyCard
-            key={node.item.id}
-            image={node.item.memberSex == 1 ? manimage : womenimage}
-            name={node.item.memberName}
-            remarkTitle={node.item.title}
-            remarkText={node.item.text}
-            date={node.item.date}
-            remarkNo={node.item.remarkNo}
-            depth={node.item.depth}
-            isReplyContainerOpen={expandedReplyContainer === node.item.id}
-            onToggle={() => handleToggleReplyContainer(node.item.id)}
-            onPreviewClick={handlePreviewClick}
-            textareaValue={selectedRemarkReply ? node.item.id === selectedRemarkReply ? textareaValue : '' : ""}
-            id={node.item.id}
-            parentId={node.item.remarks}
-          />
-          {node.children.length > 0 && renderTree(node.children)}
-        </Grid>
-      ))}
+      {nodes.map((node: any) => {
+        return (
+          <Grid item key={node.item.id} xs={12}>
+            <RemarkInfoReplyCard
+              key={node.item.id}
+              image={node.item.memberIcon != null && node.item.memberIcon != '' ? node.item.memberIcon : manimage}
+              name={node.item.memberName}
+              remarkTitle={node.item.title}
+              remarkText={node.item.text}
+              date={node.item.date}
+              remarkNo={node.item.remarkNo}
+              depth={node.item.depth}
+              isReplyContainerOpen={expandedReplyContainer === node.item.id}
+              onToggle={() => handleToggleReplyContainer(node.item.id)}
+              onPreviewClick={handlePreviewClick}
+              textareaValue={selectedRemarkReply ? node.item.id === selectedRemarkReply ? textareaValue : '' : ""}
+              id={node.item.id}
+              parentId={node.item.remarks}
+            />
+            {node.children.length > 0 && renderTree(node.children)}
+          </Grid>
+        );
+      })}
     </Grid>
   );
 
@@ -113,7 +114,12 @@ function RemarkTreeList() {
 
                 <RemarkInfoReplyCard
                   key={expandedRemarkData.id}
-                  image={expandedRemarkData.memberSex == 1 ? manimage : womenimage}
+                  image={
+                    expandedRemarkData.memberIcon != null &&
+                      expandedRemarkData.memberIcon !== ''
+                      ? expandedRemarkData.memberIcon
+                      : manimage
+                  }
                   name={expandedRemarkData.memberName}
                   remarkTitle={expandedRemarkData.title}
                   remarkText={expandedRemarkData.text}
