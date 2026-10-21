@@ -103,10 +103,17 @@ const RemarkList = () => {
    * handle the node click to navigate to remarktree reply
    * @param id
    */
-  const handleNodeClick = (id: number) => {
-    navigate('/remarktree_reply', {
-      state: { expandedRemarkData: expandedRemarkData, remarkdata: remarkdata, id: id, parentid: expandedRemarkData.id }
-    });
+  const handleNodeClick = async (id: number) => {
+    try {
+      const apiData = await apiClient.get(`api/reply/children/${expandedRemarkData.id}`, {});
+      if (apiData && apiData.data && apiData.data.data) {
+        navigate('/remarktree_reply', {
+          state: { expandedRemarkData: expandedRemarkData, remarkdata: apiData.data.data, id: id, parentid: expandedRemarkData.id }
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching remark data:", error);
+    }
   };
 
   /**

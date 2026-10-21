@@ -36,17 +36,13 @@
 }
 
 .menu_items a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #808080 80%, white),
-    color-mix(in srgb, #808080 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #808080 80%, white),
+      color-mix(in srgb, #808080 60%, black));
 }
 
 .room.menu_items a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #808080 80%, white),
-    color-mix(in srgb, #808080 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #808080 80%, white),
+      color-mix(in srgb, #808080 60%, black));
 }
 
 .subheader {
@@ -69,10 +65,8 @@
 }
 
 .active a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #47c947 80%, white),
-    color-mix(in srgb, #47c947 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #47c947 80%, white),
+      color-mix(in srgb, #47c947 60%, black));
 }
 
 .active-room2 a {
@@ -80,10 +74,8 @@
 }
 
 .active-room2 a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #DAA521 80%, white),
-    color-mix(in srgb, #DAA521 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #DAA521 80%, white),
+      color-mix(in srgb, #DAA521 60%, black));
 }
 
 .active-room3 a {
@@ -91,10 +83,8 @@
 }
 
 .active-room3 a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #4682b4 80%, white),
-    color-mix(in srgb, #4682b4 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #4682b4 80%, white),
+      color-mix(in srgb, #4682b4 60%, black));
 }
 
 .active-room4 a {
@@ -102,10 +92,8 @@
 }
 
 .active-room4 a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #DB7092 80%, white),
-    color-mix(in srgb, #DB7092 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #DB7092 80%, white),
+      color-mix(in srgb, #DB7092 60%, black));
 }
 
 /* Growing up */
@@ -114,8 +102,6 @@
 }
 
 .active-room5 a:hover {
-  background: linear-gradient(
-    color-mix(in srgb, #9470DB 80%, white),
-    color-mix(in srgb, #9470DB 60%, black)
-  );
+  background: linear-gradient(color-mix(in srgb, #9470DB 80%, white),
+      color-mix(in srgb, #9470DB 60%, black));
 }
