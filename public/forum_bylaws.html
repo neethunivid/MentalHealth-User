@@ -245,7 +245,7 @@
           <div class="box-flex">
             <div class="flex-center">
               <div class="btn2">
-                <a href="/membershipform" class="b-btn"><span>同意して登録</span></a>
+                <a onclick="openMembershipForm()" class="b-btn" style="cursor: pointer;"><span>同意して登録</span></a>
               </div>
             </div>
 
@@ -257,6 +257,11 @@
           fetch("seminarbanner.html")
             .then((response) => response.text())
             .then((data) => document.querySelector("#seminarbanner").innerHTML = data);
+
+          function openMembershipForm() {
+            localStorage.removeItem("memberId");
+            window.location.href = "/membershipform";
+          }
         </script>
         <!-- bannar end -->
       </div>
