@@ -275,7 +275,7 @@ const MembershipForm = () => {
                     "speech_title": membershipData.speech_title,
                     "message": membershipData.message,
                     "remarks_initial": 0,
-                    "status": membershipData.status,
+                    "status": isEdit ? membershipData.status : 1,
                     "ngMember": 0,
                     "deleteRequest": 0,
                     "date": getCurrentDate(),
