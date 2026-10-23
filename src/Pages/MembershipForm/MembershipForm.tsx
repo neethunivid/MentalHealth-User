@@ -43,7 +43,7 @@ const MembershipForm = () => {
     const watchedMemberId = watch('memberId');
 
     useEffect(() => {
-        setMemberIdAvailability(null);      
+        setMemberIdAvailability(null);
     }, [watchedMemberId]);
 
     const breadcrumbItems = [
@@ -107,13 +107,13 @@ const MembershipForm = () => {
             "memberid": memberId
         }
         const apiData = await apiClient.post("api/members/memberSearch", dataRequest, {});
-        console.log("apiData", apiData.data?.data)
+
         if (getValues('memberId') !== memberId) {
             return;
         }
-        if(apiData && apiData.data && apiData.data.data && apiData.data.data.length > 0) {
+        if (apiData && apiData.data && apiData.data.data && apiData.data.data.length > 0) {
             setMemberIdAvailability('unavailable');
-        }else {
+        } else {
             setMemberIdAvailability('available');
         }
     };
@@ -321,6 +321,7 @@ const MembershipForm = () => {
 
     const fetchMemberData = async (professions: any[], prefectures: any[]) => {
         const memberId = localStorage.getItem('memberId');
+
         if (!memberId) {
             return;
         }
@@ -331,7 +332,6 @@ const MembershipForm = () => {
         const apiData = await apiClient.post("api/members/memberSearch", dataRequest, {});
         const result = apiData?.data?.data;
         const member = Array.isArray(result) ? result[0] : result;
-        console.log("member", member)
         if (!member) {
             return;
         }
@@ -1141,12 +1141,12 @@ const MembershipForm = () => {
                                     後日、事務局よりメールにてご連絡致しますので、しばらくお待ち下さい。
                                 </Typography>
                             </Grid>}
-                         {(SendDataFlag === true && isEdit === true) &&
+                        {(SendDataFlag === true && isEdit === true) &&
                             <Grid sx={{ backgroundColor: "#f9f9f9", padding: 5, fontSize: 16, border: 1, borderColor: "#9f9f9f", margin: 10 }}>
                                 <Typography>
                                     会員情報が正常に更新されました。
                                 </Typography>
-                               
+
                             </Grid>}
                     </Grid>
                     <Grid item xs={12} md={4}>

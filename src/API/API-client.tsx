@@ -13,15 +13,15 @@ class ApiClient {
       baseURL: baseURL,
       //headers: ApiClient.getHeaders()
     });
-    
+
     this.axiosInstance.interceptors.request.use(async config => {
       // Function to match URL with pattern
-      function urlMatchesPattern(url:any, pattern:any) {
+      function urlMatchesPattern(url: any, pattern: any) {
         const regexPattern = pattern.replace(/\*\*/g, '.*');
         const regex = new RegExp(`^${regexPattern}$`);
         return regex.test(url);
       }
-    
+
       const excludeUrls = [
         'login/authenticate',
         'api/members/prefList',
@@ -38,10 +38,10 @@ class ApiClient {
         'api/reservation/reserveUserSlot',
         'api/grant-requests/create'
       ];
-    
+
       // Check if the URL should be excluded from header modification
       const shouldExclude = excludeUrls.some(pattern => urlMatchesPattern(config.url, pattern));
-    
+
       if (!shouldExclude) {
         const headers = await ApiClient.getHeaders();
         if (config.url === 'api/file/upload') {
@@ -84,7 +84,7 @@ class ApiClient {
   post(url: string, data?: any, config?: any) {
     return this.axiosInstance.post(url, data, { ...config });
   }
-  
+
 
   get(url: string, config?: any) {
     return this.axiosInstance.get(url, config);
@@ -95,8 +95,7 @@ class ApiClient {
   }
 
   delete(url: string, config?: any) {
-    console.log("DELEte config ",config);
-    return this.axiosInstance.delete(url,  { ...config });
+    return this.axiosInstance.delete(url, { ...config });
   }
 }
 

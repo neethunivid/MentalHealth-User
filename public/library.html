@@ -1,0 +1,264 @@
+<!DOCUTYPE html>
+  <html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="図書室（閲覧・貸出・ビデオ視聴）">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>図書室（閲覧・貸出・ビデオ視聴）|メンタルヘルス岡本記念財団</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" type="image/png" href="images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/jquery.inview.min.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+
+  <body>
+
+    <header id="header">
+      <div class="header-wrapper">
+        <div class="logo">
+          <a href="index.html"><img src="images/headerlogo.jpg" alt=""></a>
+        </div>
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <nav class="navi">
+          <ul class="menu">
+            <li class="menu-first">
+              <span>HOME</span>
+              <ul class="menu-second">
+                <li><a href="index.html">TOP</a></li>
+                <li><a href="fuan.html">市民の皆様</a></li>
+                <li><a href="kenkyu.html">研究者の皆様</a></li>
+                <li><a href="z-top.html">財団の紹介</a></li>
+                <li><a href="sns.html">SNS</a></li>
+                <li><a href="search.html">検索</a></li>
+                <li><a href="contact.html">お問合せ</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>不安・悩み・症状</span>
+              <ul class="menu-second">
+                <li><a href="fuan.html#syako">社交不安症</a></li>
+                <li><a href="fuan.html#panic">パニック症</a></li>
+                <li><a href="fuan.html#zenpan">全般不安症</a></li>
+                <li><a href="fuan.html#kyohaku">強迫症</a></li>
+                <li><a href="fuan.html#shintai">身体症状症</a></li>
+                <li><a href="fuan.html#byoki">病気不安症</a></li>
+                <li><a href="fuan.html#kairi">解離性障害</a></li>
+                <li><a href="fuan.html#utu1">うつ病・躁鬱病</a></li>
+                <li><a href="fuan.html#utu2">その他</a></li>
+                <li><a href="fuan_qa.html">神経症（不安障害）のQ&A</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>相談窓口</span>
+              <ul class="menu-second">
+                <li><a href="consult.html#telsodan">電話相談</a></li>
+                <li><a href="consult.html#muryosodan">無料カウンセリング</a></li>
+                <li><a href="medicalcounsel.html">森田療法医療機関</a></li>
+                <li><a href="medicalcounsel.html#morita-counseling">カウンセリング施設</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>森田療法</span>
+              <ul class="menu-second">
+                <li><a href="morita.html">森田療法とは</a></li>
+                <li><a href="treatment.html">基本的な治療法</a></li>
+                <li><a href="method.html">症状別の治療法</a></li>
+                <li><a href="ryouhou.html">薬物療法と精神療法</a></li>
+                <li><a href="medicine.html">薬物療法の接し方</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>サポート活動</span>
+              <ul class="menu-second">
+                <li><a href="seminar.html">心の健康セミナー</a></li>
+                <li><a href="library.html">図書室</a></li>
+                <li><a href="book.html">参考図書</a></li>
+                <li><a href="video.html">ビデオ・動画</a></li>
+                <li><a href="forum.html">会員制掲示板</a></li>
+                <li><a href="advice.html">症状別アドバイス集</a></li>
+                <li><a href="taiken.html">克服体験談</a></li>
+                <li><a href="news.html">メンタルニュース</a></li>
+                <li><a href="dvd.html">森田療法DVD</a></li>
+                <li><a href="link.html">森田療法関連リンク</a></li>
+              </ul>
+            </li>
+            <li class="menu-first">
+              <span>自己診断チェック</span>
+              <ul class="menu-second">
+                <li><a href="/check1">神経質度</a></li>
+                <li><a href="/check2">対人恐怖度</a></li>
+                <li><a href="/check3">パニック症</a></li>
+                <li><a href="/check4">強迫症</a></li>
+                <li><a href="/check5">うつ病</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+      <div class="mask"></div>
+    </header>
+
+
+    <main>
+      <div class="topsub">
+        <picture>
+          <source srcset="images/topsub-sp.jpg" media="(max-width: 767px)">
+          <img src="images/topsub-scaled.jpg" alt="title">
+        </picture>
+        <div class="overlay"></div>
+        <div class="topsub-text">
+          <h1>図書室</h1>
+        </div>
+      </div>
+
+      <div class="home-wrapper">
+        <a href="index.html" class="navigate-link"><img class="home-icon" src="images/home.png" alt="">
+          <p class="navigate">HOME</p>
+        </a>
+        ／<a href="support.html" class="navigate-link">
+          <p class="navigate">サポート活動</p>
+        </a>
+        ／<p class="navigate">図書室（閲覧・貸出・ビデオ視聴）</p>
+      </div>
+
+      <div class="container">
+
+        <section class="main-content">
+
+          <div class="up-text">
+            <p>
+              メンタルヘルス図書室では、心の健康に関する図書約3000冊とDVD約100本をご用意しています。また、ご自分の症状に合わせて選べる療法別・症状別の図書の閲覧や、コンピュータを使った検索サービス、視聴覚コーナーなど、ご利用される方に便利な環境（無料）をご用意しています。<br>当図書室は大阪府立図書館のホームページ「大阪近辺類縁機関案内」で紹介されています。
+            </p>
+          </div>
+
+          <div class="yellow-title">
+            <h2 id="telsodan">ご利用日時（開室日時）</h2>
+          </div>
+
+          <div class="main-text">
+            <ul class="list-disc-main">
+              <li>月曜日〜金曜日</li>
+              <li>土曜日・日曜日・祝祭日、および年末年始・盆休・整理期間中は休室日</li>
+              <li>開室時間は午前10時〜午後4時45分（午後12時～午後1時は休室）</li>
+            </ul>
+          </div>
+
+          <div class="yellow-title">
+            <h2 id="telsodan">閲覧方法</h2>
+          </div>
+
+          <div class="main-text">
+            <ul class="list-disc-main">
+              <li>閲覧は無料です</li>
+              <li>書架より自由に選択し、閲覧いただけます。</li>
+            </ul>
+            <div class="container2">
+              <div class="container-con">
+                <img src="images/etsuran.jpg" alt="図書室1">
+              </div>
+              <div class="container-con">
+                <img src="images/etsuran2.jpg" alt="図書室2">
+              </div>
+            </div>
+          </div>
+
+          <div class="yellow-title">
+            <h2 id="telsodan">図書貸出し</h2>
+          </div>
+
+          <div class="main-text">
+            <ul class="list-disc-main">
+              <li>貸し出しは無料です</li>
+              <li>
+                図書貸出しをご希望の場合は、運転免許証・健康保険証・通学証明書、又は身分を証明できるものをご提示いただき、所定の申込書にご記入ください。<br>お一人3冊まで、3週間の貸出しを受付けます。<br>なお、一部の図書とDVDについては貸出しはできません。
+              </li>
+            </ul>
+          </div>
+
+          <div class="yellow-title">
+            <h2 id="telsodan">情報サービス・コピーサービス</h2>
+          </div>
+
+          <div class="main-text">
+            <ul class="list-disc-main">
+              <li>図書室所蔵の図書・資料はコンピュータによってデータ管理しています。したがって神経症のタイプ別、あるいは精神療法別にどんな図書があるか知りたい場合は、情報の提供ができます。</li>
+              <li>図書資料のコピーをご希望の方には、一枚30円でコピーサービスを受付けています。ただし一部の図書・資料については版権の都合などでコピーできない場合があります。</li>
+            </ul>
+            <div class="container2">
+              <div class="container-con">
+                <img src="images/jyoho.jpg" alt="図書室3">
+              </div>
+              <div class="container-con">
+                <img src="images/jyoho2.jpg" alt="図書室4">
+              </div>
+            </div>
+          </div>
+
+          <div class="yellow-title">
+            <h2 id="telsodan">視聴覚コーナー</h2>
+          </div>
+
+          <div class="main-text">
+            <ul class="list-disc-main">
+              <li>図書室では、視聴覚コーナーを設けて、DVDを自由に視聴いただけます。</li>
+              <li>DVDの視聴は無料です<br>＞＞<a href="pdf/videolist.pdf" class="dot-link"><span
+                    class="b-color">DVD一覧はこちらから</span></a></li>
+            </ul>
+            <div class="container2">
+              <div class="container-con">
+                <img src="images/shicho.jpg" alt="視聴覚コーナー">
+              </div>
+              <div class="container-con">
+                <img src="images/shicho2.jpg" alt="DVD">
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- bannar -->
+        <div id="seminarbanner"></div>
+        <script>
+          fetch("seminarbanner.html")
+            .then((response) => response.text())
+            .then((data) => document.querySelector("#seminarbanner").innerHTML = data);
+        </script>
+        <!-- bannar end -->
+      </div>
+
+    </main>
+
+    <hr class="line">
+    </hr>
+
+    <footer id="footer" class="wrapper">
+      <div class="zaidan">
+        <p><a href="sitemap.html">サイトマップ</a></p>
+        <p>|</p>
+        <p><a href="z-top.html">財団紹介</a></p>
+        <p>|</p>
+        <p><a href="access.html">アクセス</a></p>
+        <p>|</p>
+        <p><a href="/mailmagazine">メルマガ購読</a></p>
+        <p>|</p>
+        <p><a href="z-kojin.html">個人情報保護方針</a></p>
+      </div>
+      <div class="copyright">
+        <p>Copyright(c)2009 The Mental Health Okamoto Foundation</p>
+      </div>
+    </footer>
+
+  </body>
+
+  </html>

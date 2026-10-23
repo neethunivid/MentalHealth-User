@@ -274,19 +274,68 @@
   text-align: left;
   padding: 6px;
   text-indent: 1em;
-  background-color: #47c947; /* 普通（default） */
+  background-color: #47c947;
+  /* 普通（default） */
   color: #ffffff;
   text-shadow: 2px 2px 3px #696969;
   margin-top: 12px;
 }
 
 /* Room-type color overrides */
-.bbs-theme--normal   { background-color: #47c947; } /* 普通 */
-.bbs-theme--anxiety  { background-color: #daa520; } /* 不安 */
-.bbs-theme--blackmail{ background-color: #4682b4; } /* 強迫 */
-.bbs-theme--other    { background-color: #db7093; } /* うつ他 */
-.bbs-theme--growingup{ background-color: #9370db; } /* 成長 */
-.bbs-theme--diary    { background-color: #47c947; } /* 日記 (addition1) */
+.bbs-theme--normal {
+  background-color: #47c947;
+}
+
+.bbs-theme--normal:hover {
+  background-color: #5ddf5d;
+}
+
+/* 普通 */
+.bbs-theme--anxiety {
+  background-color: #daa520;
+}
+
+.bbs-theme--anxiety:hover {
+  background-color: #f0bc35;
+}
+
+/* 不安 */
+.bbs-theme--blackmail {
+  background-color: #4682b4;
+}
+
+.bbs-theme--blackmail:hover {
+  background-color: #5a9fd4;
+}
+
+/* 強迫 */
+.bbs-theme--other {
+  background-color: #db7093;
+}
+
+.bbs-theme--other:hover {
+  background-color: #f084aa;
+}
+
+/* うつ他 */
+.bbs-theme--growingup {
+  background-color: #9370db;
+}
+
+.bbs-theme--growingup:hover {
+  background-color: #aa88f0;
+}
+
+/* 成長 */
+.bbs-theme--diary {
+  background-color: #47c947;
+}
+
+.bbs-theme--diary:hover {
+  background-color: #5ddf5d;
+}
+
+/* 日記 (addition1) */
 
 .bbs-theme5 {
   text-align: left;
