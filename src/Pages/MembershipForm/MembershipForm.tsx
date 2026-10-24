@@ -254,7 +254,7 @@ const MembershipForm = () => {
                     "namek": membershipData.namek,
                     "namek2": membershipData.namek2,
                     "memberid": membershipData.memberId,
-                    "id": isEdit ? membershipData.id : null,
+                    ...(isEdit ? { "id": membershipData.id } : {}),
                     "icon": membershipData.icon,
                     "password": membershipData.password,
                     "sex": membershipData.sex === '男性' ? "1" : "2",
@@ -272,13 +272,14 @@ const MembershipForm = () => {
                     "email_mob": membershipData.email2,
                     "mailmagazine": membershipData.subscribeNewsletter === '購読' ? "1" : "2",
                     "pref": prefectureIndex.toString(),
-                    "statement_title": membershipData.speech_title,
-                    "statement_text": membershipData.message,
+                    "speech_title": membershipData.speech_title,
+                    "message": membershipData.message,
                     "remarks_initial": 0,
+                    "status": isEdit ? membershipData.status : 1,
                     "ngMember": 0,
                     "deleteRequest": 0,
                     "date": getCurrentDate(),
-                    "email_smart": 'vanisree@nivid.co'
+                    "email_smart":membershipData.email1
 
                 }
                 const apiData = isEdit ? await apiClient.put("api/members/updatemember", DataRequest, {}) : await apiClient.post("api/members/addMember", DataRequest, {});
@@ -455,7 +456,7 @@ const MembershipForm = () => {
                                     <Grid container item xs={12} sm={12} spacing={2} alignItems="flex-end">
                                         <Grid item xs={12} sm={8}>
                                             <Grid container item xs={12} sm={12} spacing={2}>
-                                                <Grid item xs={12} sm={4}>
+                                                <Grid item xs={12} sm={6}>
                                                     <FormInputTextField
                                                         name="name"
                                                         control={control}
@@ -465,7 +466,7 @@ const MembershipForm = () => {
                                                         id="membership-form-name"
                                                     />
                                                 </Grid>
-                                                <Grid item xs={12} sm={4}>
+                                                <Grid item xs={12} sm={6}>
                                                     <FormInputTextField
                                                         name="name2"
                                                         control={control}

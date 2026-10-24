@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../API/API-client';
-import { Snackbar, Alert, AlertColor, Grid, Box } from '@mui/material';
+import { Snackbar, Alert, AlertColor, Grid, Box, Typography } from '@mui/material';
 import Navbar from './Navbar';
 
 const CancelMembership = () => {
@@ -20,6 +20,7 @@ const CancelMembership = () => {
         snackbaraopen: false,
         message: ""
     });
+    const [SendDataFlag, setSendDataFlag] = useState(false)
 
     const handleSnackbarClose = () => {
         setSnackbarInfo(prevState => ({
@@ -71,6 +72,7 @@ const CancelMembership = () => {
             localStorage.removeItem('memberNo');
             localStorage.removeItem('memberName');
             console.log("Delete Response:", response.data);
+            setSendDataFlag(true);
 
         } catch (error) {
             //console.error("Login Failed : ", error)
@@ -80,6 +82,7 @@ const CancelMembership = () => {
 
     return (
         <Grid container style={{ width: '100%', justifyContent: 'center', fontFamily: '"MPLUSRounded1c", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif', color: '#333333' }}>
+            {(SendDataFlag === false) &&
             <Grid item xs={12} style={{ width: '100%', maxWidth: '1200px', margin: '0 auto' }}>
                 <Box style={{ margin: 0, padding: 0, width: '100%' }}>
                     <Navbar title="体験フォーラム" />
@@ -220,8 +223,9 @@ const CancelMembership = () => {
                             <li><a href="/editMemberLogin" style={{ color: '#0066cc', textDecoration: 'none' }}>会員情報の修正はこちらへ</a></li>
                         </ul>
                     </Box>
+                  
 
-                    <Snackbar
+                    {/* <Snackbar
                         open={snackbarInfo.snackbaraopen}
                         autoHideDuration={3000}
                         onClose={handleSnackbarClose}
@@ -233,9 +237,16 @@ const CancelMembership = () => {
                         >
                             {snackbarInfo.message}
                         </Alert>
-                    </Snackbar>
+                    </Snackbar> */}
                 </Box>
-            </Grid>
+            </Grid>}
+              {(SendDataFlag === true) &&
+                                                <Grid sx={{ backgroundColor: "#f9f9f9", padding: 5, fontSize: 16, border: 1, borderColor: "#9f9f9f", margin: 10 }}>
+                                                    <Typography>
+                                                        メンバーシップは解約され、登録情報は削除されました。
+                                                    </Typography>
+                                                   
+                    </Grid>}
         </Grid>
     );
 };
