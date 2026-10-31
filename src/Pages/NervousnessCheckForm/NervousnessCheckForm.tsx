@@ -409,6 +409,7 @@ const NervousnessCheckForm = () => {
                       py: 1,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         backgroundColor: '#004c99',
                       },
@@ -427,6 +428,7 @@ const NervousnessCheckForm = () => {
                       py: 1,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         borderColor: '#004c99',
                         backgroundColor: '#f0f7ff',
@@ -447,10 +449,11 @@ const NervousnessCheckForm = () => {
                       boxSizing: 'border-box',
                     }}
                   >
-                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 1, fontSize: '1.05rem' }}>
-                      {conclusion}
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 1, fontSize: '1.2rem' }}>
+                      {/* {conclusion} */}
+                      神経質傾向は低めです
                     </Typography>
-                    <Typography variant="body2" sx={{ color: '#444444', lineHeight: 1.8, mb: 3 }}>
+                    {/* <Typography variant="body2" sx={{ color: '#444444', lineHeight: 1.8, mb: 3 }}>
                       【該当項目の内訳】
                       <br />
                       ■「症状の特徴」があてはまるのは {characteristicsTrueCount} 個でした
@@ -458,7 +461,7 @@ const NervousnessCheckForm = () => {
                       ■「とらわれの症状」であてはまるのは {preoccupationTrueCount} 個でした
                       <br />
                       ■「神経質症状の特徴」であてはまるのは {neuroticTrueCount} 個でした
-                    </Typography>
+                    </Typography> */}
                     <RequestDiagnosisResult
                       type={1}
                       result={testResult}
