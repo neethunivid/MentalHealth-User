@@ -187,7 +187,7 @@ const SocialPhobiaCheckForm = () => {
 
   const onSubmit = async () => {
     if (checkedCount <= 1)
-      setTestResult(`該当する項目は全部で ${checkedCount} 個で対人恐怖症はあてはまりません。`);
+      setTestResult("対人恐怖症はあてはまりません");
     else if (checkedCount <= 20)
       setTestResult(`該当する項目は全部で ${checkedCount} 個でやや対人恐怖症の症状があります。`);
     else
@@ -354,45 +354,47 @@ const SocialPhobiaCheckForm = () => {
                 {/* Separate Counter Box Component */}
                 <CheckedCounterBox count={checkedCount} />
 
-                {/* Buttons Row */}
-                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
-                  <Button
-                    variant="contained"
-                    type="submit"
-                    id="socialphobia-selftest-form-diagnose-button"
-                    sx={{
-                      backgroundColor: '#0066cc',
-                      px: 4,
-                      py: 1,
-                      fontSize: '0.95rem',
-                      fontWeight: 'bold',
-                      '&:hover': {
-                        backgroundColor: '#004c99',
-                      },
-                    }}
-                  >
-                    診断する
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    onClick={handleRedoClick}
-                    id="socialphobia-selftest-form-redo-button"
-                    sx={{
-                      borderColor: '#0066cc',
-                      color: '#0066cc',
-                      px: 4,
-                      py: 1,
-                      fontSize: '0.95rem',
-                      fontWeight: 'bold',
-                      '&:hover': {
-                        borderColor: '#004c99',
-                        backgroundColor: '#f0f7ff',
-                      },
-                    }}
-                  >
-                    やり直し
-                  </Button>
-                </Box>
+               {/* Action Buttons */}
+                              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
+                                <Button
+                                  variant="contained"
+                                  type="submit"
+                                  id="nervousness-selftest-form-diagnose-button"
+                                  sx={{
+                                    backgroundColor: '#0066cc',
+                                    px: 9,
+                                    py: 1.5,
+                                    fontSize: '0.95rem',
+                                    fontWeight: 'bold',
+                                    borderRadius: '40px',
+                                    '&:hover': {
+                                      backgroundColor: '#004c99',
+                                    },
+                                  }}
+                                >
+                                  診断する
+                                </Button>
+                                <Button
+                                  variant="outlined"
+                                  onClick={handleRedoClick}
+                                  id="nervousness-selftest-form-redo-button"
+                                  sx={{
+                                    borderColor: '#0066cc',
+                                    color: '#0066cc',
+                                    px: 9,
+                                    py: 1.5,
+                                    fontSize: '0.95rem',
+                                    fontWeight: 'bold',
+                                    borderRadius: '40px',
+                                    '&:hover': {
+                                      borderColor: '#004c99',
+                                      backgroundColor: '#f0f7ff',
+                                    },
+                                  }}
+                                >
+                                  やり直し
+                                </Button>
+                              </Box>
 
                 {/* Open Diagnosis Result Form */}
                 {openForm && (
@@ -404,7 +406,7 @@ const SocialPhobiaCheckForm = () => {
                       boxSizing: 'border-box',
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
                       {testResult}
                     </Typography>
                     <RequestDiagnosisResult
