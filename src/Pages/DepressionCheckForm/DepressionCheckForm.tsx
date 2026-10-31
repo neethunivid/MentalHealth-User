@@ -132,7 +132,7 @@ const DepressionCheckForm = () => {
       localConclusion = "Q1～Q2のいずれかとQ3～Q9のうち、うつ病の該当個数が5個以上ありますので、あなたはうつ病と診断されます。";
 
     setConclusion(localConclusion);
-    const result = `Q1～Q2のうち、うつ病の該当個数は ${depression1Count} 個あります。<br/> Q3-Q9のうち、うつ病に該当する項目の数は ${depression2Count} です。<br/> ${localConclusion} <br/> ＜大うつ病のエピソード＞ <br/> 患者は通常、抑うつ気分、興味と喜びの喪失、および活力の減退による、易疲労感の増大や活動性の減少に悩まされる。わずかに頑張ったあとでも、ひどく疲労を感じることがふつうである。普通、少なくとも2週間の持続が必要とされるが、もし症状がきわめて重症で急激な発症であれば、より短い期間であってもかまわない。`;
+    const result = ` ${localConclusion} <br/>Q1～Q2のうち、うつ病の該当個数は${depression1Count}件です。<br/> Q3～Q9のうち、うつ病の該当個数は ${depression2Count}件です。<br/> ＜大うつ病のエピソード＞ <br/> ＜大うつ病のエピソード＞ <br/> 患者は通常、抑うつ気分、興味と喜びの喪失、および活力の減退による、易疲労感の増大や活動性の減少に悩まされる。わずかに頑張ったあとでも、ひどく疲労を感じることがふつうである。普通、少なくとも2週間の持続が必要とされるが、もし症状がきわめて重症で急激な発症であれば、より短い期間であってもかまわない。`;
     setTestResult(result);
     setOpenForm(true);
   };
@@ -236,7 +236,7 @@ const DepressionCheckForm = () => {
                         </Typography>
                         <Checkbox
                           checked={isQuestionChecked(question.id)}
-                          onChange={() => {}}
+                          onChange={() => { }}
                           id={question.id}
                           icon={
                             <Box
@@ -295,18 +295,19 @@ const DepressionCheckForm = () => {
                 {/* Separate Counter Box Component */}
                 <CheckedCounterBox count={checkedCount} />
 
-                {/* Buttons Row */}
-                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                {/* Action Buttons */}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
                   <Button
                     variant="contained"
                     type="submit"
-                    id="depression-selftest-form-diagnose-button"
+                    id="nervousness-selftest-form-diagnose-button"
                     sx={{
                       backgroundColor: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         backgroundColor: '#004c99',
                       },
@@ -317,14 +318,15 @@ const DepressionCheckForm = () => {
                   <Button
                     variant="outlined"
                     onClick={handleRedoClick}
-                    id="depression-selftest-form-redo-button"
+                    id="nervousness-selftest-form-redo-button"
                     sx={{
                       borderColor: '#0066cc',
                       color: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         borderColor: '#004c99',
                         backgroundColor: '#f0f7ff',
@@ -345,21 +347,21 @@ const DepressionCheckForm = () => {
                       boxSizing: 'border-box',
                     }}
                   >
-                    <List disablePadding sx={{ mb: 2, id: 'selftest-basic-details' }}>
-                      <ListItem disablePadding sx={{ mb: 0.5 }}>
-                        <Typography variant="body1" sx={{ color: '#333333' }}>
-                          Q1～Q2のうち、うつ病の該当個数は {depression1TrueCount} 個あります。
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
+                      {conclusion}
+                    </Typography>
+                    <List disablePadding sx={{ mb: 2, pl: 3, listStyleType: 'disc' }}>
+                      <ListItem disablePadding sx={{ mb: 0.5, display: 'list-item', '&::marker': { color: '#cc0000' } }}>
+                        <Typography variant="h6" sx={{ color: '#cc0000',  fontWeight: 'bold', mb: 2 }}>
+                          Q1～Q2のうち、うつ病の該当個数は {depression1TrueCount}件です。
                         </Typography>
                       </ListItem>
-                      <ListItem disablePadding sx={{ mb: 0.5 }}>
-                        <Typography variant="body1" sx={{ color: '#333333' }}>
-                          Q3-Q9のうち、うつ病に該当する項目の数は {depression2TrueCount} です。
+                      <ListItem disablePadding sx={{ mb: 0.5, display: 'list-item', '&::marker': { color: '#cc0000' } }}>
+                        <Typography variant="h6" sx={{ color: '#cc0000',  fontWeight: 'bold', mb:2 }}>
+                          Q3-Q9のうち、うつ病の該当個数は {depression2TrueCount} 件です。
                         </Typography>
                       </ListItem>
                     </List>
-                    <Typography variant="body1" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
-                      {conclusion}
-                    </Typography>
                     <Typography variant="caption" sx={{ color: '#666666', display: 'block', lineHeight: 1.6, mb: 2 }}>
                       ＜大うつ病のエピソード＞<br />
                       患者は通常、抑うつ気分、興味と喜びの喪失、および活力の減退による、易疲労感の増大や活動性の減少に悩まされる。わずかに頑張ったあとでも、ひどく疲労を感じることがふつうである。普通、少なくとも2週間の持続が必要とされるが、もし症状がきわめて重症で急激な発症であれば、より短い期間であってもかまわない。
