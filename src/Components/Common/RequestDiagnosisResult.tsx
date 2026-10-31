@@ -95,8 +95,8 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                 variant="h6"
                 sx={{
                     color: '#0066cc',
-                    fontWeight: '400',
-                    fontSize: '1.05rem',
+                    fontWeight: '500',
+                    fontSize: '1.2rem',
                     pb: 1,
                     mb: 2,
                     borderBottom: '1px solid #d0d7de',
