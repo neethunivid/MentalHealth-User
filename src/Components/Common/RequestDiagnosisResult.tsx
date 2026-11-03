@@ -102,7 +102,7 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                     borderBottom: '1px solid #d0d7de',
                 }}
             >
-                診断結果についてメールで相談する
+                診断結果をメールで相談する
             </Typography>
 
             {/* Checkboxes List */}
@@ -436,8 +436,8 @@ const RequestDiagnosisResult: React.FC<TestAndResult> = ({ type, result, onFlagC
                         backgroundColor: '#0066cc',
                         color: '#ffffff',
                         borderRadius: '25px',
-                        px: 7,
-                        py: 1.2,
+                        px: 9,
+                        py: 1.5,
                         fontSize: '0.98rem',
                         fontWeight: '400',
                         textTransform: 'none',
