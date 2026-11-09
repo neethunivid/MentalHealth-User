@@ -60,7 +60,7 @@ const PanicDisorderCheckForm = () => {
 
   const onSubmit = async () => {
     if (checkedCount <= 3)
-      setTestResult(`該当する項目は全部で ${checkedCount} 個でパニック障害はあてはまりません。`);
+      setTestResult("パニック障害はあてはまりません");
     else if (checkedCount >= 4)
       setTestResult(`該当する項目は全部で ${checkedCount} 個（4個以上）でパニック障害があてはまります。`);
 
@@ -227,18 +227,19 @@ const PanicDisorderCheckForm = () => {
                 {/* Separate Counter Box Component */}
                 <CheckedCounterBox count={checkedCount} />
 
-                {/* Buttons Row */}
-                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                {/* Action Buttons */}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
                   <Button
                     variant="contained"
                     type="submit"
-                    id="panicdisorder-selftest-form-diagnose-button"
+                    id="nervousness-selftest-form-diagnose-button"
                     sx={{
                       backgroundColor: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         backgroundColor: '#004c99',
                       },
@@ -249,14 +250,15 @@ const PanicDisorderCheckForm = () => {
                   <Button
                     variant="outlined"
                     onClick={handleRedoClick}
-                    id="panicdisorder-selftest-form-redo-button"
+                    id="nervousness-selftest-form-redo-button"
                     sx={{
                       borderColor: '#0066cc',
                       color: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         borderColor: '#004c99',
                         backgroundColor: '#f0f7ff',
@@ -266,6 +268,7 @@ const PanicDisorderCheckForm = () => {
                     やり直し
                   </Button>
                 </Box>
+
 
                 {/* Open Diagnosis Result Form */}
                 {openForm && (
@@ -277,7 +280,7 @@ const PanicDisorderCheckForm = () => {
                       boxSizing: 'border-box',
                     }}
                   >
-                    <Typography variant="body1" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
                       {testResult}
                     </Typography>
                     <RequestDiagnosisResult

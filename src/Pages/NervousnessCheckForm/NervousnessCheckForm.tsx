@@ -397,16 +397,16 @@ const NervousnessCheckForm = () => {
                 {/* Separate Counter Box Component */}
                 <CheckedCounterBox count={checkedCount} />
 
-                {/* Buttons Row */}
-                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                {/* Action Buttons */}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
                   <Button
                     variant="contained"
                     type="submit"
                     id="nervousness-selftest-form-diagnose-button"
                     sx={{
                       backgroundColor: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
                       borderRadius: '40px',
@@ -424,8 +424,8 @@ const NervousnessCheckForm = () => {
                     sx={{
                       borderColor: '#0066cc',
                       color: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
                       borderRadius: '40px',
@@ -504,5 +504,4 @@ const NervousnessCheckForm = () => {
 };
 
 export default NervousnessCheckForm;
-
 

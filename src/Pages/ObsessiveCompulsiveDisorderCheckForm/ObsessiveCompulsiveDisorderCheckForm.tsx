@@ -104,10 +104,15 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
   const onSubmit = async () => {
     const obsessionsCount = Object.values(obsessions).filter(Boolean).length;
     const compulsionsCount = Object.values(compulsions).filter(Boolean).length;
-    setObsessionsTrueCount(obsessionsCount);
-    setCompulsionsTrueCount(compulsionsCount);
+    //setObsessionsTrueCount(obsessionsCount);
+    //setCompulsionsTrueCount(compulsionsCount);
+    console.log("checkedCount:", checkedCount);
+    if (checkedCount <= 3)
+      setTestResult("該当する症状は見られません。");
 
-    const result = `強迫観念の該当個数が ${obsessionsCount} 個あります。 <br/> 強迫行為の該当個数が ${compulsionsCount} 個あります。` + (obsessionsCount ? `あなたは強迫観念と強迫行為があり、強迫性障害と診断されます。` : ``);
+    setOpenForm(true);
+
+    const result = '該当する症状は見られません。';
     setTestResult(result);
     setOpenForm(true);
   };
@@ -211,7 +216,7 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
                         </Typography>
                         <Checkbox
                           checked={isQuestionChecked(question.id)}
-                          onChange={() => {}}
+                          onChange={() => { }}
                           id={question.id}
                           icon={
                             <Box
@@ -271,17 +276,18 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
                 <CheckedCounterBox count={checkedCount} />
 
                 {/* Buttons Row */}
-                <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, mb: 4 }}>
                   <Button
                     variant="contained"
                     type="submit"
-                    id="obsessivecompulsivedisorder-selftest-form-diagnose-button"
+                    id="nervousness-selftest-form-diagnose-button"
                     sx={{
                       backgroundColor: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         backgroundColor: '#004c99',
                       },
@@ -292,14 +298,15 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
                   <Button
                     variant="outlined"
                     onClick={handleRedoClick}
-                    id="obsessivecompulsivedisorder-selftest-form-redo-button"
+                    id="nervousness-selftest-form-redo-button"
                     sx={{
                       borderColor: '#0066cc',
                       color: '#0066cc',
-                      px: 4,
-                      py: 1,
+                      px: 9,
+                      py: 1.5,
                       fontSize: '0.95rem',
                       fontWeight: 'bold',
+                      borderRadius: '40px',
                       '&:hover': {
                         borderColor: '#004c99',
                         backgroundColor: '#f0f7ff',
@@ -320,7 +327,10 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
                       boxSizing: 'border-box',
                     }}
                   >
-                    <List disablePadding sx={{ mb: 2, id: 'selftest-basic-details' }}>
+                    <Typography variant="h6" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
+                      {testResult}
+                    </Typography>
+                    {/* <List disablePadding sx={{ mb: 2, id: 'selftest-basic-details' }}>
                       <ListItem disablePadding sx={{ mb: 0.5 }}>
                         <Typography variant="body1" sx={{ color: '#333333' }}>
                           強迫観念の該当個数が {obsessionsTrueCount} 個あります。
@@ -331,12 +341,12 @@ const ObsessiveCompulsiveDisorderCheckForm = () => {
                           強迫行為の該当個数が {compulsionsTrueCount} 個あります。
                         </Typography>
                       </ListItem>
-                    </List>
-                    {obsessionsTrueCount > 0 && (
+                    </List> */}
+                    {/* {obsessionsTrueCount > 0 && (
                       <Typography variant="body1" sx={{ color: '#cc0000', fontWeight: 'bold', mb: 2 }}>
                         あなたは強迫観念と強迫行為があり、強迫性障害と診断されます。
                       </Typography>
-                    )}
+                    )} */}
                     <RequestDiagnosisResult
                       type={4}
                       result={testResult}
