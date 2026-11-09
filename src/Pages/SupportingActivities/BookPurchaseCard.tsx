@@ -68,7 +68,7 @@ const BookPurchaseCard = ({
   }, [])
 
   return (
-    <Grid container className='card'>
+    <Grid container className='card' sx={{ mb: 2 }}>
       {image == "" ? (
         <Grid item xs={12} sm={5} md={3} lg={2} id='book-noimage'>
           <img src={noimage} className='book-image' style={{ width: '100%', maxHeight: '200px', objectFit: 'cover' }}/>
@@ -81,9 +81,15 @@ const BookPurchaseCard = ({
       <Grid item xs={12} md={9} className='book-content' id='book-purchase-content'>
         <Typography variant='h5' fontWeight="bold" py={1}>{title}</Typography>
         {author && (
-          <Typography variant='h5' fontWeight="bold" py={1}>{author}</Typography>
+          <Typography variant='body1' fontWeight="bold" py={1}>著者：{author}</Typography>
         )}
-        <Typography variant='h5' color='#cf2e2e' py={1}>{price}</Typography>
+        <Typography variant='h5' color='#cf2e2e' py={1}>
+          {price.startsWith('￥') ? price : `￥${price}`}
+        </Typography>
+         <List className='details' id='book-purchase-details-list'>
+          <ListItem className='point'>No. {bookNo}</ListItem>
+          <ListItem className='point'>ISBN: {isbn}</ListItem>
+        </List>
         {summary && (
           <>
             <Typography variant="subtitle1" display="inline" fontWeight="500" fontSize={16} lineHeight={0}>
@@ -102,10 +108,7 @@ const BookPurchaseCard = ({
             )}
           </>
         )}
-        <List className='details' id='book-purchase-details-list'>
-          <ListItem className='point'>No. {bookNo}</ListItem>
-          <ListItem className='point'>ISBN: {isbn}</ListItem>
-        </List>
+       
         {document && (
           <Button
             variant='contained'
