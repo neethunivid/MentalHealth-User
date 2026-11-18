@@ -179,7 +179,7 @@ const MembershipForm = () => {
         else if (data.street_address === undefined) {
             alert("住所を入力してください");
         }
-        else if (!(/^\d{4}-\d{4}-\d{4}$/.test(data.mobile_number))) {
+        else if (!(/^\d{2,3}-\d{4}-\d{4}$/.test(data.mobile_number))) {
             alert("有効な電話番号を入力して下さい。");
         }
         else if (data.reference === undefined) {
@@ -188,7 +188,7 @@ const MembershipForm = () => {
         else if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data.email1))) {
             alert("メールアドレス1を正しく入力してください");
         }
-        else if (!(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data.email2))) {
+        else if (data.email2 && !(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(data.email2))) {
             alert("メールアドレス2を正しく入力してください");
         }
         else if (data.speech_title === undefined) {
@@ -285,7 +285,7 @@ const MembershipForm = () => {
                 const apiData = isEdit ? await apiClient.put("api/members/updatemember", DataRequest, {}) : await apiClient.post("api/members/addMember", DataRequest, {});
                 if (apiData) {
                     setSendDataFlag(true)
-                    localStorage.removeItem('roomType');
+                    localStorage.removeItem('roomType'); 
                     localStorage.removeItem('memberId');
                     localStorage.removeItem('memberNo');
                     localStorage.removeItem('memberName');
@@ -297,7 +297,7 @@ const MembershipForm = () => {
                 } else if (errorCode === "Email already exists") {
                     alert("メールは既に存在します")
                 } else {
-                    alert("送信に失敗しました。時間をおいて再度お試しください。")
+                    alert("送信に失敗しました。時 間をおいて再度お試しください。")
                 }
             }
         }

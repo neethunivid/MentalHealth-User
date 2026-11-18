@@ -62,32 +62,34 @@ const BookBuyCard = ({
     return (
         <Grid
             container
-            direction="column"
-            spacing={2}
-            className='columnCard'
+            className='card'
+            sx={{ mb: 2 }}
         >
-            <Grid item container justifyContent="center" className="image-container">
-                <Grid item className='image-wrapper'>
-                    {image ? (
-                        <Link target="_blank" href={image}>
-                            <img src={image} className='image' alt={title} />
-                        </Link>
-                    ) : (
-                        <img src={noimage} className='image' alt="No image available" />
-                    )}
-                </Grid>
+            <Grid item xs={12} sm={5} md={3} lg={2}>
+                {image ? (
+                    <Link target="_blank" href={image}>
+                        <img src={image} className='book-image' alt={title} />
+                    </Link>
+                ) : (
+                    <img src={noimage} className='book-image' alt="No image available" />
+                )}
             </Grid>
             <Grid
                 item
-                container
-                direction="column"
-                alignItems="flex-start"
-                className='other-book-content'
+                xs={12}
+                md={9}
+                className='book-content'
                 id='book-buy-content'
             >
                 <Typography variant='h6' fontWeight="bold" className="title">{title}</Typography>
-                <Typography variant='subtitle1' className="author">{author}</Typography>
-                <Typography variant='h6' className="price">{price}</Typography>
+                <Typography variant='subtitle1' className="author">著者：{author}</Typography>
+                <Typography variant='h6' className="price">
+                     {price.startsWith('￥') ? price : `￥${price}`}
+                </Typography>
+                 <List className='details' id='book-buy-details-list'>
+                    <ListItem className='point'>No.{bookNo}</ListItem>
+                    <ListItem className='point'>ISBN: {isbn}</ListItem>
+                </List>
                 {summary && (
                     <>
                         <Typography variant="subtitle1" display="inline" className="summary">
@@ -111,10 +113,7 @@ const BookBuyCard = ({
                         )}
                     </>
                 )}
-                <List className='details' id='book-buy-details-list'>
-                    <ListItem className='point'>No.{bookNo}</ListItem>
-                    <ListItem className='point'>ISBN: {isbn}</ListItem>
-                </List>
+               
                 {document && (
                     <Button
                         variant='contained'
@@ -124,7 +123,7 @@ const BookBuyCard = ({
                         className='preview'
                         id='book-preview-button'>目次と目次</Button>
                 )}
-                <Grid item className='button-container'>
+                <Grid className='buynow'>
                     <Button
                         size="large"
                         href={link}

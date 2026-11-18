@@ -11,6 +11,7 @@ import LibraryApiClient from '../../API/Library-API-client';
 import Pagination from '../../Components/Common/PaginationComponent';
 import { OtherMoritaBooks } from '../../Components/Common/OtherMoritaBook';
 import { useLocation } from 'react-router-dom';
+import Notice from '../../Components/Common/Notice';
 /**
  * Component used to display list books in  other Morita Therapy
  */
@@ -118,9 +119,11 @@ const OtherBooks = () => {
     return (
         <Grid>
             <Heading title='森田療法以外の参考図書' />
-            <Breadcrumb items={breadcrumbItems} />
-            <Grid container className='container' xs={12}>
-                <Grid item xs={12} className="list">
+            <Grid container spacing={3} sx={{ maxWidth: '1350px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
+                <Grid item xs={12} md={8}>
+                    <Breadcrumb items={breadcrumbItems} />
+                    <Grid container className='container' xs={12}>
+                        <Grid item xs={12} className="list">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid container item xs={12} spacing={2} className='inputcontainer'>
                             <Grid item xs={4}>
@@ -200,7 +203,7 @@ const OtherBooks = () => {
                 </Grid>
                 <Grid item container xs={12} pt={3}>
                     {booksData.map((data: any, index: any) => (
-                        <Grid item key={index} xs={12} sm={6} md={4} lg={3} className='book-list-container'>
+                        <Grid item key={index} xs={12}>
                             <BookBuyCard
                                 image={data.image}
                                 title={data.title}
@@ -222,6 +225,11 @@ const OtherBooks = () => {
                         totalPages={totalPages}
                         onPageChange={handlePageChange}
                     />
+                </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <Notice />
                 </Grid>
             </Grid>
         </Grid>

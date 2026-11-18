@@ -35,6 +35,7 @@ import MoritaTherapyBooks from "./Pages/SupportingActivities/MoritaTherapyBooks"
 import OtherBooks from "./Pages/SupportingActivities/OtherBooks";
 import RemarkList from "./Pages/Remarks/RemarkList";
 import RemarkTreeList from "./Pages/Remarks/RemarkTreeList";
+import NewRemark from "./Pages/Remarks/newRemark";
 import RemarkSuccess from "./Pages/Remarks/RemarkSuccess";
 import RedirectToHome from "./Pages/HomePage/RedirecttoHome";
 import Search from "./Pages/Search/Search";
@@ -90,6 +91,7 @@ const AppRouter: React.FC = () => {
                 <Route path="/other_reference_books" element={<OtherBooks />} />
                 <Route path="/remarklist" element={<RemarkList />} />
                 <Route path="/remarktree_reply" element={<RemarkTreeList />} />
+                <Route path="/newremark" element={<NewRemark />} />
                 <Route path="/remarksuccess" element={<RemarkSuccess />} />
 
               </Routes>

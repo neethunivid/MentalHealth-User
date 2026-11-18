@@ -9,6 +9,7 @@ import { bookTypeData } from '../../../src/Components/Common/book'
 import LibraryApiClient from '../../API/Library-API-client'
 import Pagination from '../../Components/Common/PaginationComponent'
 import { useLocation } from 'react-router-dom';
+import Notice from '../../Components/Common/Notice'
 
 /**
  * Component used to display list books in Morita Therapy
@@ -96,109 +97,116 @@ const MoritaTherapyBooks = () => {
     return (
         <Grid>
             <Heading title='森田療法参考図書' />
-            <Breadcrumb items={breadcrumbItems} />
-            <Grid container className='container' xs={12}>
-                <Grid item xs={12} className="list">
-                    <Grid container item xs={12} spacing={4} className='inputcontainer'>
-                        <Grid item xs={4}>
-                            <Select
-                                defaultValue={selectedBookType}
-                                onChange={(event) => SetSelectedBookType(event.target.value)}
-                                id="filter-selecter"
-                                size='small'
-                                fullWidth
-                            >
-                                {bookTypeData.map((item) => (
-                                    <MenuItem key={item.value} value={item.label}>
-                                        {item.label}
-                                    </MenuItem>
-                                ))}
-                            </Select>
+            <Grid container spacing={3} sx={{ maxWidth: '1350px', margin: '0 auto', px: { xs: 2, sm: 3 }, pt: 2 }}>
+                <Grid item xs={12} md={8}>
+                    <Breadcrumb items={breadcrumbItems} />
+                    <Grid container className='container' xs={12}>
+                        <Grid item xs={12} className="list">
+                            <Grid container item xs={12} spacing={4} className='inputcontainer'>
+                                <Grid item xs={4}>
+                                    <Select
+                                        defaultValue={selectedBookType}
+                                        onChange={(event) => SetSelectedBookType(event.target.value)}
+                                        id="filter-selecter"
+                                        size='small'
+                                        fullWidth
+                                    >
+                                        {bookTypeData.map((item) => (
+                                            <MenuItem key={item.value} value={item.label}>
+                                                {item.label}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={5}>
+                                    <TextField
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={(event) => SetKeyword(event.target.value)}
+                                        fullWidth
+                                        id="keyword"
+                                    />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        variant="contained"
+                                        id="search-button"
+                                        onClick={handleFilterSubmit}
+                                    >
+                                        検索
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Typography variant='h6' className='pinkBackground-blueContent'>
+                                    {selectedBookType}　{count}件({total}件中)
+                                </Typography>
+                            </Grid>
+                            <Grid container item xs={12} spacing={4} className='inputcontainer'>
+                                <Grid item xs={0} md={4}></Grid>
+                                <Grid item xs={6} md={5}>
+                                    <Select
+                                        name="sort"
+                                        defaultValue={filterType}
+                                        id="rearrange-selecter"
+                                        size='small'
+                                        fullWidth
+                                        onChange={(event) => SetFilterType(Number(event.target.value))}
+                                    >
+                                        <MenuItem value={0} >
+                                            -Select-
+                                        </MenuItem>
+                                        <MenuItem value={1} >
+                                            新しいものから(発売日)
+                                        </MenuItem>
+                                        <MenuItem value={2} >
+                                            古いものから(発売日)
+                                        </MenuItem>
+                                        <MenuItem value={3} >
+                                            タイトル名の順
+                                        </MenuItem>
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={4} sm={3}>
+                                    <Button
+                                        variant="contained"
+                                        id="rearrange-button"
+                                        onClick={bookList}
+                                    >
+                                        並びかえ
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={5}>
-                            <TextField
-                                variant="outlined"
-                                size="small"
-                                onChange={(event) => SetKeyword(event.target.value)}
-                                fullWidth
-                                id="keyword"
+                        <Grid item container xs={12} pt={3} px={1}>
+                            <Grid item xs={12}>
+                                {booksData && booksData?.map((data: any) =>
+                                    <BookPurchaseCard
+                                        image={data.image}
+                                        title={data.title}
+                                        author={data.author}
+                                        price={data.price}
+                                        summary={data.summary}
+                                        bookNo={data.bookNo}
+                                        isbn={data.isbnCode}
+                                        document={data.documents}
+                                        link={data.link}
+                                    />
+                                )}
+                            </Grid>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Pagination
+                                page="books"
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
                             />
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Button
-                                variant="contained"
-                                id="search-button"
-                                onClick={handleFilterSubmit}
-                            >
-                                検索
-                            </Button>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant='h6' className='pinkBackground-blueContent'>
-                            {selectedBookType}　{count}件({total}件中)
-                        </Typography>
-                    </Grid>
-                    <Grid container item xs={12} spacing={4} className='inputcontainer'>
-                        <Grid item xs={0} md={4}></Grid>
-                        <Grid item xs={6} md={5}>
-                            <Select
-                                name="sort"
-                                defaultValue={filterType}
-                                id="rearrange-selecter"
-                                size='small'
-                                fullWidth
-                                onChange={(event) => SetFilterType(Number(event.target.value))}
-                            >
-                                <MenuItem value={0} >
-                                    -Select-
-                                </MenuItem>
-                                <MenuItem value={1} >
-                                    新しいものから(発売日)
-                                </MenuItem>
-                                <MenuItem value={2} >
-                                    古いものから(発売日)
-                                </MenuItem>
-                                <MenuItem value={3} >
-                                    タイトル名の順
-                                </MenuItem>
-                            </Select>
-                        </Grid>
-                        <Grid item xs={4} sm={3}>
-                            <Button
-                                variant="contained"
-                                id="rearrange-button"
-                                onClick={bookList}
-                            >
-                                並びかえ
-                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item container xs={12} pt={3} px={1}>
-                    <Grid item xs={12}>
-                        {booksData && booksData?.map((data: any) =>
-                            <BookPurchaseCard
-                                image={data.image}
-                                title={data.title}
-                                author={data.author}
-                                price={data.price}
-                                summary={data.summary}
-                                bookNo={data.bookNo}
-                                isbn={data.isbnCode}
-                                document={data.documents}
-                                link={data.link}
-                            />
-                        )}
-                    </Grid>
-                </Grid>
-                <Grid item xs={12}>
-                    <Pagination
-                        page="books"
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
-                    />
+                <Grid item xs={12} md={4}>
+                    <Notice />
                 </Grid>
             </Grid>
         </Grid>

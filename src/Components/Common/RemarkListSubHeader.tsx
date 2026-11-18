@@ -67,7 +67,7 @@ const RemarkListSubHeader = () => {
                     </a>
                 </li>
                 <li className="subheader menu_items">
-                    <a href="#">
+                    <a href="/newremark">
                         <strong className="subheader_items">新規発言</strong>
                     </a>
                 </li>
