@@ -273,6 +273,7 @@ const MembershipForm = () => {
                     "mailmagazine": membershipData.subscribeNewsletter === '購読' ? "1" : "2",
                     "pref": prefectureIndex.toString(),
                     "speech_title": membershipData.speech_title,
+                    "statement_title": membershipData.speech_title,
                     "message": membershipData.message,
                     "remarks_initial": 0,
                     "status": isEdit ? membershipData.status : 1,
@@ -353,6 +354,7 @@ const MembershipForm = () => {
         const postalCode = String(member.zipcode ?? '').replace(/\D/g, '');
         const phoneNumber = String(member.tel ?? '').replace(/\D/g, '');
         const phoneParts = phoneNumber.match(/.{1,4}/g) ?? [];
+        phoneParts.reverse();
         const professionOption = professions.find((item) => String(item.id) === String(member.job));
         const prefectureOption = prefectures.find((item) => String(item.id) === String(member.pref));
         const sexValue = String(member.sex) === '1' ? '男性'
