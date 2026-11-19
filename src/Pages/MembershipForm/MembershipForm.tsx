@@ -91,7 +91,11 @@ const MembershipForm = () => {
 
     const formatPhoneNumber = (phoneNumber: string) => {
         const cleaned = phoneNumber.replace(/\D/g, '');
-        const formatted = cleaned.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+        // 10 digits: XX-XXXX-XXXX
+        // 11 digits: XXX-XXXX-XXXX
+        const formatted = cleaned.length === 10
+            ? cleaned.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3')
+            : cleaned.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
         return formatted;
     };
 
@@ -279,13 +283,13 @@ const MembershipForm = () => {
                     "ngMember": 0,
                     "deleteRequest": 0,
                     "date": getCurrentDate(),
-                    "email_smart":membershipData.email1
+                    "email_smart": membershipData.email1
 
                 }
                 const apiData = isEdit ? await apiClient.put("api/members/updatemember", DataRequest, {}) : await apiClient.post("api/members/addMember", DataRequest, {});
                 if (apiData) {
                     setSendDataFlag(true)
-                    localStorage.removeItem('roomType'); 
+                    // localStorage.removeItem('roomType');
                     localStorage.removeItem('memberId');
                     localStorage.removeItem('memberNo');
                     localStorage.removeItem('memberName');
@@ -297,7 +301,7 @@ const MembershipForm = () => {
                 } else if (errorCode === "Email already exists") {
                     alert("メールは既に存在します")
                 } else {
-                    alert("送信に失敗しました。時 間をおいて再度お試しください。")
+                    alert("送信に失敗しました。時間をおいて再度お試しください。")
                 }
             }
         }
@@ -1157,5 +1161,4 @@ const MembershipForm = () => {
         </Grid>
     )
 }
-
 export default MembershipForm;
