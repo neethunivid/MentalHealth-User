@@ -464,23 +464,23 @@ const MembershipForm = () => {
                                             <Grid container item xs={12} sm={12} spacing={2}>
                                                 <Grid item xs={12} sm={6}>
                                                     <FormInputTextField
-                                                        name="name"
+                                                        name="name2"
                                                         control={control}
                                                         caption="姓"
                                                         captionOnLeft={true}
                                                         fullwidth={false}
-                                                        id="membership-form-name"
+                                                        id="membership-form-name2"
                                                     />
                                                 </Grid>
                                                 <Grid item xs={12} sm={6}>
                                                     <FormInputTextField
-                                                        name="name2"
+                                                        name="name"
                                                         control={control}
                                                         caption="名"
                                                         captionOnLeft={true}
                                                         fullwidth={false}
                                                         className='second-field-inputs'
-                                                        id="membership-form-name2"
+                                                        id="membership-form-name"
                                                     />
                                                 </Grid>
                                             </Grid>
@@ -499,23 +499,23 @@ const MembershipForm = () => {
                                     <Grid container item xs={12} sm={12} spacing={2}>
                                         <Grid item xs={12} sm={4}>
                                             <FormInputTextField
-                                                name="namek"
+                                                name="namek2"
                                                 control={control}
                                                 caption="姓"
                                                 captionOnLeft={true}
                                                 fullwidth={false}
-                                                id="membership-form-namek"
+                                                id="membership-form-namek2"
                                             />
                                         </Grid>
                                         <Grid item xs={12} sm={4}>
                                             <FormInputTextField
-                                                name="namek2"
+                                                name="namek"
                                                 control={control}
                                                 caption="姪"
                                                 captionOnLeft={true}
                                                 fullwidth={false}
                                                 className='second-field-inputs'
-                                                id="membership-form-namek2"
+                                                id="membership-form-namek"
                                             />
                                         </Grid>
                                     </Grid>
