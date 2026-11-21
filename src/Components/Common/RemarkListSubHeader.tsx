@@ -9,7 +9,7 @@ const menuLinks: { key: MenuLinkType; label: string; href: string }[] = [
     { key: 'tree', label: 'ツリー', href: '/forum.html' },
     { key: 'recent', label: '新着順', href: '/forum.html' },
     { key: 'newarticle', label: '新記事', href: '/forum.html' },
-    { key: 'diary', label: '日記', href: '/forum.html' },
+    { key: 'diary', label: '日記', href: '/diary' },
     { key: 'advice', label: 'Advice', href: '/advice.html' },
 ];
 

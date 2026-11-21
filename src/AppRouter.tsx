@@ -40,6 +40,7 @@ import RemarkSuccess from "./Pages/Remarks/RemarkSuccess";
 import RedirectToHome from "./Pages/HomePage/RedirecttoHome";
 import Search from "./Pages/Search/Search";
 import CancelMembership from "./Pages/Login/CancelMembership";
+import Diary from "./Pages/Remarks/diary";
 
 const baseTheme = createTheme({
   typography: {
@@ -91,7 +92,8 @@ const AppRouter: React.FC = () => {
                 <Route path="/other_reference_books" element={<OtherBooks />} />
                 <Route path="/remarklist" element={<RemarkList />} />
                 <Route path="/remarktree_reply" element={<RemarkTreeList />} />
-                <Route path="/newremark" element={<NewRemark />} />
+                <Route path="/newremark" element={<NewRemark />} />\
+                <Route path="/diary" element={<Diary />} />
                 <Route path="/remarksuccess" element={<RemarkSuccess />} />
 
               </Routes>
