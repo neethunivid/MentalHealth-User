@@ -2,12 +2,12 @@ import React from 'react';
 
 
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 import AppRouter from './AppRouter';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: [
       '"MPLUSRounded1c"',
