@@ -16,6 +16,7 @@ function RemarkTreeList() {
   const { expandedRemarkData, remarkdata, id, parentid } = location.state || {};
   const { parentcountvalue, tree } = DepthCount(remarkdata, parentid ? parentid : id);
   const [expandedReplyContainer, setExpandedReplyContainer] = useState<string | null>(null);
+  const [expandedDiaryContainer, setExpandedDiaryContainer] = useState<string | null>(null);
   const [isPreviewVisible, setIsPreviewVisible] = useState(false);
   const [previewData, setPreviewData] = useState(null);
   const [textareaValue, setTextAreaValue] = useState(null);
@@ -55,11 +56,21 @@ function RemarkTreeList() {
    * to toggle the  reply container with the remark no
    * @param remarkNo 
    */
-  const handleToggleReplyContainer = (remarkNo: string) => {
-    setExpandedReplyContainer((prev) => (prev === remarkNo ? null : remarkNo));
+  const handleToggleReplyContainer = (remarkNo: any) => {
+    const idStr = String(remarkNo);
+    setExpandedDiaryContainer(null);
+    setExpandedReplyContainer((prev) => (prev === idStr ? null : idStr));
   };
 
-
+  /**
+   * to toggle the  diary card
+   * @param remarkNo 
+   */
+  const handleToggleAddDiarycard = (remarkNo: any) => {
+    const idStr = String(remarkNo);
+    setExpandedReplyContainer(null);
+    setExpandedDiaryContainer((prev) => (prev === idStr ? null : idStr));
+  };
   /**
    * render the tree node
    * @param nodes 
@@ -79,12 +90,15 @@ function RemarkTreeList() {
               date={node.item.date}
               remarkNo={node.item.remarkNo}
               depth={node.item.depth}
-              isReplyContainerOpen={expandedReplyContainer === node.item.id}
+              isReplyContainerOpen={expandedReplyContainer === String(node.item.id)}
               onToggle={() => handleToggleReplyContainer(node.item.id)}
+              isAddDiaryContainerOpen={expandedDiaryContainer === String(node.item.id)}
+              onToggleAddDiary={() => handleToggleAddDiarycard(node.item.id)}
               onPreviewClick={handlePreviewClick}
               textareaValue={selectedRemarkReply ? node.item.id === selectedRemarkReply ? textareaValue : '' : ""}
               id={node.item.id}
               parentId={node.item.remarks}
+              type={node.item.type}
             />
             {node.children.length > 0 && renderTree(node.children)}
           </Grid>
@@ -126,12 +140,15 @@ function RemarkTreeList() {
                   date={expandedRemarkData.date}
                   remarkNo={expandedRemarkData.remarkNo}
                   depth={`Re-${parentcountvalue}`}
-                  isReplyContainerOpen={expandedRemarkData.id === expandedReplyContainer}
+                  isReplyContainerOpen={expandedReplyContainer === String(expandedRemarkData.id)}
                   onToggle={() => handleToggleReplyContainer(expandedRemarkData.id)}
+                  isAddDiaryContainerOpen={expandedDiaryContainer === String(expandedRemarkData.id)}
+                  onToggleAddDiary={() => handleToggleAddDiarycard(expandedRemarkData.id)}
                   onPreviewClick={handlePreviewClick}
                   textareaValue={selectedRemarkReply ? expandedRemarkData.id === selectedRemarkReply ? textareaValue : '' : ""}
                   id={expandedRemarkData.id}
                   parentId={expandedRemarkData.remarks}
+                  type={expandedRemarkData.type}
                 />
               </>
             )}
