@@ -3,7 +3,7 @@ import './RemarkListSubHeader.scss';
 import { useNavigate } from 'react-router-dom';
 
 type MenuLinkType = 'tree' | 'recent' | 'newarticle' | 'diary' | 'advice';
-type RoomType = 'normal' | 'anxiety' | 'blackmail' | 'other' | 'growingup';
+type RoomType = 'normal' | 'anxiety' | 'blackmail' | 'other' | 'growingup' | 'diary';
 
 const menuLinks: { key: MenuLinkType; label: string; href: string }[] = [
     { key: 'tree', label: 'ツリー', href: '/forum.html' },
@@ -15,7 +15,11 @@ const menuLinks: { key: MenuLinkType; label: string; href: string }[] = [
 
 const RemarkListSubHeader = () => {
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    const [activeMenuIndex, setActiveMenuIndex] = useState<number | null>(4);
+    const [activeMenuIndex, setActiveMenuIndex] = useState<number>(() => {
+        const savedMenuKey = localStorage.getItem('activeMenuLink');
+        const savedIndex = menuLinks.findIndex((link) => link.key === savedMenuKey);
+        return savedIndex >= 0 ? savedIndex : 4;
+    });
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -24,17 +28,20 @@ const RemarkListSubHeader = () => {
         anxiety: 1,
         blackmail: 2,
         other: 3,
-        growingup: 4
+        growingup: 4,
+        diary: 5,
     };
 
     useEffect(() => {
-        const roomType = localStorage.getItem('roomType') as RoomType | null; // Get room type from local storage
+        const roomType = localStorage.getItem('roomType') as RoomType | 'other'; // Get room type from local storage
+        console.log('ROOM TYPE ', roomType);
         if (roomType) {
             setActiveIndex(indexMap[roomType]); // Set active index based on room type
         }
     }, []);
 
     const handleRoomTypeClick = (roomType: RoomType) => {
+        console.log("clicked", roomType);
         const index = indexMap[roomType]; // Get index based on room type
         localStorage.setItem('roomType', roomType); // Store room type in local storage
         setActiveIndex(index);
@@ -45,7 +52,12 @@ const RemarkListSubHeader = () => {
     const handleMenuLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number, href: string) => {
         e.preventDefault();
         setActiveMenuIndex(index);
+        localStorage.setItem('activeMenuLink', menuLinks[index].key);
         setIsMenuOpen(false);
+        if (menuLinks[index].key === 'diary') {
+            localStorage.setItem('roomType', 'diary');
+            setActiveIndex(indexMap.diary);
+        }
         if (href !== '#') {
             // Use window.location for external/static .html pages (not React routes)
             window.location.href = href;
@@ -79,20 +91,20 @@ const RemarkListSubHeader = () => {
             </ul>
 
             {/* Shown only when MENU is clicked */}
-            {isMenuOpen && (
-                <ul id="menu-sub-pc" className="menu menu-sub-pc-list">
-                    {menuLinks.map((link, idx) => (
-                        <li
-                            key={link.key}
-                            className={`menu-sub-item menu_items ${activeMenuIndex === idx ? 'active-menu' : ''}`}
-                        >
-                            <a href={link.href} onClick={(e) => handleMenuLinkClick(e, idx, link.href)}>
-                                <strong className="room_items">{link.label}</strong>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            {/* {isMenuOpen && ( */}
+            <ul id="menu-sub-pc" className="menu menu-sub-pc-list">
+                {menuLinks.map((link, idx) => (
+                    <li
+                        key={link.key}
+                        className={`menu-sub-item menu_items ${activeMenuIndex === idx ? 'active-menu' : ''}`}
+                    >
+                        <a href={link.href} onClick={(e) => handleMenuLinkClick(e, idx, link.href)}>
+                            <strong className="room_items">{link.label}</strong>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            {/* /)} */}
 
             <ul id="menu-shimin-pc" className="menu">
                 <li className={`room menu_items ${activeIndex === 0 ? "active" : ""}`} onClick={() => handleRoomTypeClick("normal")}>

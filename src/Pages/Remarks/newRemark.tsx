@@ -4,10 +4,12 @@ import { Controller, useForm } from 'react-hook-form';
 import RemarksLayout from './RemarksLayout';
 import apiClient from '../../API/API-client';
 import { useNavigate } from 'react-router-dom';
+import { Girl } from '@mui/icons-material';
 
 interface RemarkFormData {
   title: string;
   text: string;
+  roomSelection: string;
 }
 
 const NewRemark: React.FC = () => {
@@ -15,30 +17,48 @@ const NewRemark: React.FC = () => {
   const [previewData, setPreviewData] = useState<RemarkFormData | null>(null);
   const [isPreviewChecked, setIsPreviewChecked] = useState(false);
   const [submissionError, setSubmissionError] = useState('');
-   let memberId = localStorage.getItem("memberNo")
-   const navigate = useNavigate();
+  let memberId = localStorage.getItem("memberNo")
+  const navigate = useNavigate();
   const {
     handleSubmit,
     control,
+    register,
     reset,
     formState: { errors },
   } = useForm<RemarkFormData>({
     defaultValues: {
       title: '',
       text: '',
+      roomSelection: localStorage.getItem("roomType") || '',
     },
   });
 
-  const submitRemark = async (data: RemarkFormData) => {
-    const demo = localStorage.getItem("roomType") || "other";
-    const roomTypeMap: { [key: string]: number } = {
-      anxiety: 2,
-      normal: 1,
-      blackmail: 3,
-      other: 4
-    };
+  const roomTypeMap: { [key: string]: number } = {
+        normal: 0,
+        anxiety: 1,
+        blackmail: 2,
+        other: 3,
+        growingup: 4,
+        diary: 5,
+  };
 
-    let result = roomTypeMap[demo as string] || 0;
+  const roomLabelMap: { [key: string]: string } = {
+    normal: '普通の部屋',
+    anxiety: '不安の部屋',
+    blackmail: '強迫の部屋',
+    other: 'うつ他の部屋',
+    growth: '成長の部屋',
+    diary: '日記',
+  };
+
+  const submitRemark = async (data: RemarkFormData) => {
+    const selectedRoom = data.roomSelection;
+    if (!selectedRoom || roomTypeMap[selectedRoom] === undefined) {
+      setSubmissionError('送信先を選択して下さい。');
+      return;
+    }
+
+    const result = roomTypeMap[selectedRoom];
     setSubmissionError('');
     try {
       const requestData = {
@@ -89,7 +109,7 @@ const NewRemark: React.FC = () => {
     <RemarksLayout>
       <Grid className="container-remarkdetails">
         <Grid className="heading-container">
-          <Typography className="heading">新規発言</Typography>
+          <Typography className="heading">メッセージをどうぞ（新規発言）</Typography>
         </Grid>
         {previewData ? (
           <Grid className="remark_container">
@@ -117,6 +137,15 @@ const NewRemark: React.FC = () => {
               </Grid>
               <Grid className="textbox-right">
                 <Typography className="remark-text">{previewData.text}</Typography>
+              </Grid>
+            </Grid>
+            <Divider className="remark-divider" />
+            <Grid className="content-card">
+              <Grid className="row-left">
+                <Typography className="member-label">送信先</Typography>
+              </Grid>
+              <Grid className="textbox-right">
+                <Typography className="remark-text">{roomLabelMap[previewData.roomSelection] || previewData.roomSelection}</Typography>
               </Grid>
             </Grid>
             <Divider className="remark-divider" />
@@ -191,6 +220,56 @@ const NewRemark: React.FC = () => {
                   />
                 </Grid>
               </Grid>
+              <Divider className="remark-divider" />
+              <Grid className="content-card">
+                <Grid className="row-left">
+                  <Typography className="member-label">
+                    送信先を選択して下さい <span style={{ color: 'red' }}>*</span>
+                  </Typography>
+                </Grid>
+                <Grid className="textbox-right">
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '12px 20px',
+                      fontSize: '14px',
+                      alignItems: 'center',
+                      '@media (max-width: 600px)': {
+                        flexDirection: 'column',
+                        alignItems: 'flex-start',
+                        gap: '10px',
+                      },
+                    }}
+                  >
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="normal" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      普通の部屋
+                    </label>
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="anxiety" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      不安の部屋
+                    </label>
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="blackmail" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      強迫の部屋
+                    </label>
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="other" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      うつ他の部屋
+                    </label>
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="growth" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      成長の部屋
+                    </label>
+                    <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
+                      <input type="radio" value="diary" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      日記
+                    </label>
+                  </Box>
+                </Grid>
+              </Grid>
+              <Divider className="remark-divider" />
               {submissionError && <Typography role="alert">{submissionError}</Typography>}
               <Grid container className="submitbtn-container">
                 <button type="submit" className="submitbtn">送信</button>
@@ -209,9 +288,10 @@ const NewRemark: React.FC = () => {
               </Grid>
             </form>
           </Grid>
-        )}
-      </Grid>
-    </RemarksLayout>
+        )
+        }
+      </Grid >
+    </RemarksLayout >
   );
 };
 
