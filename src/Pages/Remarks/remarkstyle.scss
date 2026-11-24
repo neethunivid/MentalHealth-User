@@ -11,12 +11,10 @@
 
 .heading-container {
   padding: 7px 15px;
-  color: #ffffff;
   font-size: 1.1em;
   font-weight: bold;
   text-align: left;
-  border: 1px solid #47c947;
-  background-color: #47c947;
+  background-color: #e0ffff;
 }
 
 .remark-main-container {
@@ -418,6 +416,24 @@
   // margin-bottom: 10px; /* Adjust margin as needed */
 }
 
+
+.content-card-new {
+  display: flex !important;
+  flex-direction: column !important;
+   font-family: $font;
+  font-size: 18px !important;
+  //align-items: center;
+  // margin-bottom: 10px; /* Adjust margin as needed */
+}
+
+.submitbtn-container-new {
+  margin: 10px 0;
+  margin-left: 40px;
+  justify-content: left;
+  display: flex;
+  flex-direction: row;
+
+}
 .profile-left {
   display: flex;
   flex-direction: column;
@@ -587,7 +603,12 @@
 
 .container-remarkdetails {
   font-family: $font !important;
-  border: 1px solid #ccc;
   margin: 5px;
   margin-top: 10px !important;
+  border: 1px solid #ccc;
+    background-color: #e0ffff;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }

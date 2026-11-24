@@ -108,7 +108,7 @@ const NewRemark: React.FC = () => {
   return (
     <RemarksLayout>
       <Grid className="container-remarkdetails">
-        <Grid className="heading-container">
+        <Grid className="heading-container" style={{ 'borderRadius': '8px' }}>
           <Typography className="heading">メッセージをどうぞ（新規発言）</Typography>
         </Grid>
         {previewData ? (
@@ -156,7 +156,7 @@ const NewRemark: React.FC = () => {
             </Grid>
           </Grid>
         ) : (
-          <Grid className="remark_container">
+          <Grid className="remark_container" padding={3}>
             <Grid className="content-card">
               <Grid className="row-left">
                 <Typography className="member-label">発言者</Typography>
@@ -167,7 +167,7 @@ const NewRemark: React.FC = () => {
             </Grid>
             <Divider className="remark-divider" />
             <form onSubmit={handleSubmit(handleSubmitRemark)}>
-              <Grid className="content-card" marginTop={4}>
+              <Grid className="content-card-new" marginTop={4}>
                 <Grid className="row-left">
                   <Typography className="member-label">タイトル</Typography>
                 </Grid>
@@ -191,13 +191,14 @@ const NewRemark: React.FC = () => {
                           '& .MuiOutlinedInput-input': {
                             padding: '0 14px',
                           },
+                          backgroundColor: '#fff'
                         }}
                       />
                     )}
                   />
                 </Grid>
               </Grid>
-              <Grid className="content-card">
+              <Grid className="content-card-new">
                 <Grid className="row-left">
                   <Typography className="member-label">発言内容</Typography>
                 </Grid>
@@ -212,7 +213,7 @@ const NewRemark: React.FC = () => {
                         variant="outlined"
                         error={Boolean(errors.text)}
                         helperText={errors.text?.message}
-                        sx={{ width: '90%' }}
+                        sx={{ width: '90%',  backgroundColor: '#fff' }}
                         multiline
                         rows={4}
                       />
@@ -220,8 +221,7 @@ const NewRemark: React.FC = () => {
                   />
                 </Grid>
               </Grid>
-              <Divider className="remark-divider" />
-              <Grid className="content-card">
+              <Grid className="content-card" marginTop={2}>
                 <Grid className="row-left">
                   <Typography className="member-label">
                     送信先を選択して下さい <span style={{ color: 'red' }}>*</span>
@@ -271,11 +271,11 @@ const NewRemark: React.FC = () => {
               </Grid>
               <Divider className="remark-divider" />
               {submissionError && <Typography role="alert">{submissionError}</Typography>}
-              <Grid container className="submitbtn-container">
+              <Grid container className="submitbtn-container-new">
                 <button type="submit" className="submitbtn">送信</button>
                 <button type="reset" className="submitbtn" onClick={handleReset}>リセット</button>
               </Grid>
-              <Grid container className="submitbtn-container">
+              <Grid container className="submitbtn-container-new" marginLeft={8}>
                 <Grid className="previewbtn-container">
                   <Checkbox
                     checked={isPreviewChecked}
@@ -283,7 +283,7 @@ const NewRemark: React.FC = () => {
                     inputProps={{ 'aria-label': 'preview checkbox' }}
                     style={{ padding: 0, marginRight: 4 }}
                   />
-                  <Typography className="previewtext">プレビュー（確認)</Typography>
+                  <Typography className="previewtext">プレビュー（送信内容の確認)</Typography>
                 </Grid>
               </Grid>
             </form>
