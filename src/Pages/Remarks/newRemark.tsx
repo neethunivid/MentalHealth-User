@@ -34,12 +34,12 @@ const NewRemark: React.FC = () => {
   });
 
   const roomTypeMap: { [key: string]: number } = {
-        normal: 0,
-        anxiety: 1,
-        blackmail: 2,
-        other: 3,
-        growingup: 4,
-        diary: 5,
+        normal: 1,
+        anxiety: 2,
+        blackmail: 3,
+        other: 4,
+        growingup: 5,
+        diary: 6,
   };
 
   const roomLabelMap: { [key: string]: string } = {
@@ -47,7 +47,7 @@ const NewRemark: React.FC = () => {
     anxiety: '不安の部屋',
     blackmail: '強迫の部屋',
     other: 'うつ他の部屋',
-    growth: '成長の部屋',
+    growingup: '成長の部屋',
     diary: '日記',
   };
 
@@ -59,6 +59,8 @@ const NewRemark: React.FC = () => {
     }
 
     const result = roomTypeMap[selectedRoom];
+    console.log("Selected Room:", selectedRoom);
+
     setSubmissionError('');
     try {
       const requestData = {
@@ -259,7 +261,7 @@ const NewRemark: React.FC = () => {
                       うつ他の部屋
                     </label>
                     <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
-                      <input type="radio" value="growth" {...register('roomSelection')} style={{ marginRight: '6px' }} />
+                      <input type="radio" value="growingup" {...register('roomSelection')} style={{ marginRight: '6px' }} />
                       成長の部屋
                     </label>
                     <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
