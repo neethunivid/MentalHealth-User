@@ -63,12 +63,12 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
 
   const demo = localStorage.getItem("roomType") || "other";
   const roomTypeMap: { [key: string]: number } = {
-        normal: 0,
-        anxiety: 1,
-        blackmail: 2,
-        other: 3,
-        growingup: 4,
-        diary: 5,
+        normal: 1,
+        anxiety: 2,
+        blackmail: 3,
+        other: 4,
+        growingup: 5,
+        diary: 6,
   };
   const numType = Number(type);
   const result = (numType >= 1 && numType <= 6)
