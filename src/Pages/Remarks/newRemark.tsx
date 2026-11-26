@@ -5,6 +5,7 @@ import RemarksLayout from './RemarksLayout';
 import apiClient from '../../API/API-client';
 import { useNavigate } from 'react-router-dom';
 import { Girl } from '@mui/icons-material';
+import { extractApiErrorMessage, showRemarkErrorAlert } from './remarkErrorAlert';
 
 interface RemarkFormData {
   title: string;
@@ -34,19 +35,19 @@ const NewRemark: React.FC = () => {
   });
 
   const roomTypeMap: { [key: string]: number } = {
-        normal: 1,
-        anxiety: 2,
-        blackmail: 3,
-        other: 4,
-        growingup: 5,
-        diary: 6,
+    normal: 1,
+    anxiety: 2,
+    blackmail: 3,
+    other: 4,
+    growingup: 5,
+    diary: 6,
   };
 
   const roomLabelMap: { [key: string]: string } = {
     normal: '普通の部屋',
     anxiety: '不安の部屋',
     blackmail: '強迫の部屋',
-    other: 'うつ他の部屋',
+    other: 'その他の部屋',
     growingup: '成長の部屋',
     diary: '日記',
   };
@@ -70,14 +71,21 @@ const NewRemark: React.FC = () => {
         memberId: memberId,
       };
       const apiData = await apiClient.post("api/reply/remarks", requestData, {});
+      if (apiData?.data?.code === 0 || apiData?.data?.error) {
+        const msg = showRemarkErrorAlert(apiData?.data?.error || apiData?.data?.message);
+        setSubmissionError(msg);
+        return;
+      }
       if (apiData) {
         navigate('/remarksuccess');
       } else {
-        setSubmissionError('新規発言を送信できませんでした。');
+        const msg = showRemarkErrorAlert();
+        setSubmissionError(msg);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending Data:", error);
-      setSubmissionError('新規発言を送信できませんでした。');
+      const msg = showRemarkErrorAlert(extractApiErrorMessage(error));
+      setSubmissionError(msg);
     }
   };
 
@@ -215,7 +223,7 @@ const NewRemark: React.FC = () => {
                         variant="outlined"
                         error={Boolean(errors.text)}
                         helperText={errors.text?.message}
-                        sx={{ width: '90%',  backgroundColor: '#fff' }}
+                        sx={{ width: '90%', backgroundColor: '#fff' }}
                         multiline
                         rows={4}
                       />
@@ -258,7 +266,7 @@ const NewRemark: React.FC = () => {
                     </label>
                     <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
                       <input type="radio" value="other" {...register('roomSelection')} style={{ marginRight: '6px' }} />
-                      うつ他の部屋
+                      その他の部屋
                     </label>
                     <label style={{ cursor: 'pointer', display: 'inline-flex', alignItems: 'center', fontSize: '14px' }}>
                       <input type="radio" value="growingup" {...register('roomSelection')} style={{ marginRight: '6px' }} />

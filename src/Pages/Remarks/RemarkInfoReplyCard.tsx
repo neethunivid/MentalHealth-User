@@ -99,27 +99,52 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
 
 
 
+  const showReplyErrorAlert = (rawMessage?: string) => {
+    const msg = rawMessage?.trim() || '送信に失敗しました。';
+    if (/Reply title contains prohibited NG words/i.test(msg)) {
+      alert(`タイトルに禁止ワード（NGワード）が含まれているため送信できません。\n${msg}`);
+    } else if (/prohibited NG words/i.test(msg)) {
+      alert(`発言内容に禁止ワード（NGワード）が含まれているため送信できません。\n${msg}`);
+    } else {
+      alert(msg);
+    }
+  };
+
+  const submitReplyPayload = async (requestData: any) => {
+    try {
+      const apiData = await apiClient.post("api/reply/reply", requestData, {});
+      if (apiData?.data?.code === 0 || apiData?.data?.error) {
+        showReplyErrorAlert(apiData?.data?.error || apiData?.data?.message);
+        return;
+      }
+      if (apiData) {
+        navigate('/remarksuccess');
+      }
+    } catch (error: any) {
+      console.error("Error sending Data:", error);
+      const errData = error?.response?.data;
+      const errMsg =
+        errData?.error ||
+        errData?.message ||
+        (typeof errData === 'string' ? errData : '') ||
+        error?.message;
+      showReplyErrorAlert(errMsg);
+    }
+  };
+
   const onSubmit = async (data: any) => {
     if (isPreviewChecked) {
       onPreviewClick({ ...data, type: result }, id, remarkTitle);
     } else {
-      try {
-        const requestData = {
-          remarkId: id,
-          parentRemark: id,
-          type: result,
-          title: data.textField,
-          text: data.textarea,
-          memberId: memberId,
-          remarkTitle: remarkTitle
-        };
-        const apiData = await apiClient.post("api/reply/reply", requestData, {});
-        if (apiData) {
-          navigate('/remarksuccess')
-        }
-      } catch (error) {
-        console.error("Error sending Data:", error);
-      }
+      await submitReplyPayload({
+        remarkId: id,
+        parentRemark: id,
+        type: result,
+        title: data.textField,
+        text: data.textarea,
+        memberId: memberId,
+        remarkTitle: remarkTitle
+      });
     }
   };
 
@@ -127,23 +152,15 @@ const RemarkInfoReplyCard: React.FC<RemarkInfoReplyCardProps> = (props) => {
     if (isPreviewChecked) {
       onPreviewClick({ ...data, type: 6 }, id, remarkTitle);
     } else {
-      try {
-        const requestData = {
-          remarkId: id,
-          parentRemark: id,
-          type: 6,
-          title: data.textField,
-          text: data.textarea,
-          memberId: memberId,
-          remarkTitle: remarkTitle
-        };
-        const apiData = await apiClient.post("api/reply/reply", requestData, {});
-        if (apiData) {
-          navigate('/remarksuccess')
-        }
-      } catch (error) {
-        console.error("Error sending Data:", error);
-      }
+      await submitReplyPayload({
+        remarkId: id,
+        parentRemark: id,
+        type: 6,
+        title: data.textField,
+        text: data.textarea,
+        memberId: memberId,
+        remarkTitle: remarkTitle
+      });
     }
   };
 

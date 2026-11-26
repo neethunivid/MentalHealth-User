@@ -107,27 +107,27 @@ const RemarkListSubHeader = () => {
             {/* /)} */}
 
             <ul id="menu-shimin-pc" className="menu">
-                <li className={`room menu_items ${activeIndex === 0 ? "active" : ""}`} onClick={() => handleRoomTypeClick("normal")}>
+                <li className={`room menu_items ${activeIndex === 1 ? "active" : ""}`} onClick={() => handleRoomTypeClick("normal")}>
                     <a href='/remarklist'>
                         <strong className="room_items">普通</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 1 ? "active-room2" : ""}`} onClick={() => handleRoomTypeClick("anxiety")}>
+                <li className={`room menu_items ${activeIndex === 2 ? "active-room2" : ""}`} onClick={() => handleRoomTypeClick("anxiety")}>
                     <a href='/remarklist'>
                         <strong className="room_items">不安</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 2 ? "active-room3" : ""}`} onClick={() => handleRoomTypeClick("blackmail")}>
+                <li className={`room menu_items ${activeIndex === 3 ? "active-room3" : ""}`} onClick={() => handleRoomTypeClick("blackmail")}>
                     <a href='/remarklist'>
                         <strong className="room_items">強迫</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 3 ? "active-room4" : ""}`} onClick={() => handleRoomTypeClick("other")}>
+                <li className={`room menu_items ${activeIndex === 4 ? "active-room4" : ""}`} onClick={() => handleRoomTypeClick("other")}>
                     <a href='/remarklist'>
                         <strong className="room_items">うつ他</strong>
                     </a>
                 </li>
-                <li className={`room menu_items ${activeIndex === 4 ? "active-room5" : ""}`} onClick={() => handleRoomTypeClick("growingup")}>
+                <li className={`room menu_items ${activeIndex === 5 ? "active-room5" : ""}`} onClick={() => handleRoomTypeClick("growingup")}>
                     <a href='/remarklist'>
                         <strong className="room_items">成長</strong>
                     </a>
