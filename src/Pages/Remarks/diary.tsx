@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import RemarksLayout from './RemarksLayout';
 import apiClient from '../../API/API-client';
 import { useNavigate } from 'react-router-dom';
+import { extractApiErrorMessage, showRemarkErrorAlert } from './remarkErrorAlert';
 import DiaryWritingGuideDialog from './DiaryWritingGuideDialog';
 import TreeView from '../../Components/Common/TreeData';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -99,14 +100,21 @@ const Diary: React.FC = () => {
         memberId: memberId,
       };
       const apiData = await apiClient.post("api/reply/remarks", requestData, {});
+      if (apiData?.data?.code === 0 || apiData?.data?.error) {
+        const msg = showRemarkErrorAlert(apiData?.data?.error || apiData?.data?.message);
+        setSubmissionError(msg);
+        return;
+      }
       if (apiData) {
         navigate('/remarksuccess');
       } else {
-        setSubmissionError('新規発言を送信できませんでした。');
+        const msg = showRemarkErrorAlert();
+        setSubmissionError(msg);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error sending Data:", error);
-      setSubmissionError('新規発言を送信できませんでした。');
+      const msg = showRemarkErrorAlert(extractApiErrorMessage(error));
+      setSubmissionError(msg);
     }
   };
 
