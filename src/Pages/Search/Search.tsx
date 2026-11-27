@@ -28,7 +28,7 @@ const Search: React.FC = () => {
                       
                         <Box
                             component="form"
-                            action="https://www.google.com/cse"
+                            action="https://www.google.com"
                             method="get"
                             display="flex"
                             gap={2}
