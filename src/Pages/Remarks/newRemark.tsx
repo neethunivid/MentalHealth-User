@@ -117,8 +117,8 @@ const NewRemark: React.FC = () => {
 
   return (
     <RemarksLayout>
-      <Grid className="container-remarkdetails">
-        <Grid className="heading-container" style={{ 'borderRadius': '8px' }}>
+      <Grid className="container-remarkdetails-new">
+        <Grid className="heading-container" style={{ 'borderRadius': '8px', 'backgroundColor': '#e0ffff' }}>
           <Typography className="heading">メッセージをどうぞ（新規発言）</Typography>
         </Grid>
         {previewData ? (
