@@ -74,13 +74,13 @@ const NewRemark: React.FC = () => {
       if (apiData?.data?.code === 0 || apiData?.data?.error) {
         const msg = showRemarkErrorAlert(apiData?.data?.error || apiData?.data?.message);
         setSubmissionError(msg);
-        return;
       }
       if (apiData) {
         navigate('/remarksuccess');
       } else {
         const msg = showRemarkErrorAlert();
         setSubmissionError(msg);
+        return;
       }
     } catch (error: any) {
       console.error("Error sending Data:", error);
