@@ -1011,12 +1011,12 @@ const MembershipForm = () => {
                             <Grid container className="form" alignItems='center' justifyContent='center' rowSpacing={2} pt={2}>
                                 <FormInputPreview
                                     label="名前（漢字）"
-                                    inputValue={`${membershipData.name} ${membershipData.name2}`}
+                                    inputValue={`${membershipData.name2} ${membershipData.name}`}
                                     id="membership-form-name"
                                 />
                                 <FormInputPreview
                                     label="ふりがな"
-                                    inputValue={`${membershipData.namek} ${membershipData.namek2}`}
+                                    inputValue={`${membershipData.namek2} ${membershipData.namek}`}
                                     id="membership-form-namek"
                                 />
                                 <FormInputPreview
